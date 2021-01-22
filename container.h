@@ -1,12 +1,12 @@
 #ifndef CONTAINER_H
 #define CONTAINER_H
-
+//madonna cagna
 template<class T>
 class Container {
 
     class Nodo {
     public:
-        T* p;
+        T p;
         Nodo* next;
         Nodo();
 
