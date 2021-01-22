@@ -9,6 +9,8 @@ public:
 
     ~DeepPtr();
 };
+
+//mlemlemlemlme
 #endif // DEEPPTR_H
 
 
