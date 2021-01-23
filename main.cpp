@@ -6,12 +6,16 @@ class A {
 private:
     int x;
 public:
-    A() : x(22) {}
+    A(int s =0) : x(s) {}
     int getValue() {return x;}
 };
 
 int main(int argc, char *argv[])
 {
     DeepPtr<A> p = new A ();
-    cout << (*p).getValue() << "  " << p->getValue();
+
+    DeepPtr<A> p1 = new A(1);
+
+
+
 }
