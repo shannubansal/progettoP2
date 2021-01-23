@@ -7,7 +7,7 @@ private:
     int x;
 public:
     A(int s =0) : x(s) {}
-    int getValue() {return x;}
+    int* clone() {return &x;}
 };
 
 int main(int argc, char *argv[])
