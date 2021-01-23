@@ -146,6 +146,28 @@ bool Container<T>:: isEmpty() const{
     return (first==nullptr);
 }
 
+
+template<class T>
+typename Container<T>::Iterator Container<T>::begin() const{
+    return Iterator(first);
+}
+
+template<class T>
+typename Container<T>::Iterator Container<T>::end() const{
+    return Iterator(nullptr);
+}
+
+template<class T>
+typename Container<T>::ConstIterator Container<T>::begin() const{
+    return ConstIterator(first);
+}
+
+
+template<class T>
+typename Container<T>::ConstIterator Container<T>::begin() const{
+    return ConstIterator(nullptr);
+}
+
 //implementazione funzioni Iterator
 
 template<class T>
@@ -221,7 +243,7 @@ typename Container<T>::ConstIterator& Container<T>::ConstIterator::operator++()
 template<class T>
 typename Container<T>::ConstIterator& Container<T>::ConstIterator::operator++(int)
 {
-    Iteratore tmp=*this;
+    Iterator tmp=*this;
     if(cptr) cptr=cptr->next;
     return tmp;
 
