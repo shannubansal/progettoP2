@@ -1,6 +1,9 @@
 #ifndef CONTAINER_H
 #define CONTAINER_H
-//madonna cagna
+
+#include <iostream>
+using namespace std;
+
 template<class T>
 class Container {
 
@@ -13,8 +16,8 @@ class Container {
         ~Nodo();
     };
 public:
-    Container();
-    ~Container();
+    Container() {};
+    ~Container() {};
 
 
     void insert();
@@ -34,7 +37,7 @@ public:
       Iterator operator ++(int);
     };
 
-    class const_Iterator {
+ /*   class const_Iterator {
       friend class Container<T>;
       const Nodo* it;
     public:
@@ -48,11 +51,12 @@ public:
       Iterator operator ++(int);
     };
 
-    const_Iterator& begin() const;
+    const_Iterator& begin() const {cout<<"const iterator";};
     const_Iterator& end() const;
     const T& operator [](const_Iterator&) const;
+*/
 
-    Iterator& begin();
+    Iterator& begin() {cout<<"iterator";}
     Iterator& end();
     T& operator [](const Iterator&) const;
 
