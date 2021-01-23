@@ -13,7 +13,7 @@ private:
     public:
         T info;
         Nodo* next;
-        Nodo(const &T, nodo* n=nullptr);
+        Nodo(const &T, Nodo* n=nullptr);
         Nodo(const Nodo&);
         ~Nodo();
         void deleteNodi();
@@ -33,6 +33,14 @@ public:
     void insert();
     void remove();
     void empty();
+
+    void pushback(const T&);
+    void emptyContainer();
+/*    bool trovanodo(const T&);
+    void remove(const T&);
+    bool empty() const;
+    void sostituisciNodo(const T& oldNodo, const T& newNodo);
+*/
 
     class Iterator {
       friend class Container<T>;
@@ -81,15 +89,13 @@ public:
     Iterator end() const;
     T& operator [](const Iterator&) const;
 
-
-
 };
 
 
-//implementazione funzioni nodo
+//implementazione funzioni Nodo
 
 template<class T>
-typename Container<T>::nodo* Container<T>::copy(Nodo * pri, Nodo *& ult)
+typename Container<T>::Nodo* Container<T>::copy(Nodo * pri, Nodo *& ult)
 {
     if (pri == nullptr)
     {
@@ -103,7 +109,7 @@ typename Container<T>::nodo* Container<T>::copy(Nodo * pri, Nodo *& ult)
 
 
 template<class T>
-void Container<T>::nodo::deleteNodi()//cancella ricorsivamente tutti i nodi della lista
+void Container<T>::Nodo::deleteNodi()//cancella ricorsivamente tutti i nodi della lista
 {
     if (next) next->deleteNodi();
     delete this;
@@ -168,6 +174,111 @@ typename Container<T>::ConstIterator Container<T>::begin() const{
     return ConstIterator(nullptr);
 }
 
+
+template<class T>
+void database<T>:: pushback(const T&t){
+    Nodo*q=new Nodo(t);
+    if(!first) {
+        first=last=q;
+    }
+    else {
+        last->next=q;
+        last=last->next;
+    }
+}
+
+
+/*
+template<class T>
+bool database<T>::trovaNodo(const T& i){
+    bool trovato=false;
+
+    if(first->info == i)
+        trovato=true;
+    if(last->info==i)
+        trovato=true;
+
+    Nodo* scorri=first;
+
+    while(scorri->next && !trovato){
+        if(scorri->info == i)
+            trovato=true;
+        else
+            scorri=scorri->next;
+    }
+    return trovato;
+}
+
+template<class T>
+void database<T>::sostituisciNodo(const T& oldNodo, const T& newNodo){
+
+    if(this->trovaNodo(oldNodo)){
+        if(first->info == oldNodo)
+            first->info = newNodo;
+        if(last->info==oldNodo)
+            last->info = newNodo;
+
+        Nodo* scorri=first;
+
+        bool done = false;
+        while(scorri->next && !done){
+            if(scorri->info == oldNodo){
+                scorri->info = newNodo;
+                done = true;
+            }
+            else
+                scorri=scorri->next;
+        }
+
+        delete oldNodo;
+    }
+
+}
+
+
+template<class T>
+void database<T>::remove(const T &i)
+{
+    if(trovaNodo(i) == true){
+    //caso 1
+        if(first->info == i){
+            Nodo*elim=first;
+            first=first->next;
+            elim->next=nullptr;
+            delete elim;
+            conta_nodi--;
+        }
+
+        else{
+            Nodo*scorri=first->next;
+            Nodo*prec=first;
+
+            while(scorri->info != i){
+                scorri=scorri->next;
+                prec=prec->next;
+            }
+            //caso 2
+            if(scorri->info==last->info){
+                prec->next=nullptr;
+                last=prec;
+                delete scorri;
+                conta_nodi--;
+            }
+            //caso 3
+            else{
+                Nodo*elim=scorri;
+                prec->next=scorri->next;
+                elim->next=nullptr;
+                delete elim;
+                conta_nodi--;
+            }
+        }
+    }
+    return;
+}
+
+*/
+
 //implementazione funzioni Iterator
 
 template<class T>
@@ -221,7 +332,7 @@ typename Container<T>::Iterator & Container<T>::Iterator:: operator=(const Itera
 
 //implementazione funzioni ConstIterator
 template<class T>
-Container<T>::ConstIterator::ConstIterator(nodo * p) : cptr(p) {}
+Container<T>::ConstIterator::ConstIterator(Nodo * p) : cptr(p) {}
 
 template<class T>
 Container<T>::ConstIterator::ConstIterator() : cptr(nullptr) {}
