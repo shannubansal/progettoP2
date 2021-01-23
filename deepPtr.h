@@ -9,7 +9,7 @@ class DeepPtr {
   T* ptr;
 public:
     //member function
-    DeepPtr(T*=nullptr);
+    DeepPtr(T* ptr=nullptr);
     DeepPtr(const DeepPtr&);
     DeepPtr<T>& operator=(const DeepPtr<T>&);
     ~DeepPtr();
@@ -33,7 +33,7 @@ public:
 };
 
 template<class T>
-DeepPtr<T>::DeepPtr(T* p) : ptr(p){}
+DeepPtr<T>::DeepPtr(T* ptr) : ptr(ptr){}
 
 template <class T>
 DeepPtr<T>::DeepPtr(const DeepPtr& p){
