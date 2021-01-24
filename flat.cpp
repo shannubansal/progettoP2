@@ -10,7 +10,7 @@ Flat* Flat::clone() const{
 double Flat::calcFinalPrice() const{
      double price= getBasePrice();
     if(AC) price += (price *0.02);
-    price+=(price*0.2*rooms);
+    price+=(price*0.2*getRooms());
     return price;
 }
 
@@ -20,8 +20,8 @@ Flat::print() const{
 }
 */
 
-double Flat:: calcCommission(){
-    return calcFinalPrice()*0.1;
+double Flat:: calcCommission() const{
+    return calcFinalPrice()*0.12;
 }
 
 

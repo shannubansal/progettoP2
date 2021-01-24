@@ -25,6 +25,7 @@ public:
     //virtual print() const;
     virtual double calcCommission() const=0;
     virtual bool operator==(const Vacation&) const;//utile? da implementare?
+    //valutare inserimento di ritornante caparra/deposit
 
 
 
