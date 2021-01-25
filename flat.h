@@ -1,6 +1,7 @@
 #ifndef FLAT_H
 #define FLAT_H
 #include<vacation.h>
+using std::string;
 
 class Flat: public Vacation {
 private:

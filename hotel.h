@@ -1,6 +1,7 @@
 #ifndef HOTEL_H
 #define HOTEL_H
 #include<vacation.h>
+using std::string;
 
 
 class Hotel: public Vacation

@@ -17,11 +17,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     vacation.cpp \
     flat.cpp \
-    hotel.cpp
+    hotel.cpp \
+    camping.cpp
 
 HEADERS += \
     container.h \
     deepPtr.h \
     vacation.h \
     flat.h \
-    hotel.h
+    hotel.h \
+    camping.h
