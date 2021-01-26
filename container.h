@@ -5,89 +5,110 @@
 using namespace std;
 
 template<class T>
-class Container {
-private:
+class Container;
 
+template<class T>
+class Iterator_base {
+  friend class Container<T>;
+  friend class Container<const T>;
+
+  typename Container<T>::Nodo* ptr;
+public:
+//  Iterator_base();
+//  Iterator_base(const typename Container<T>::Nodo *);
+//  Iterator_base& operator=(const Iterator_base&);
+
+  bool operator ==(const Iterator_base&) const;
+  bool operator !=(const Iterator_base&) const;
+
+  T& operator *() const;
+  T* operator ->() const;
+  Iterator_base& operator ++();
+  Iterator_base& operator ++(int);
+};
+
+
+template<class T>
+class Container {
+    friend class Iterator_base<T>;
+    friend class Iterator_base<const T>;
+private:
 
     class Nodo {
     public:
         T info;
         Nodo* next;
-        Nodo(const &T, Nodo* n=nullptr);
-        Nodo(const Nodo&);
+
+        Nodo(const T&, Nodo* =nullptr);
+//        Nodo(const Nodo&);
+
         ~Nodo();
-        void deleteNodi();
+//        void deleteNodi();
     };
 
-    Nodo* first;
+
+    static typename Container<T>::Nodo* copy(const Nodo*, const Nodo* &);
+
     Nodo* last;
+    Nodo* first;
+
 public:
-    Container() {}
-    Container(const T&);
+
+    typedef Iterator_base<T> Iterator;
+    typedef Iterator_base<const T> ConstIterator;
+
+
+    Container();
+//    Container(int, const T&);
     Container(const Container&);
-    ~Container() {}
+    ~Container();
     Container& operator=(const Container&);
-    static Nodo*copy(Nodo*, Nodo*&);
 
     bool isEmpty() const;
-    void insert();
-    void remove();
-    void empty();
+//    void insert();
+//    void remove();
+//    void empty();
 
     void pushback(const T&);
-    void emptyContainer();
+//    void emptyContainer();
 /*    bool trovanodo(const T&);
     void remove(const T&);
     bool empty() const;
     void sostituisciNodo(const T& oldNodo, const T& newNodo);
 */
 
-    class Iterator {
-      friend class Container<T>;
-      Nodo* ptr;
-    public:
-      Iterator();
-      Iterator(Nodo*);
-      Iterator& operator=(const Iterator&);
-
-      bool operator ==(const Iterator&) const;
-      bool operator !=(const Iterator&) const;
-
-      T& operator *() const;
-      T* operator ->() const;
-      Iterator& operator ++();
-      Iterator& operator ++(int);
-    };
 
 
-  class ConstIterator {
-      friend class Container<T>;
-      const Nodo* cptr;
-    public:
-      ConstIterator();
-      ConstIterator(Nodo*);
-      ConstIterator& operator=(const ConstIterator&);
-      bool operator ==(ConstIterator&) const;
-      bool operator !=(ConstIterator&) const;
 
-      const T& operator *() const;
-      const T* operator ->() const;
+//  class ConstIterator {
+//      friend class Container<T>;
+//      const Nodo* cptr;
+//    public:
+//      ConstIterator();
+//      ConstIterator(Nodo*);
+//      ConstIterator& operator=(const ConstIterator&);
+//      bool operator ==(ConstIterator&) const;
+//      bool operator !=(ConstIterator&) const;
 
-      ConstIterator& operator ++();
-      ConstIterator operator ++(int);
-    };
+//      const T& operator *() const;
+//      const T* operator ->() const;
+
+//      ConstIterator& operator ++();
+//      ConstIterator operator ++(int);
+//    };
 
 
 
 
-    ConstIterator begin() const;
-    ConstIterator end() const;
-    const T& operator [](ConstIterator&) const;
+    ConstIterator cbegin() const;
+    ConstIterator cend() const;
+//    const T& operator [](const ConstIterator&) const;
 
 
     Iterator begin() const;
     Iterator end() const;
-    T& operator [](const Iterator&) const;
+//    T& operator [](const Iterator&) const;
+
 
 };
 
@@ -95,25 +116,28 @@ public:
 //implementazione funzioni Nodo
 
 template<class T>
-typename Container<T>::Nodo* Container<T>::copy(Nodo * pri, Nodo *& ult)
-{
-    if (pri == nullptr)
-    {
-        ult = nullptr;
-        return nullptr;
-    }
+Container<T>::Nodo::Nodo(const T& t, Nodo* n) : info(t), next(n) {}
+
+//template<class T>
+//Container<T>::Nodo::Nodo(const Nodo& n) : info(n.info), next(0){}
+
+template<class T>
+Container<T>::Nodo::~Nodo() {if (next) delete next;}
+
+template<class T>
+typename Container<T>::Nodo* Container<T>::copy(const Container<T>::Nodo * pri, const Container<T>::Nodo * &ult) {
+    if (!pri) return ult = new Nodo(pri->info);
     Nodo* p = new Nodo(pri->info, copy(pri->next, ult));
-    if(pri->next == nullptr) ult = p;
     return p;
 }
 
 
-template<class T>
-void Container<T>::Nodo::deleteNodi()//cancella ricorsivamente tutti i nodi della lista
-{
-    if (next) next->deleteNodi();
-    delete this;
-}
+//template<class T>
+//void Container<T>::Nodo::deleteNodi()//cancella ricorsivamente tutti i nodi della lista
+//{
+//    if (next) next->deleteNodi();
+//    delete this;
+//}
 
 
 
@@ -122,61 +146,80 @@ void Container<T>::Nodo::deleteNodi()//cancella ricorsivamente tutti i nodi dell
 
 
 template<class T>
-Container<T>::Container() : first(nullptr), last(nullptr) {}
+Container<T>::Container() : last(nullptr), first(nullptr) {}
 
 template<class T>
-Container<T>::Container(const T& i): first(new Nodo(T)) {last=first;}
+Container<T>::Container(const Container& i): first(copy(i.first,i.last)) {}
 
 template<class T>
-Container<T>::Container(const Container & q) : first(copy(q.first, last)) {}
+Container<T>& Container<T>::operator=(const Container<T>& c) {
+    if (this != &c) {
+        delete this;
+        first = Container<T>::copy(c.first, c.last);
+    }
+
+    return *this;
+}
 
 template<class T>
 Container<T>::~Container (){
-    this->emptyContainer();
+    if (first) delete first;
+    last = nullptr;
+//    this->emptyContainer();
 }
 
 
+//template<class T>
+//void Container<T>::emptyContainer(){
+
+//    if (first){
+//            first->deleteNodi();
+//            first = nullptr;
+//        }
+
+//}
+
+
 template<class T>
-void Container<T>::emptyContainer(){
-
-    if (first!= nullptr && first){
-            first->deleteNodi();
-            first = nullptr;
-        }
-
-}
-
-
-template<class T>
-bool Container<T>:: isEmpty() const{
+bool Container<T>::isEmpty() const{
     return (first==nullptr);
 }
 
 
 template<class T>
 typename Container<T>::Iterator Container<T>::begin() const{
-    return Iterator(first);
+    cout<<" Begin ";
+    Container<T>::Iterator aux;
+    aux.ptr = first;
+    return aux;
 }
 
 template<class T>
 typename Container<T>::Iterator Container<T>::end() const{
-    return Iterator(nullptr);
+    cout<<" end ";
+    Container<T>::Iterator aux;
+    aux.ptr = nullptr;
+    return aux;
 }
 
 template<class T>
-typename Container<T>::ConstIterator Container<T>::begin() const{
-    return ConstIterator(first);
+typename Container<T>::ConstIterator Container<T>::cbegin() const{
+    cout<<" cBegin ";
+    typename Container<T>::ConstIterator aux;
+    aux.ptr = first;
+    return aux;
 }
 
-
 template<class T>
-typename Container<T>::ConstIterator Container<T>::begin() const{
-    return ConstIterator(nullptr);
+typename Container<T>::ConstIterator Container<T>::cend() const{
+    cout<<" cend ";
+    Container<T>::ConstIterator aux;
+    aux.ptr = nullptr;
+    return aux;
 }
 
-
 template<class T>
-void database<T>:: pushback(const T&t){
+void Container<T>::pushback(const T&t){
     Nodo*q=new Nodo(t);
     if(!first) {
         first=last=q;
@@ -281,108 +324,98 @@ void database<T>::remove(const T &i)
 
 //implementazione funzioni Iterator
 
-template<class T>
-Container<T>::Iterator:: Iterator() : ptr(nullptr){}
+//template<class T>
+//Iterator_base<T>::Iterator_base() : ptr(nullptr){}
+
+//template<class T>
+//Iterator_base<T>::Iterator_base(const typename Container<T>::Nodo *n) : ptr(n) {}
 
 template<class T>
-Container<T>::Iterator:: Iterator(Nodo* n) : ptr(n) {}
-
-template<class T>
-const T& Container<T>::Iterator:: operator*() const {
+T& Iterator_base<T>::operator*() const {
       return ptr->info;
     }
 
 template<class T>
-const T* Container<T>::Iterator:: operator->() const {
+T* Iterator_base<T>::operator->() const {
   return &(ptr->info);
 }
 
 template<class T>
-T& Container<T>::Iterator:: operator*(){
-    return ptr->info;
-}
-
-template<class T>
-T* Container<T>::Iterator :: operator->(){
-    return &(ptr->info);
-}
-
-template<class T>
-typename Container<T>::Iterator& Container<T>::Iterator::operator++() {
+Iterator_base<T>& Iterator_base<T>::operator++() {
     if(ptr) ptr=ptr->next;
           return *this;
 }
 
 template<class T>
-bool Container<T>::Iterator:: operator==(const Iterator& x) const {
+bool Iterator_base<T>:: operator==(const Iterator_base& x) const {
   return ptr==x.ptr;
 }
 
 template<class T>
-bool Container<T>::Iterator:: operator!=(const Iterator& x) const {
+bool Iterator_base<T>:: operator!=(const Iterator_base& x) const {
   return ptr!=x.ptr;
 }
 
-template<class T>
-typename Container<T>::Iterator & Container<T>::Iterator:: operator=(const Iterator& i){
-    if(this!=&i)
-        ptr=i.ptr;
-    return *this;
-}
+//template<class T>
+//Iterator_base<T>& Iterator_base<T>:: operator=(const Iterator_base& i){
+//    if(this!=&i)
+//        ptr=i.ptr;
+//    return *this;
+//}
 
 //implementazione funzioni ConstIterator
-template<class T>
-Container<T>::ConstIterator::ConstIterator(Nodo * p) : cptr(p) {}
+//template<class T>
+//Container<T>::ConstIterator::ConstIterator(Nodo * p) : cptr(p) {}
 
-template<class T>
-Container<T>::ConstIterator::ConstIterator() : cptr(nullptr) {}
+//template<class T>
+//Container<T>::ConstIterator::ConstIterator() : cptr(nullptr) {}
 
-template<class T>
-typename Container<T>::ConstIterator & Container<T>::ConstIterator::operator=(const ConstIterator & cit)
-{
-    cptr=cit.cptr;
-    return *this;
-}
+//template<class T>
+//typename Container<T>::ConstIterator & Container<T>::ConstIterator::operator=(const ConstIterator & cit)
+//{
+//    cptr=cit.cptr;
+//    return *this;
+//}
 
-template<class T>
-typename Container<T>::ConstIterator& Container<T>::ConstIterator::operator++()
-{
-    if(cptr) cptr=cptr->next;
-    return *this;
+//template<class T>
+//typename Container<T>::ConstIterator& Container<T>::ConstIterator::operator++()
+//{
+//    if(cptr) cptr=cptr->next;
+//    return *this;
 
-}
-template<class T>
-typename Container<T>::ConstIterator& Container<T>::ConstIterator::operator++(int)
-{
-    Iterator tmp=*this;
-    if(cptr) cptr=cptr->next;
-    return tmp;
+//}
+//template<class T>
+//typename Container<T>::ConstIterator& Container<T>::ConstIterator::operator++(int)
+//{
+//    Iterator tmp=*this;
+//    if(cptr) cptr=cptr->next;
+//    return tmp;
 
-}
+//}
 
-template<class T>
-const T & Container<T>::ConstIterator::operator*() const
-{
-    return cptr->info;
-}
+//template<class T>
+//const T & Container<T>::ConstIterator::operator*() const
+//{
+//    return cptr->info;
+//}
 
-template<class T>
-const T * Container<T>::ConstIterator::operator->() const
-{
-    return &(cptr->info);
-}
+//template<class T>
+//const T * Container<T>::ConstIterator::operator->() const
+//{
+//    return &(cptr->info);
+//}
 
-template<class T>
-bool Container<T>::ConstIterator::operator==(const ConstIterator& cit)
-{
-    return cptr == cit.cptr;
-}
+//template<class T>
+//bool Container<T>::ConstIterator::operator==(const ConstIterator& cit)
+//{
+//    return cptr == cit.cptr;
+//}
 
-template<class T>
-bool Container<T>::ConstIterator::operator!=(const ConstIterator& cit)
-{
-    return cptr != cit.cptr;
-}
+//template<class T>
+//bool Container<T>::ConstIterator::operator!=(const ConstIterator& cit)
+//{
+//    return cptr != cit.cptr;
+//}
 
 
 #endif // CONTAINER_H

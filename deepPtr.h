@@ -9,13 +9,12 @@ class DeepPtr {
   T* ptr;
 public:
     //member function
-    DeepPtr(T* ptr=nullptr);
+    DeepPtr(T* =nullptr);
     DeepPtr(const DeepPtr&);
     DeepPtr<T>& operator=(const DeepPtr<T>&);
     ~DeepPtr();
 
-    T& operator *();
-    const T& operator *() const;
+    T& operator *() const;
     T* operator ->() const;
     operator bool() const; //controlla se get() != nullptr (permette all'utilizzatore di controllare lo stato del puntatore
                             // incapsulato. (Serve negli if: Se ogg di tipo DeepPtr => permette di fare if (ogg)
@@ -33,11 +32,12 @@ public:
 };
 
 template<class T>
-DeepPtr<T>::DeepPtr(T* ptr) : ptr(ptr){}
+DeepPtr<T>::DeepPtr(T* p) : ptr(p){cout<<"ptr "<<ptr<<"endptr"<<endl;}
 
 template <class T>
 DeepPtr<T>::DeepPtr(const DeepPtr& p){
-      if(!p)
+    cout<<"Dc";
+      if(!p.ptr)
           ptr=nullptr;
       else
           ptr=p.ptr->clone();
@@ -48,34 +48,20 @@ DeepPtr<T>::~DeepPtr() {
    if (ptr) delete ptr;
 }
 
-/*template<class T>
-DeepPtr<T>& DeepPtr<T>::operator=(DeepPtr<T>& p) {
-    if (this != &p) {
-        delete this;
-        ptr = p;
-        delete p;
-    }
-    return *this;
-}
-*/
 
 template <class T>
 DeepPtr<T>& DeepPtr<T>::operator=(const DeepPtr& p){
-        if(this != &p){
-            if(ptr)
-                delete ptr;
-            ptr = p.ptr->clone();
+    if(this != &p){
+        if(ptr) delete ptr;
+        ptr = p.ptr->clone();
     }
+    cout<<"operator = deepPtr"<<endl;
     return *this;
 }
 
 template<class T>
-T& DeepPtr<T>::operator *() {
-    return *ptr;
-}
-
-template<class T>
-const T& DeepPtr<T>::operator *() const {
+T& DeepPtr<T>::operator *() const{
+//    cout<<"operator * NON costante"<<endl;
     return *ptr;
 }
 
@@ -86,6 +72,7 @@ T* DeepPtr<T>::operator ->() const {
 
 template<class T>
 DeepPtr<T>::operator bool() const {
+    cout <<"operator bool";
     return get() != nullptr;
 }
 
@@ -97,10 +84,7 @@ bool DeepPtr<T>::operator== (const DeepPtr& p) const {
 template<class T>
 T* DeepPtr<T>::release() {
     T* aux = ptr;
-
-    delete ptr;
     ptr = nullptr;
-
     return aux;
 }
 
@@ -114,8 +98,8 @@ template<class T>
 void DeepPtr<T>::swap(DeepPtr<T>& p) {
     if (this != &p) {
         T* aux = ptr;
-        ptr = p;
-        p = aux;
+        ptr = p.ptr;
+        p.ptr = aux;
     }
 }
 
