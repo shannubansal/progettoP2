@@ -22,8 +22,10 @@ public:
     //metodi virtuali
     virtual Vacation* clone() const=0;
     virtual double calcFinalPrice() const=0;
-    //virtual print() const;
+    //virtual void print() const;
     virtual double calcCommission() const=0;
+    virtual string getTipo()const =0;//da fare? probabilemente sì
+
     virtual bool operator==(const Vacation&) const;//utile? da implementare?
     //valutare inserimento di ritornante caparra/deposit
 

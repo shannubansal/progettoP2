@@ -18,7 +18,9 @@ SOURCES += main.cpp \
     vacation.cpp \
     flat.cpp \
     hotel.cpp \
-    camping.cpp
+    camping.cpp \
+    pitch.cpp \
+    bungalow.cpp
 
 HEADERS += \
     container.h \
@@ -26,4 +28,6 @@ HEADERS += \
     vacation.h \
     flat.h \
     hotel.h \
-    camping.h
+    camping.h \
+    pitch.h \
+    bungalow.h

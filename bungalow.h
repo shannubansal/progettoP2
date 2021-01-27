@@ -1,0 +1,34 @@
+#ifndef BUNGALOW_H
+#define BUNGALOW_H
+#include<camping.h>
+using std::string;
+
+
+class Bungalow{
+private:
+    unsigned int maxVisitors;
+    bungalowType bType;
+    bool cleaningService;
+
+public:
+    enum bungalowType {standard, suite, deluxe};
+    Bungalow(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1,
+             unsigned int=1, double=0.0, double=0.0, unsigned int=4, bungalowType=bungalowType::standard, bool=false);
+
+    virtual Bungalow* clone() const override;
+    virtual double calcFinalPrice() const override;
+    virtual double calcCommission() const override;
+    virtual double getPriceAndFees(unsigned int=1, unsigned int=0) const override;
+    //void print() const override();
+
+    unsigned int getMaxVisitors() const;
+    bungalowType getBungalowType() const;
+    bool getCleaningServ() const;
+
+
+    void setMaxVisitors(unsigned int mV);
+    void setBungalowType(bungalowType bT);
+    void setCleaningServ(bool cS);
+};
+
+#endif // BUNGALOW_H
