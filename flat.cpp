@@ -7,6 +7,7 @@ Flat* Flat::clone() const{
     return new Flat(*this);
 }
 
+
 double Flat::calcFinalPrice() const{
      double price= getBasePrice();
     if(AC) price += (price *0.02);

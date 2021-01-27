@@ -9,7 +9,7 @@ private:
     bool AC;
 public:
     Flat(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1 , unsigned int=1, bool=false);
-    Flat* clone() const override;
+    virtual Flat* clone() const override;
 
     double calcFinalPrice() const override;
     double calcCommission() const override;

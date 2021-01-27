@@ -15,12 +15,12 @@ public:
     enum serviceType { overnight, halfboard, allinclusive};//forse valutare posizionamento diverso (qua serve per non
     //inquinare il namespace)
 
-    Hotel(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1, int=0, serviceType=overnight, int=1);
-    Hotel* clone() const override;
+    Hotel(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1, int=0, Hotel::serviceType=overnight, int=1);
+    virtual Hotel* clone() const override;
 
     double calcFinalPrice() const override;
     double calcCommission() const override;
-    //void print() const override();
+    //virtual void print() const override();
 
     int getStars() const;
     serviceType getType() const;

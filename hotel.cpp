@@ -1,6 +1,6 @@
 #include "hotel.h"
 
-Hotel::Hotel(string n, string p, string c, int y, int m, int d, double bP, unsigned int w, int s, serviceType ty, int b): Vacation(n, p, c, y, m, d, bP, w), stars(s), type(ty), beds(b){}
+Hotel::Hotel(string n, string p, string c, int y, int m, int d, double bP, unsigned int w, int s, Hotel::serviceType ty, int b): Vacation(n, p, c, y, m, d, bP, w), stars(s), type(ty), beds(b){}
 
 
 Hotel* Hotel::clone() const{
@@ -9,9 +9,9 @@ Hotel* Hotel::clone() const{
 
 double Hotel::calcFinalPrice() const{
     double price= getBasePrice();
-    if(getType()==halfboard){
+    if(getType()==Hotel::serviceType::halfboard){
         price += (price *0.2);
-    }else if(getType()==allinclusive){
+    }else if(getType()==Hotel::serviceType::allinclusive){
         price += (price *0.5);
     };
     price+=(price*0.3*getBeds());
