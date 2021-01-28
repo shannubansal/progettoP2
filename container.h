@@ -24,9 +24,12 @@ private:
 
 
     static typename Container<T>::Nodo* copy(const Nodo* &, const Nodo* &, Container<T>::Nodo * &);
+    void increaseSize();
+    void decreaseSize();
 
     Nodo* last;
     Nodo* first;
+    unsigned int size;
 
 public:
 
@@ -42,14 +45,16 @@ public:
 //    void empty();
 
     void pushback(const T&);
+    void pushfront(const T&);
     void popfront();
-//    void emptyContainer();
-/*    bool trovanodo(const T&);
+    void popback();
+    void emptyContainer();
+    Nodo* trovanodo(const T&);
     void remove(const T&);
     bool empty() const;
     void sostituisciNodo(const T& oldNodo, const T& newNodo);
-*/
 
+    unsigned int getSize() const;
 
     class Iterator {
         friend class Container<T>;
@@ -131,16 +136,17 @@ typename Container<T>::Nodo* Container<T>::copy(const Container<T>::Nodo * &iniz
 
 
 template<class T>
-Container<T>::Container() : last(nullptr), first(nullptr) {}
+Container<T>::Container() : last(nullptr), first(nullptr), size(0) {}
 
 template<class T>
-Container<T>::Container(const Container& i): last(nullptr), first(copy(i.first,i.last, last)) {}
+Container<T>::Container(const Container& i): last(nullptr), first(copy(i.first,i.last, last)), size(i.size) {}
 
 template<class T>
 Container<T>& Container<T>::operator=(const Container<T>& c) {
     if (this != &c) {
         delete this;
         first = Container<T>::copy(c.first, c.last, last);
+        size=c.size;
     }
 
     return *this;
@@ -149,21 +155,17 @@ Container<T>& Container<T>::operator=(const Container<T>& c) {
 template<class T>
 Container<T>::~Container (){
     if (first) delete first;
-    last = nullptr;
 //    this->emptyContainer();
 }
 
 
-//template<class T>
-//void Container<T>::emptyContainer(){
-
-//    if (first){
-//            first->deleteNodi();
-//            first = nullptr;
-//        }
-
-//}
-
+template<class T>
+void Container<T>::emptyContainer(){
+    while(!isEmpty()) {
+        popfront();
+        cout<<"1 ";
+    }
+}
 
 template<class T>
 bool Container<T>::isEmpty() const{
@@ -205,7 +207,7 @@ typename Container<T>::Iterator Container<T>::end() const{
 
 template<class T>
 void Container<T>::pushback(const T&t){
-    Nodo*q=new Nodo(t);
+    Nodo* q=new Nodo(t);
     if(!first) {
         first=last=q;
     }
@@ -213,15 +215,72 @@ void Container<T>::pushback(const T&t){
         last->next=q;
         last=last->next;
     }
+    increaseSize();
+}
+
+template<class T>
+void Container<T>::pushfront(const T&t){
+    Nodo* q=new Nodo(t, first);
+    if(!first)
+        last = q;
+
+    first = q;
+
+    increaseSize();
 }
 
 template<class T>
 void Container<T>::popfront() {
-    Nodo* q = first;
-    first = first->next;
-    q->next = nullptr;
-    delete q;
+    if (first) {
+        if (first != last) {
+            Nodo* q = first;
+            first = first->next;
+            q->next = nullptr;
+            delete q;
+        }
+        else {
+            delete first;
+            first = last = nullptr;
+        }
+        decreaseSize();
+    }
 }
+
+template<class T>
+void Container<T>::popback() {
+    if (last) {
+        Nodo* q = first;
+        if (first != last) {
+            for (; q->next!=last;) q=q->next;
+            delete last;
+            last = q;
+            last->next = nullptr;
+        }
+        else {
+            delete first;
+        }
+
+        decreaseSize();
+    }
+}
+
+
+template<class T>
+unsigned int Container<T>::getSize() const {
+    return size;
+}
+
+
+template<class T>
+void Container<T>::increaseSize() {
+    ++size;
+}
+
+template<class T>
+void Container<T>::decreaseSize() {
+    --size;
+}
+
 
 
 /*
