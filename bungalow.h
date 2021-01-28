@@ -4,17 +4,14 @@
 using std::string;
 
 
-class Bungalow{
-private:
-    unsigned int maxVisitors;
-    bungalowType bType;
-    bool cleaningService;
+class Bungalow: public Camping{
+
 
 public:
     enum bungalowType {standard, suite, deluxe};
     Bungalow(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1,
              unsigned int=1, double=0.0, double=0.0, unsigned int=4, bungalowType=bungalowType::standard, bool=false);
-
+    virtual ~Bungalow() =default;
     virtual Bungalow* clone() const override;
     virtual double calcFinalPrice() const override;
     virtual double calcCommission() const override;
@@ -29,6 +26,10 @@ public:
     void setMaxVisitors(unsigned int mV);
     void setBungalowType(bungalowType bT);
     void setCleaningServ(bool cS);
+private:
+    unsigned int maxVisitors;
+    bungalowType bType;
+    bool cleaningService;
 };
 
 #endif // BUNGALOW_H

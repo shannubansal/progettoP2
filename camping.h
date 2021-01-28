@@ -16,7 +16,7 @@ public:
     virtual double calcFinalPrice() const=0;
     //virtual void print() const;
     virtual double calcCommission() const=0;
-    virtual getPriceAndFees(int=1, int=0) const=0;
+    virtual double getPriceAndFees(unsigned int=1, unsigned int=0) const=0;
 
     unsigned int getMaxCapacity() const;
     double getDailyFee() const;

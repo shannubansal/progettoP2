@@ -24,16 +24,16 @@ double Bungalow::calcCommission() const{
     return calcFinalPrice()*0.18;
 }
 
-double Bungalow::getPriceAndFees(unsigned int people, unsigned int visitors){
+double Bungalow::getPriceAndFees(unsigned int people, unsigned int visitors) const{
     double price= calcFinalPrice();
     if (people<= getMaxCapacity()){
-        price+=(price*0,3*people);
+        price+=(price*0.3*people);
     }
     if (visitors){
         if(visitors>getMaxVisitors()){
-            price+=(price*0,15*visitors);
+            price+=(price*0.15*visitors);
         }else{
-            price+=(price*0,1*visitors);
+            price+=(price*0.1*visitors);
         }
     }
 
@@ -52,7 +52,7 @@ unsigned int Bungalow::getMaxVisitors() const{
 
 
 Bungalow::bungalowType Bungalow::getBungalowType() const{
-    return Bungalow::bungalowType::bType;
+    return bType;
 }
 
 bool Bungalow::getCleaningServ() const{
@@ -65,7 +65,7 @@ void Bungalow::setMaxVisitors(unsigned int mV){
 }
 
 void Bungalow::setBungalowType(Bungalow::bungalowType bT){
-    Bungalow::bungalowType::bType=bT;
+    bType=bT;
 }
 
 void Bungalow::setCleaningServ(bool cS){

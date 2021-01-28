@@ -14,8 +14,10 @@ private:
     unsigned int weeks;
 
 public:
-    Vacation(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1 );
-    virtual ~Vacation() =default;
+    Vacation(string="", string="", string="", int=2020, int=1, int=1, double=0.0,
+             unsigned int=1 );
+    virtual ~Vacation()=default;
+    // bool operator==(const Vacation&) const;
 
 
 
@@ -24,9 +26,9 @@ public:
     virtual double calcFinalPrice() const=0;
     //virtual void print() const;
     virtual double calcCommission() const=0;
-    virtual string getTipo()const =0;//da fare? probabilemente sì
+    //virtual string getTipo()const =0;//da fare? probabilemente sì
 
-    virtual bool operator==(const Vacation&) const;//utile? da implementare?
+    //bool operator==(const Vacation&) const;//utile? da implementare?
     //valutare inserimento di ritornante caparra/deposit
 
 

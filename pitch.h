@@ -4,17 +4,14 @@
 using std::string;
 
 
-class Pitch{
-private:
-    bool tentAvailable;
-    tentType tent;
+class Pitch: public Camping{
 
 public:
     enum tentType { none, small, medium, large};
 
     Pitch(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1,
           unsigned int=1, double=0.0, double=0.0, bool=false, tentType= tentType::none );
-
+    virtual ~Pitch() =default;
     virtual Pitch* clone() const override;
     virtual double calcFinalPrice() const override;
     virtual double calcCommission() const override;
@@ -29,6 +26,10 @@ public:
 
     void setTentAvailable(bool tA);
     void setTent(tentType t);
+private:
+    bool tentAvailable;
+    tentType tent;
+
 };
 
 #endif // PITCH_H

@@ -42,6 +42,6 @@ void Flat::setRooms(int ro){
     rooms=ro;
 }
 
-void Flat::setRooms(bool ac){
+void Flat::setAC(bool ac){
     AC=ac;
 }

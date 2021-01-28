@@ -1,11 +1,20 @@
 #include "vacation.h"
 
-Vacation::Vacation(string n, string p, string c, int y, int m, int d, double bP, unsigned int w ): name(n), place(p), country(c), date(y, m, d), basePrice(bP), weeks(w) {}
+Vacation::Vacation(string n, string p, string c, int y, int m, int d, double bP,
+                   unsigned int w ): name(n), place(p), country(c), date(y, m, d),
+                basePrice(bP), weeks(w) {}
 
 
 /*
 Vacation::print() const{
  //funzione stampa I/O presumibimente
+}
+*/
+
+
+/*bool Vacation::operator==(const Vacation & c) const
+{
+    return name == c.getName() && place == c.getPlace()&& country == c.getCountry() && date == QDate(c.getYearD(),c.getMonthD(),c.getDayD()) && basePrice == c.getBasePrice() && weeks == c.getWeeks();
 }
 */
 string Vacation::getName() const{
@@ -25,7 +34,7 @@ double Vacation::getBasePrice() const{
     return basePrice;
 }
 
-unsigned int getWeeks() const{
+unsigned int Vacation::getWeeks() const{
     return weeks;
 }
 

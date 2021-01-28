@@ -6,18 +6,15 @@ using std::string;
 
 class Hotel: public Vacation
 {
-private:
-        int stars;
-        serviceType type;
-        int beds;
 
 public:
     enum serviceType { overnight, halfboard, allinclusive};//forse valutare posizionamento diverso (qua serve per non
     //inquinare il namespace)
 
     Hotel(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1, int=0, Hotel::serviceType=overnight, int=1);
-    virtual Hotel* clone() const override;
 
+    virtual ~Hotel() =default;
+    virtual Hotel* clone() const override;
     double calcFinalPrice() const override;
     double calcCommission() const override;
     //virtual void print() const override();
@@ -29,6 +26,11 @@ public:
     void setStars(int s);
     void setType(serviceType ty);
     void setBeds(int b);
+private:
+        int stars;
+        serviceType type;
+        int beds;
+
 
 };
 

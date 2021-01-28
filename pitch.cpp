@@ -2,7 +2,7 @@
 
 Pitch::Pitch(string n, string p, string c, int y, int m, int d, double bP, unsigned int w, unsigned int mC,
              double dF, double vF, bool tA, Pitch::tentType t): Camping(n, p, c, y, m, d, bP, w, mC, dF, vF),
-             tentAvailable(tA), Pitch::tentType::tent(t){}
+             tentAvailable(tA), tent(t){}
 
 
 Pitch* Pitch::clone() const{
@@ -38,10 +38,10 @@ double Pitch::getPriceAndFees(unsigned int people, unsigned int visitors) const{
     double price= calcFinalPrice();
 
     if (people<= Camping::getMaxCapacity()){
-        price+=(price*0,15*people);
+        price+=(price*0.15*people);
     }
     if (visitors){
-        price+=(price*0,05*visitors);
+        price+=(price*0.05*visitors);
     }
 
     price+= calcCommission();
