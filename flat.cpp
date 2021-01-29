@@ -25,6 +25,10 @@ double Flat:: calcCommission() const{
     return calcFinalPrice()*0.12;
 }
 
+string Flat::getTipo()const{
+    return "Flat";
+}
+
 
 
 bool Flat::hasAC() const{
@@ -37,11 +41,17 @@ unsigned int Flat::getRooms() const{
 
 
 
-
 void Flat::setRooms(int ro){
     rooms=ro;
 }
 
 void Flat::setAC(bool ac){
     AC=ac;
+}
+
+std::ostream& operator<<(std::ostream& os, const Flat& f) {
+
+    return operator<< (os, static_cast<const Vacation&>(f))
+                   << "\nRooms: " << f.getRooms()
+                   <<"\nAC: "<<(f.hasAC()? "Yes" : "No");
 }

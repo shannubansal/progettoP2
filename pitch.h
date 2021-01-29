@@ -16,9 +16,10 @@ public:
     virtual double calcFinalPrice() const override;
     virtual double calcCommission() const override;
     virtual double getPriceAndFees(unsigned int=1, unsigned int=0) const override;//per aggiunte  e calcoli sulla vista
+    virtual string getTipo()const override;
 
     //virtual void print() const override();
-
+    static string convertTentToString (const tentType& );
 
     bool getTentAvailable() const;
     tentType getTent() const;
@@ -31,5 +32,5 @@ private:
     tentType tent;
 
 };
-
+std::ostream& operator<<(std::ostream&, const Pitch&);
 #endif // PITCH_H

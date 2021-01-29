@@ -18,6 +18,9 @@ public:
     double calcFinalPrice() const override;
     double calcCommission() const override;
     //virtual void print() const override();
+    virtual string getTipo()const override;
+
+    static string convertServToString (const serviceType& );
 
     int getStars() const;
     serviceType getType() const;
@@ -33,5 +36,5 @@ private:
 
 
 };
-
+std::ostream& operator<<(std::ostream&, const Hotel&);
 #endif // HOTEL_H

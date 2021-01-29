@@ -32,3 +32,10 @@ void Camping::setVisitorsFee(double vF){
     visitorsFee=vF;
 }
 
+std::ostream& operator<<(std::ostream& os, const Camping& c) {
+
+    return operator<< (os, static_cast<const Vacation&>(c))
+                   << "\nMaxCapacity: " << c.getMaxCapacity()
+                   << "\nDailyFee: " << c.getMaxCapacity()
+                   <<"\nVisitorsFee: "<< c.getVisitorsFee();
+}

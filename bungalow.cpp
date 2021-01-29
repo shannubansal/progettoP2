@@ -45,6 +45,31 @@ double Bungalow::getPriceAndFees(unsigned int people, unsigned int visitors) con
 }
 
 
+string Bungalow::convertBungToString (const bungalowType& l){
+    if(l==Bungalow::bungalowType::standard){
+        return "standard";
+    }else if(l==Bungalow::bungalowType::suite){
+        return "suite";
+    }else if(l==Bungalow::bungalowType::deluxe){
+        return "deluxe";
+    }else{
+        return "standard";
+    }
+}
+
+std::ostream& operator<<(std::ostream& os, const Bungalow& b) {
+
+    return operator<< (os, static_cast<const Vacation&>(b))
+                   <<"\nMaxVisitors: "<<b.getMaxVisitors()
+                   << "\nBungalowType: " << Bungalow::convertBungToString(b.getBungalowType())
+                   <<"\nCleaning: "<<(b.getCleaningServ()? "Yes" : "No");
+
+}
+
+
+string Bungalow::getTipo() const{
+    return "Bungalow";
+}
 
 unsigned int Bungalow::getMaxVisitors() const{
     return maxVisitors;

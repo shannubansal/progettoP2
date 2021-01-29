@@ -15,6 +15,7 @@ public:
     double calcFinalPrice() const override;
     double calcCommission() const override;
     //void print() const override();
+    virtual string getTipo()const override;
 
 
     bool hasAC() const;
@@ -24,5 +25,5 @@ public:
     void setAC(bool ac);
 
 };
-
+std::ostream& operator<<(std::ostream&, const Flat&);
 #endif // FLAT_H

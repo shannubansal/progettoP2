@@ -1,6 +1,9 @@
 #ifndef VACATION_H
 #define VACATION_H
 #include<QDate>
+#include<QString>
+#include<iostream>
+#include<sstream>
 using std::string;
 
 class Vacation
@@ -26,7 +29,7 @@ public:
     virtual double calcFinalPrice() const=0;
     //virtual void print() const;
     virtual double calcCommission() const=0;
-    //virtual string getTipo()const =0;//da fare? probabilemente sì
+    virtual string getTipo()const =0;
 
     //bool operator==(const Vacation&) const;//utile? da implementare?
     //valutare inserimento di ritornante caparra/deposit
@@ -51,5 +54,5 @@ public:
     void setBasePrice(double bP);
     void setWeeks(int w);
 };
-
+std::ostream& operator<<(std::ostream& , const Vacation& );
 #endif // VACATION_H

@@ -49,6 +49,34 @@ double Pitch::getPriceAndFees(unsigned int people, unsigned int visitors) const{
 }
 
 
+string Pitch::convertTentToString (const tentType& l){
+    if(l==Pitch::tentType::small){
+        return "small";
+    }else if(l==Pitch::tentType::medium){
+        return "medium";
+    }else if(l==Pitch::tentType::large){
+        return "large";
+    }else{
+        return "none";
+    }
+}
+
+
+std::ostream& operator<<(std::ostream& os, const Pitch& p) {
+
+    return operator<< (os, static_cast<const Vacation&>(p))
+                   <<"\nTentAvailable: "<<(p.getTentAvailable()? "Yes" : "No")
+                   << "\nTentType: " << Pitch::convertTentToString(p.getTent());
+
+}
+
+
+
+string Pitch::getTipo() const{
+    return "Pitch";
+}
+
+
 
 bool Pitch::getTentAvailable() const{
     return tentAvailable;

@@ -78,4 +78,12 @@ void Vacation::setWeeks(int w){
     weeks=w;
 }
 
+std::ostream& operator<<(std::ostream& os, const Vacation& v){
+    return os<< "Name: " << v.getName()
+             << "\nPlace: " << v.getPlace()
+             << "\nCountry: " << v.getCountry()
+             << "\nDate: " << (v.getDate()).toString().toStdString()
+             << "\nStartingPrice: " <<v.getBasePrice()
+             << "\nWeeks: " << v.getWeeks();
+}
 

@@ -16,7 +16,10 @@ public:
     virtual double calcFinalPrice() const override;
     virtual double calcCommission() const override;
     virtual double getPriceAndFees(unsigned int=1, unsigned int=0) const override;
+    virtual string getTipo()const override;
+
     //void print() const override();
+    static string convertBungToString (const bungalowType& );
 
     unsigned int getMaxVisitors() const;
     bungalowType getBungalowType() const;
@@ -26,10 +29,11 @@ public:
     void setMaxVisitors(unsigned int mV);
     void setBungalowType(bungalowType bT);
     void setCleaningServ(bool cS);
+
 private:
     unsigned int maxVisitors;
     bungalowType bType;
     bool cleaningService;
 };
-
+std::ostream& operator<<(std::ostream&, const Bungalow&);
 #endif // BUNGALOW_H

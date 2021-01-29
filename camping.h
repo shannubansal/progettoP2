@@ -17,6 +17,8 @@ public:
     //virtual void print() const;
     virtual double calcCommission() const=0;
     virtual double getPriceAndFees(unsigned int=1, unsigned int=0) const=0;
+    virtual string getTipo()const=0;
+
 
     unsigned int getMaxCapacity() const;
     double getDailyFee() const;
@@ -30,5 +32,6 @@ public:
 
 
 };
+std::ostream& operator<<(std::ostream&, const Camping&);
 
 #endif // CAMPING_H

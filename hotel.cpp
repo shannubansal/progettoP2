@@ -24,8 +24,13 @@ Flat::print() const{
 }
 */
 
-double Hotel:: calcCommission() const{
+double Hotel::calcCommission() const{
     return calcFinalPrice()*0.08;
+}
+
+
+string Hotel::getTipo() const{
+    return "Hotel";
 }
 
 
@@ -54,5 +59,26 @@ void Hotel::setType(serviceType ty){//da controllare dove mettere
 
 void Hotel::setBeds(int b){
     beds=b;
+}
+
+string Hotel::convertServToString(const Hotel::serviceType & l){
+    if(l==Hotel::serviceType::overnight){
+        return "overnight";
+    }else if(l==Hotel::serviceType::halfboard){
+        return "halfboard";
+    }else if(l==Hotel::serviceType::allinclusive){
+        return "allinclusive";
+    }else{
+        return "overnight";//comportamento standard cmq nella vista da  implementare scelta
+        //esclusivamente tra i tre enum
+    }
+    //throw std::exception();
+}
+std::ostream& operator<<(std::ostream& os, const Hotel& h) {
+
+    return operator<< (os, static_cast<const Vacation&>(h))
+                   << "\nStars: " << h.getStars()
+                   << "\nService: " << Hotel::convertServToString(h.getType())
+                   <<"\nBeds: "<<h.getBeds();
 }
 
