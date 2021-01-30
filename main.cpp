@@ -1,20 +1,21 @@
-#include <QCoreApplication>
-#include "deepPtr.h"
+#include <QApplication>
+
+#include<controller.h>
+#include<model.h>
 
 
-class A {
-private:
-    int x;
-public:
-    A(int s =0) : x(s) {}
-    int* clone() {return &x;}
-};
 
 int main(int argc, char *argv[])
 {
-    DeepPtr<A> p = new A ();
+     QApplication a(argc, argv);
+     controller c(nullptr);
+     return a.exec();
+   /*
+    DeepPtr<Pitch> p = new Pitch();
+    p->setBasePrice(30036.6);
+    cout<<"mlem " <<*p<<endl;
+    */
 
-    DeepPtr<A> p1 = new A(1);
 
 
 

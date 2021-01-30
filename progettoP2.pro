@@ -1,4 +1,5 @@
 QT -= gui
+QT += widgets
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
@@ -20,7 +21,11 @@ SOURCES += main.cpp \
     hotel.cpp \
     camping.cpp \
     pitch.cpp \
-    bungalow.cpp
+    bungalow.cpp \
+    model.cpp \
+    controller.cpp \
+    mainwindow.cpp \
+    mainwindowmenu.cpp
 
 HEADERS += \
     container.h \
@@ -30,4 +35,8 @@ HEADERS += \
     hotel.h \
     camping.h \
     pitch.h \
-    bungalow.h
+    bungalow.h \
+    model.h \
+    controller.h \
+    mainwindow.h \
+    mainwindowmenu.h
