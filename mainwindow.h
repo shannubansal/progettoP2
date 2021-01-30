@@ -1,19 +1,20 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include<QMenuBar>
-#include<QMainWindow>
 #include <QWidget>
 #include<QVBoxLayout>
 #include<QGroupBox>
 #include<QHBoxLayout>
 #include<QFormLayout>
-#include<QLineEdit> //per input
+#include<QLineEdit>
 #include<QPushButton>
-// per mostrare i record #include<QListWidget>
-// per messaggi che impediscono i completamento di azioni proibite #include<QMessageBox>
+#include<QListWidget>
+// per messaggi che impediscono i completamento di azioni che saranno proibite #include<QMessageBox>
 #include<QCloseEvent>
 #include<QPalette>//se vogliamo colorare i QPushButtons
+
+#include<vacationlist.h>
+#include<model.h>
 
 
 class mainWindow : public QWidget
@@ -25,15 +26,19 @@ private:
     //mainWindowMenu* menuBar;
     QGroupBox *filters, *windowActions, *listActions, *listGroup, *centralGroup;
 
-
-
     QPushButton *loadB, *saveB, *quitB, *advancedSearchB;//actions
     QPushButton *hotelFilterB, *flatFilterB, *campingFilterB, *bungalowFilterB, *pitchFilterB, *removeFilterB;//filters
     QPushButton *displayB, *modifyB, *deleteB;
     //void closeEvent(QCloseEvent*) override;
+    VacationList* VList;
 
 public:
     explicit mainWindow(QWidget *parent = nullptr);
+    VacationList* getVacationListW();
+    bool isSelected() const;
+    void showVacationInfo(const QStringList);
+    void closeEvent(QCloseEvent*) override;
+
 
 signals:
     void signalHotelFilterB();

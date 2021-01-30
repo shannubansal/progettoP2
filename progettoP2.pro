@@ -24,7 +24,10 @@ SOURCES += main.cpp \
     bungalow.cpp \
     model.cpp \
     controller.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    combovacation.cpp \
+    vacationlist.cpp \
+    vacationlistitem.cpp
 
 HEADERS += \
     container.h \
@@ -37,4 +40,7 @@ HEADERS += \
     bungalow.h \
     model.h \
     controller.h \
-    mainwindow.h
+    mainwindow.h \
+    combovacation.h \
+    vacationlist.h \
+    vacationlistitem.h

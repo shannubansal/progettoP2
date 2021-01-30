@@ -12,6 +12,8 @@ class controller: public QObject{
 public:
     controller(QObject *parent = nullptr);
     ~controller();
+public slots:
+    void slotCloseEverything();
 private:
      model* m;
      mainWindow* view;

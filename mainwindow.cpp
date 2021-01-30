@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 
-mainWindow::mainWindow(QWidget *parent) : QWidget(parent){
+mainWindow::mainWindow(QWidget *parent) : QWidget(parent), VList(new VacationList(this)){
 
     setWindowTitle("Vacations");
 
@@ -58,12 +58,9 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent){
     listGroup=new QGroupBox("Vacations");
     listLayout=new QVBoxLayout();
 
-
-/*
-  da fare e aggiungere qua in ordine
-
-
-*/
+    VList->setSelectionMode(QAbstractItemView::SingleSelection);
+    listLayout->addWidget(VList);
+    listGroup->setLayout(listLayout);
 
 
 
@@ -84,7 +81,7 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent){
     listActions->setLayout(listActionsLayout);
 
     listLayout->addWidget(listActions);
-    listGroup->setLayout(listLayout);//da rimettere sopra asap dopo implementazione di list
+    //da rimettere sopra asap dopo implementazione di list
     centralLayout->addWidget(listGroup);//da rimettere sopra dopo list
 
 
@@ -92,4 +89,15 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent){
 
 
 
+
+
+//SIGNALS
+        connect(quitB, SIGNAL(clicked()), this, SIGNAL(signalQuitB()));
+
+
+}
+
+
+void mainWindow::closeEvent(QCloseEvent *){
+    emit signalQuitB();
 }
