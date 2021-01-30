@@ -24,8 +24,7 @@ SOURCES += main.cpp \
     bungalow.cpp \
     model.cpp \
     controller.cpp \
-    mainwindow.cpp \
-    mainwindowmenu.cpp
+    mainwindow.cpp
 
 HEADERS += \
     container.h \
@@ -38,5 +37,4 @@ HEADERS += \
     bungalow.h \
     model.h \
     controller.h \
-    mainwindow.h \
-    mainwindowmenu.h
+    mainwindow.h

@@ -14,22 +14,39 @@
 // per messaggi che impediscono i completamento di azioni proibite #include<QMessageBox>
 #include<QCloseEvent>
 #include<QPalette>//se vogliamo colorare i QPushButtons
-#include<mainwindowmenu.h>
+
 
 class mainWindow : public QWidget
 {
     Q_OBJECT
 private:
-    QVBoxLayout *wrapLayout;
-    mainWindowMenu* menuBar;
+    QVBoxLayout *wrapLayout, *filtersLayout, *listLayout;
+    QHBoxLayout *windowActionsLayout, *centralLayout, *listActionsLayout;
+    //mainWindowMenu* menuBar;
+    QGroupBox *filters, *windowActions, *listActions, *listGroup, *centralGroup;
 
+
+
+    QPushButton *loadB, *saveB, *quitB, *advancedSearchB;//actions
+    QPushButton *hotelFilterB, *flatFilterB, *campingFilterB, *bungalowFilterB, *pitchFilterB, *removeFilterB;//filters
+    QPushButton *displayB, *modifyB, *deleteB;
     //void closeEvent(QCloseEvent*) override;
-    QPushButton *prova;
 
 public:
     explicit mainWindow(QWidget *parent = nullptr);
 
 signals:
+    void signalHotelFilterB();
+    void signalFlatsFilterB();
+    void signalCampingFilterB();
+    void signalBungalowFilterB();
+    void signalPitchFilterB();
+    void signalAdvancedSearchB();
+    void signalLoadB();
+    void signalSaveB();
+    void signalQuitB();
+
+
 
 public slots:
 };
