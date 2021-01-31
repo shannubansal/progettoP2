@@ -13,7 +13,7 @@ private:
     QWidget* parent;
 public:
     VacationList(QWidget* =nullptr);
-    void addVacation(DeepPtr<Vacation>*);
+    void addVacation(Vacation *);
     VacationListItem* currentItem() const;
     void removeVacation(VacationListItem*);
 };

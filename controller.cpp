@@ -7,6 +7,7 @@ controller::controller(QObject*parent): QObject(parent), m(new model()),  view(n
 
 
     view->show();
+    updateVacationListW(false);
 }
 
 
@@ -23,4 +24,30 @@ void controller::slotCloseEverything(){
     //chiudere advSearchV
 
     this->view->close();
+}
+
+
+void controller::updateVacationListW(bool useFiltered)
+{
+    view->getVacationListW()->clear();
+    //database<immobile*
+   Container<DeepPtr<Vacation>> ::Iterator it;
+
+
+     Container<DeepPtr<Vacation>>* listaTemp;
+    if(!useFiltered){
+        listaTemp= this->m->mGetListVacations();
+    }
+    /*else{
+        listaTemp = this->m->getListaImmobiliFiltered();
+    }
+*/
+    if(!listaTemp->isEmpty()){
+        for(it=listaTemp->begin(); it!=listaTemp->end(); ++it){
+           if((*it).get() != nullptr){
+               view->getVacationListW()->addVacation((*it).get());
+
+            }
+         }
+    }
 }

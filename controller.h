@@ -9,11 +9,15 @@
 
 class controller: public QObject{
         Q_OBJECT
+
 public:
     controller(QObject *parent = nullptr);
     ~controller();
+    void updateVacationListW(bool userFiltered);
+
 public slots:
     void slotCloseEverything();
+
 private:
      model* m;
      mainWindow* view;

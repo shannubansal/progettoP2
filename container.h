@@ -2,6 +2,7 @@
 #define CONTAINER_H
 #include "deepPtr.h"
 #include <iostream>
+
 using namespace std;
 
 
@@ -49,7 +50,8 @@ public:
     void popfront();
     void popback();
     void emptyContainer();
-    Nodo* trovanodo(const T&);
+    bool searchNodo(const T&);
+
     void remove(const T&);
     bool empty() const;
     void sostituisciNodo(const T& oldNodo, const T& newNodo);
@@ -112,7 +114,10 @@ Container<T>::Nodo::Nodo(const T& t, Nodo* n) : info(t), next(n) {}
 //Container<T>::Nodo::Nodo(const Nodo& n) : info(n.info), next(0){}
 
 template<class T>
-Container<T>::Nodo::~Nodo() {if (next) delete next;}
+Container<T>::Nodo::~Nodo() {
+    if (next) delete next;
+    //serve forse un "delete this;"
+}
 
 template<class T>
 typename Container<T>::Nodo* Container<T>::copy(const Container<T>::Nodo * &inizio, const Container<T>::Nodo * &fine, Container<T>::Nodo * &last) {
@@ -154,14 +159,14 @@ Container<T>& Container<T>::operator=(const Container<T>& c) {
 
 template<class T>
 Container<T>::~Container (){
-    if (first) delete first;
+    if (first) delete first;//la size viene modificata?
 //    this->emptyContainer();
 }
 
 
 template<class T>
 void Container<T>::emptyContainer(){
-    while(!isEmpty()) {
+    while(!isEmpty()) {//controllo size?
         popfront();
         cout<<"1 ";
     }
@@ -169,7 +174,7 @@ void Container<T>::emptyContainer(){
 
 template<class T>
 bool Container<T>::isEmpty() const{
-    return (first==nullptr);
+    return (first==nullptr);//fare con size?
 }
 
 
@@ -216,6 +221,7 @@ void Container<T>::pushback(const T&t){
         last=last->next;
     }
     increaseSize();
+
 }
 
 template<class T>
@@ -283,29 +289,30 @@ void Container<T>::decreaseSize() {
 
 
 
-/*
+
 template<class T>
-bool database<T>::trovaNodo(const T& i){
-    bool trovato=false;
+bool Container<T>::searchNodo(const T& i){//con deeptr, da testare...
+    bool found=false;
 
     if(first->info == i)
-        trovato=true;
+        found=true;
     if(last->info==i)
-        trovato=true;
+        found=true;
 
-    Nodo* scorri=first;
+    Nodo* tmp=first;
 
-    while(scorri->next && !trovato){
-        if(scorri->info == i)
-            trovato=true;
+    while(tmp->next && !found){
+        if(tmp->info == i)
+            found=true;
         else
-            scorri=scorri->next;
+            tmp=tmp->next;
     }
-    return trovato;
+    return found;
 }
 
+/*
 template<class T>
-void database<T>::sostituisciNodo(const T& oldNodo, const T& newNodo){
+void Container<T>::sostituisciNodo(const T& oldNodo, const T& newNodo){
 
     if(this->trovaNodo(oldNodo)){
         if(first->info == oldNodo)

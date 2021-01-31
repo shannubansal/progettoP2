@@ -17,7 +17,8 @@ private:
 public:
     model();
     ~model();
-
+    void addToContainer(Vacation*);//da vedere
+    Container<DeepPtr<Vacation>>* mGetListVacations();
 };
 
 #endif // MODEL_H

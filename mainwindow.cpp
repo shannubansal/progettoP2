@@ -1,6 +1,7 @@
 #include "mainwindow.h"
+#include<vacationlist.h>
 
-mainWindow::mainWindow(QWidget *parent) : QWidget(parent), VList(new VacationList(this)){
+mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new VacationList(this)){
 
     setWindowTitle("Vacations");
 
@@ -58,8 +59,8 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), VList(new VacationLis
     listGroup=new QGroupBox("Vacations");
     listLayout=new QVBoxLayout();
 
-    VList->setSelectionMode(QAbstractItemView::SingleSelection);
-    listLayout->addWidget(VList);
+    vListView->setSelectionMode(QAbstractItemView::SingleSelection);
+    listLayout->addWidget(vListView);
     listGroup->setLayout(listLayout);
 
 
@@ -97,7 +98,17 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), VList(new VacationLis
 
 }
 
+VacationList* mainWindow::getVacationListW(){
+    return this->vListView;
+}
+
+
+void mainWindow::showInfoItem(const QStringList){
+
+}
+
 
 void mainWindow::closeEvent(QCloseEvent *){
     emit signalQuitB();
 }
+

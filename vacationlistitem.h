@@ -9,13 +9,13 @@
 
 class VacationListItem: public QListWidgetItem{
 private:
-    DeepPtr<Vacation>* item;
+    Vacation* item;
     QWidget* parent;
 
 
 public:
-    VacationListItem(DeepPtr<Vacation>*, QWidget* =nullptr);
-    DeepPtr<Vacation>* getItem();
+    VacationListItem(Vacation*, QWidget* =nullptr);
+    Vacation* getItem();
     void updateItem();
 };
 

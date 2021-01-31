@@ -30,11 +30,12 @@ private:
     QPushButton *hotelFilterB, *flatFilterB, *campingFilterB, *bungalowFilterB, *pitchFilterB, *removeFilterB;//filters
     QPushButton *displayB, *modifyB, *deleteB;
     //void closeEvent(QCloseEvent*) override;
-    VacationList* VList;
+    VacationList* vListView;
 
 public:
     explicit mainWindow(QWidget *parent = nullptr);
     VacationList* getVacationListW();
+    void showInfoItem(const QStringList);
     bool isSelected() const;
     void showVacationInfo(const QStringList);
     void closeEvent(QCloseEvent*) override;

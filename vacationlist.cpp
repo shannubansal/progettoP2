@@ -8,7 +8,7 @@ VacationList::VacationList(QWidget *p): parent(p){
 }
 
 
-void VacationList::addVacation(DeepPtr<Vacation> * v){
+void VacationList::addVacation(Vacation* v){
     VacationListItem* i= new VacationListItem(v, parent);
     addItem(i);
 }
