@@ -28,7 +28,7 @@ private:
 
     QPushButton *loadB, *saveB, *quitB, *advancedSearchB;//actions
     QPushButton *hotelFilterB, *flatFilterB, *campingFilterB, *bungalowFilterB, *pitchFilterB, *removeFilterB;//filters
-    QPushButton *displayB, *modifyB, *deleteB;
+    QPushButton *addB, *displayB, *modifyB, *deleteB;
     //void closeEvent(QCloseEvent*) override;
     VacationList* vListView;
 
@@ -51,6 +51,7 @@ signals:
     void signalLoadB();
     void signalSaveB();
     void signalQuitB();
+    void signalOpenInsert();
 
 
 

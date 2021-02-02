@@ -5,6 +5,19 @@ Vacation::Vacation(string n, string p, string c, int y, int m, int d, double bP,
                 basePrice(bP), weeks(w) {}
 
 
+
+string Vacation::getInfo() const{
+    //stringstream ss;
+   // ss<< fixed << setprecision(2) <<getBasePrice();
+    string s=getTipo();
+    return s.append("\nName: " +getName()).append("\nPlace: " +getPlace())
+            .append("\nCountry : " +getCountry()).append( "\nDate: " + (this->getDate()).toString().toStdString())
+            .append("\nStartingPrice :" + std::to_string(getBasePrice()))
+            .append("€").append("\nWeeks : " + std::to_string(getWeeks()));
+
+
+}
+
 /*
 Vacation::print() const{
  //funzione stampa I/O presumibimente
@@ -14,7 +27,9 @@ Vacation::print() const{
 
 /*bool Vacation::operator==(const Vacation & c) const
 {
-    return name == c.getName() && place == c.getPlace()&& country == c.getCountry() && date == QDate(c.getYearD(),c.getMonthD(),c.getDayD()) && basePrice == c.getBasePrice() && weeks == c.getWeeks();
+    return name == c.getName() && place == c.getPlace()&&
+country == c.getCountry() && date == QDate(c.getYearD(),c.getMonthD(),c.getDayD())
+&& basePrice == c.getBasePrice() && weeks == c.getWeeks();
 }
 */
 string Vacation::getName() const{

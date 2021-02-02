@@ -30,6 +30,13 @@ string Flat::getTipo()const{
 }
 
 
+string Flat::getInfo() const{
+    string s=getTipo()+":";
+    return s.append(Vacation::getInfo())
+            .append("\nRooms: "+ std::to_string(getRooms()))
+            .append("\nAC: " ).append(hasAC()? "Yes" : "No");
+}
+
 
 bool Flat::hasAC() const{
     return AC;

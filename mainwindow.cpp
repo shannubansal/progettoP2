@@ -46,6 +46,7 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
     filtersLayout->addWidget(advancedSearchB);
 
     filters->setLayout(filtersLayout);
+    //filtersLayout->setSpacing(14); da trovare modo per sistemare lo spacing o stretch
 
 //central layout/group con filters group e layout------------------
     centralLayout=new QHBoxLayout();
@@ -60,6 +61,8 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
     listLayout=new QVBoxLayout();
 
     vListView->setSelectionMode(QAbstractItemView::SingleSelection);
+    vListView->setMinimumWidth(500);
+    vListView->setMinimumHeight(500);
     listLayout->addWidget(vListView);
     listGroup->setLayout(listLayout);
 
@@ -71,10 +74,12 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
     listActions=new QGroupBox("");
     listActionsLayout=new QHBoxLayout();
 
+    addB=new QPushButton("Add", this);
     displayB=new QPushButton("Display", this);//display selected?
     modifyB=new QPushButton("Modify", this);//modify selected?
     deleteB=new QPushButton("Delete", this);//delete selected?
 
+    listActionsLayout->addWidget(addB);
     listActionsLayout->addWidget(displayB);
     listActionsLayout->addWidget(modifyB);
     listActionsLayout->addWidget(deleteB);
@@ -94,7 +99,7 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
 
 //SIGNALS
         connect(quitB, SIGNAL(clicked()), this, SIGNAL(signalQuitB()));
-
+        connect(addB, SIGNAL(clicked()), this, SIGNAL(signalOpenInsert()));
 
 }
 

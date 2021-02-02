@@ -18,6 +18,7 @@ public:
     virtual double calcCommission() const=0;
     virtual double getPriceAndFees(unsigned int=1, unsigned int=0) const=0;
     virtual string getTipo()const=0;
+    virtual string getInfo() const override;
 
 
     unsigned int getMaxCapacity() const;

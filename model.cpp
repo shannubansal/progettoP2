@@ -5,6 +5,7 @@ model::model():vList(new Container<DeepPtr<Vacation>>), filteredVList(new Contai
     Vacation *p;
     p=new Pitch();
     Hotel* h= new Hotel();
+    h->setStars(3);
 
     addToContainer(p);
     addToContainer(h);

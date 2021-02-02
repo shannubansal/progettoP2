@@ -11,7 +11,7 @@ public:
     enum serviceType { overnight, halfboard, allinclusive};//forse valutare posizionamento diverso (qua serve per non
     //inquinare il namespace)
 
-    Hotel(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1, int=0, Hotel::serviceType=overnight, int=1);
+    Hotel(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1, unsigned int=0, Hotel::serviceType=overnight, unsigned int=1);
 
     virtual ~Hotel() =default;
     virtual Hotel* clone() const override;
@@ -19,6 +19,7 @@ public:
     double calcCommission() const override;
     //virtual void print() const override();
     virtual string getTipo()const override;
+    virtual string getInfo() const override;
 
     static string convertServToString (const serviceType& );
 
@@ -30,9 +31,9 @@ public:
     void setType(serviceType ty);
     void setBeds(int b);
 private:
-        int stars;
+        unsigned int stars;
         serviceType type;
-        int beds;
+        unsigned int beds;
 
 
 };

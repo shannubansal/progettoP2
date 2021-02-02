@@ -4,6 +4,7 @@
 #include<QString>
 #include<iostream>
 #include<sstream>
+#include<iomanip>
 using std::string;
 
 class Vacation
@@ -17,8 +18,7 @@ private:
     unsigned int weeks;
 
 public:
-    Vacation(string="", string="", string="", int=2020, int=1, int=1, double=0.0,
-             unsigned int=1 );
+    Vacation(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1 );
     virtual ~Vacation()=default;
     // bool operator==(const Vacation&) const;
 
@@ -29,7 +29,8 @@ public:
     virtual double calcFinalPrice() const=0;
     //virtual void print() const;
     virtual double calcCommission() const=0;
-    virtual string getTipo()const =0;
+    virtual string getTipo() const=0;
+    virtual string getInfo() const;//da implementare in tutta la gerarchia
 
     //bool operator==(const Vacation&) const;//utile? da implementare?
     //valutare inserimento di ritornante caparra/deposit

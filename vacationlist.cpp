@@ -4,7 +4,7 @@
 
 VacationList::VacationList(QWidget *p): parent(p){
     addScrollBarWidget(new QScrollBar(Qt::Orientation::Vertical, parent), Qt::AlignRight);
-
+    setSpacing(10);
 }
 
 

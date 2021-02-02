@@ -16,6 +16,7 @@ public:
     double calcCommission() const override;
     //void print() const override();
     virtual string getTipo()const override;
+    virtual string getInfo() const override;
 
 
     bool hasAC() const;

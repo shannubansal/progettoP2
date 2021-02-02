@@ -16,7 +16,8 @@ public:
     virtual double calcFinalPrice() const override;
     virtual double calcCommission() const override;
     virtual double getPriceAndFees(unsigned int=1, unsigned int=0) const override;
-    virtual string getTipo()const override;
+    virtual string getTipo() const override;
+    virtual string getInfo() const override;
 
     //void print() const override();
     static string convertBungToString (const bungalowType& );

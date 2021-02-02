@@ -4,8 +4,21 @@ Camping::Camping(string n, string p, string c, int y, int m, int d, double bP, u
                  double dF, double vF ): Vacation(n, p, c, y, m, d, bP, w), maxCapacity(mC),
                 dailyFee(dF), visitorsFee(vF){}
 
+/*
+unsigned int getMaxCapacity() const;
+double getDailyFee() const;
+double getVisitorsFee() const;
+*/
 
 
+string Camping::getInfo() const{
+    string s=Vacation::getInfo();
+    return s.// forse troppa roba in item append("\nMaxCapacity: "+ std::to_string(getMaxCapacity()))
+            //da inserire nel visualizza dettagli
+
+            append("\nDailyFee: "+ std::to_string(getDailyFee()))
+            .append("€");
+}
 
 unsigned int Camping::getMaxCapacity() const{
     return maxCapacity;

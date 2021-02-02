@@ -77,6 +77,13 @@ string Pitch::getTipo() const{
 }
 
 
+string Pitch::getInfo() const{
+    string s=Camping::getInfo();
+    return s.append("\nTent: "+convertTentToString(getTent()));//non metto qua tutti i campi sennò diventa logorroico
+    //i campi ancdranno nella view dettagli
+}
+
+
 
 bool Pitch::getTentAvailable() const{
     return tentAvailable;

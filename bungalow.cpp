@@ -71,6 +71,17 @@ string Bungalow::getTipo() const{
     return "Bungalow";
 }
 
+string Bungalow::getInfo() const{
+    string s="";
+
+    return s.append(Camping::getInfo())
+            .append("\nBungalowType: ")
+            .append(convertBungToString(getBungalowType()))
+            .append("\nService: " + getCleaningServ()? "Yes" : "No");
+}
+
+
+
 unsigned int Bungalow::getMaxVisitors() const{
     return maxVisitors;
 }

@@ -1,6 +1,7 @@
 #include "hotel.h"
 
-Hotel::Hotel(string n, string p, string c, int y, int m, int d, double bP, unsigned int w, int s, Hotel::serviceType ty, int b): Vacation(n, p, c, y, m, d, bP, w), stars(s), type(ty), beds(b){}
+Hotel::Hotel(string n, string p, string c, int y, int m, int d, double bP, unsigned int w, unsigned int s, Hotel::serviceType ty,
+             unsigned int b): Vacation(n, p, c, y, m, d, bP, w), stars(s), type(ty), beds(b){}
 
 
 Hotel* Hotel::clone() const{
@@ -31,6 +32,19 @@ double Hotel::calcCommission() const{
 
 string Hotel::getTipo() const{
     return "Hotel";
+}
+
+string Hotel::getInfo() const{
+    string s="";
+    string stars="";
+    for(int i=0; i<getStars(); i++){
+        stars.append("*");
+    }
+    return s.append(Vacation::getInfo())
+            .append("\nStarRating: ")
+            .append(stars)
+            .append("\nService: " +convertServToString(getType()))
+            .append("\nBeds: "+ std::to_string(getBeds()));
 }
 
 
