@@ -98,8 +98,20 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
 
 
 //SIGNALS
-        connect(quitB, SIGNAL(clicked()), this, SIGNAL(signalQuitB()));
-        connect(addB, SIGNAL(clicked()), this, SIGNAL(signalOpenInsert()));
+    connect(quitB, SIGNAL(clicked()), this, SIGNAL(signalQuitB()));
+    connect(addB, SIGNAL(clicked()), this, SIGNAL(signalOpenInsert()));
+    connect(displayB, SIGNAL(clicked()),this, SIGNAL(signalOpenDisplay()));
+    connect(modifyB, SIGNAL(clicked()),this, SIGNAL(signalOpenModify()));
+
+    connect(hotelFilterB, SIGNAL(clicked()),this, SIGNAL(signalHotelFilterB()));
+    connect(flatFilterB, SIGNAL(clicked()),this, SIGNAL(signalFlatFilterB()));
+    connect(campingFilterB, SIGNAL(clicked()),this, SIGNAL(signalCampingFilterB()));
+    connect(bungalowFilterB, SIGNAL(clicked()),this, SIGNAL(signalBungalowFilterB()));
+    connect(pitchFilterB, SIGNAL(clicked()),this, SIGNAL(signalPitchFilterB()));
+    connect(removeFilterB, SIGNAL(clicked()),this, SIGNAL(signalRemoveFilterB()));
+
+
+    connect(advancedSearchB, SIGNAL(clicked()),this, SIGNAL(signalAdvancedSearchB()));
 
 }
 

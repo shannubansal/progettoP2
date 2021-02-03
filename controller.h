@@ -16,6 +16,24 @@ public:
     void updateVacationListW(bool userFiltered);
 
 public slots:
+
+    void slotHotelFilter();
+     /*
+    void slotFlatFilter();
+    void slotCampingFilter();
+    void slotBungalowFilter();
+    void slotPitchFilter();
+    void slotRemoveFilter();
+    void OpenInsertVacation() const;
+
+    void slotAdvancedSearch();
+    void slotLoadB();
+    void slotSaveB();
+
+
+    void signalOpenModify();
+    void signalOpenDisplay();
+     * */
     void slotCloseEverything();
 
 private:

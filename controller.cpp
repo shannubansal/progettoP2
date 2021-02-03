@@ -2,7 +2,9 @@
 
 controller::controller(QObject*parent): QObject(parent), m(new model()),  view(new mainWindow()){
 
-     connect(view,SIGNAL(signalQuitB()),this,SLOT(slotCloseEverything()));
+    connect(view,SIGNAL(signalQuitB()),this,SLOT(slotCloseEverything()));
+     //filters
+    connect(view,SIGNAL(signalHotelFilterB()),this,SLOT(slotHotelFilter()));
 
 
 
@@ -15,6 +17,12 @@ controller::~controller(){
     delete m;
 }
 
+
+
+void controller::slotHotelFilter(){//da fare per tutti i filtri
+    m->filterHotels();
+    updateVacationListW(true);
+}
 
 void controller::slotCloseEverything(){
     //if er chiudere tutte le parti di vista
@@ -30,18 +38,18 @@ void controller::slotCloseEverything(){
 void controller::updateVacationListW(bool useFiltered)
 {
     view->getVacationListW()->clear();
-    //database<immobile*
-   Container<DeepPtr<Vacation>> ::Iterator it;
+
+    Container<DeepPtr<Vacation>> ::Iterator it;
 
 
-     Container<DeepPtr<Vacation>>* listaTemp;
+    Container<DeepPtr<Vacation>>* listaTemp;
     if(!useFiltered){
         listaTemp= this->m->mGetListVacations();
     }
-    /*else{
-        listaTemp = this->m->getListaImmobiliFiltered();
+    else{
+        listaTemp = this->m->mGetListVacationsFiltered();
     }
-*/
+
     if(!listaTemp->isEmpty()){
         for(it=listaTemp->begin(); it!=listaTemp->end(); ++it){
            if((*it).get() != nullptr){

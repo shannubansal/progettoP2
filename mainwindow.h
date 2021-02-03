@@ -43,15 +43,19 @@ public:
 
 signals:
     void signalHotelFilterB();
-    void signalFlatsFilterB();
+    void signalFlatFilterB();
     void signalCampingFilterB();
     void signalBungalowFilterB();
     void signalPitchFilterB();
+    void signalRemoveFilterB();
     void signalAdvancedSearchB();
     void signalLoadB();
     void signalSaveB();
     void signalQuitB();
     void signalOpenInsert();
+    void signalOpenModify();
+    void signalOpenDisplay();
+
 
 
 

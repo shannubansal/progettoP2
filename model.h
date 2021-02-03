@@ -18,7 +18,17 @@ public:
     model();
     ~model();
     void addToContainer(Vacation*);//da vedere
+    //void removeFromContainer(Vacation*);
+    //void switchVacation(Vacation* v, Vacation* modV);
+
+    void filterHotels();
+    void filterFlats();
+    void filterCamping();
+    void filterBungalows();
+    void filterPitches();
+    void removeFilter();
     Container<DeepPtr<Vacation>>* mGetListVacations();
+    Container<DeepPtr<Vacation>>* mGetListVacationsFiltered();
 };
 
 #endif // MODEL_H
