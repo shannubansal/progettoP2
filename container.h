@@ -169,6 +169,7 @@ void Container<T>::emptyContainer(){
     while(!isEmpty()) {//controllo size?
         popfront();
         cout<<"1 ";
+
     }
 }
 
@@ -184,14 +185,19 @@ typename Container<T>::Iterator Container<T>::begin() const{
     Container<T>::Iterator aux;
     aux.ptr = first;
     return aux;
+
+
 }
 
 template<class T>
 typename Container<T>::Iterator Container<T>::end() const{
+
     cout<<" end ";
     Container<T>::Iterator aux;
     aux.ptr = nullptr;
     return aux;
+
+
 }
 
 //template<class T>

@@ -32,7 +32,7 @@ public:
 };
 
 template<class T>
-DeepPtr<T>::DeepPtr(T* p) : ptr(p){cout<<"ptr "<<ptr<<"endptr"<<endl;}
+DeepPtr<T>::DeepPtr(T* p) : ptr(p->clone()){cout<<"ptr "<<ptr<<"endptr"<<endl;}
 
 template <class T>
 DeepPtr<T>::DeepPtr(const DeepPtr& p){

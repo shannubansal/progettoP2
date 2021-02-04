@@ -13,6 +13,7 @@ model::model():vList(new Container<DeepPtr<Vacation>>), filteredVList(new Contai
 
     cout<<vList->getSize()<<endl;
     cout<<*p<<endl;
+    cout<<*h<<endl;
 }
 
 
@@ -41,10 +42,11 @@ void model::filterHotels(){
     filteredVList->emptyContainer();
     for(auto it=vList->begin(); it!=vList->end(); ++it){
         Vacation* v= (*it).get();
-        Hotel* h= dynamic_cast<Hotel*>(v);
-        if(h){
+        Hotel* h=dynamic_cast<Hotel*>(v);
+        if(h!=nullptr){
             filteredVList->pushback(v);
         }
+
     }
 }
 

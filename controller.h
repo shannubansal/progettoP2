@@ -18,19 +18,20 @@ public:
 public slots:
 
     void slotHotelFilter();
-     /*
+
     void slotFlatFilter();
     void slotCampingFilter();
     void slotBungalowFilter();
     void slotPitchFilter();
     void slotRemoveFilter();
-    void OpenInsertVacation() const;
+    /*
+
 
     void slotAdvancedSearch();
     void slotLoadB();
     void slotSaveB();
 
-
+    void OpenInsertVacation() const;
     void signalOpenModify();
     void signalOpenDisplay();
      * */
