@@ -1,13 +1,13 @@
 #ifndef COMBOVACATION_H
 #define COMBOVACATION_H
 
-#include <QObject>
+#include<QComboBox>
 #include <QWidget>
 
-class comboVacation
-{
+class comboVacation: public QComboBox{
+    Q_OBJECT
 public:
-    comboVacation();
+    comboVacation(QWidget* parent= nullptr);
 };
 
 #endif // COMBOVACATION_H

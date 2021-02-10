@@ -2,28 +2,31 @@
 #define CONTROLLER_H
 
 #include <QObject>
-#include <QWidget>
+
 
 #include<model.h>
 #include<mainwindow.h>
+#include<addvwindow.h>
+using namespace::std;
 
 class controller: public QObject{
         Q_OBJECT
 
 public:
-    controller(QObject *parent = nullptr);
+    explicit controller(QObject *parent = nullptr);
     ~controller();
     void updateVacationListW(bool userFiltered);
 
 public slots:
 
     void slotHotelFilter();
-
     void slotFlatFilter();
     void slotCampingFilter();
     void slotBungalowFilter();
     void slotPitchFilter();
     void slotRemoveFilter();
+
+    void openInsertVacation() const;
     /*
 
 
@@ -31,7 +34,7 @@ public slots:
     void slotLoadB();
     void slotSaveB();
 
-    void OpenInsertVacation() const;
+
     void signalOpenModify();
     void signalOpenDisplay();
      * */
@@ -40,6 +43,7 @@ public slots:
 private:
      model* m;
      mainWindow* view;
+     addVWindow* addV;
 };
 
 #endif // CONTROLLER_H

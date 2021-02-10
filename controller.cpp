@@ -1,6 +1,6 @@
 #include "controller.h"
 
-controller::controller(QObject*parent): QObject(parent), m(new model()),  view(new mainWindow()){
+controller::controller(QObject*parent): QObject(parent), m(new model()),  view(new mainWindow()), addV(new addVWindow()) {
 
     connect(view,SIGNAL(signalQuitB()),this,SLOT(slotCloseEverything()));
      //filters
@@ -10,6 +10,8 @@ controller::controller(QObject*parent): QObject(parent), m(new model()),  view(n
     connect(view,SIGNAL(signalBungalowFilterB()),this,SLOT(slotBungalowFilter()));
     connect(view,SIGNAL(signalPitchFilterB()),this,SLOT(slotPitchFilter()));
     connect(view, SIGNAL(signalRemoveFilterB()), this, SLOT(slotRemoveFilter()));
+    connect(view, SIGNAL(signalOpenInsert()), this, SLOT(openInsertVacation()));
+    //connect(addV, SIGNAL(signalInsert()), this, SLOT(/*da definire*/));
 
 
 
@@ -24,27 +26,27 @@ controller::~controller(){
 
 
 
-void controller::slotHotelFilter(){//da fare per tutti i filtri
+void controller::slotHotelFilter(){
     m->filterHotels();
     updateVacationListW(true);
 }
 
-void controller::slotFlatFilter(){//da fare per tutti i filtri
+void controller::slotFlatFilter(){
     m->filterFlats();
     updateVacationListW(true);
 }
 
-void controller::slotCampingFilter(){//da fare per tutti i filtri
+void controller::slotCampingFilter(){
     m->filterCamping();
     updateVacationListW(true);
 }
 
-void controller::slotBungalowFilter(){//da fare per tutti i filtri
+void controller::slotBungalowFilter(){
     m->filterBungalows();
     updateVacationListW(true);
 }
 
-void controller::slotPitchFilter(){//da fare per tutti i filtri
+void controller::slotPitchFilter(){
     m->filterPitches();
     updateVacationListW(true);
 }
@@ -53,9 +55,17 @@ void controller::slotRemoveFilter(){
     updateVacationListW(false);
 }
 
+void controller::openInsertVacation() const{
+    addV->resetFields();
+    addV->show();
+}
+
 void controller::slotCloseEverything(){
+    if(this->addV!=nullptr && this->addV->isVisible()){
+        this->addV->close();
+    }
     //if er chiudere tutte le parti di vista
-    //chiudere addV
+
     //chiudere ModV
     //chiudere disV
     //chiudere advSearchV
