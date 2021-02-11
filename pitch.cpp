@@ -51,16 +51,28 @@ double Pitch::getPriceAndFees(unsigned int people, unsigned int visitors) const{
 
 string Pitch::convertTentToString (const tentType& l){
     if(l==Pitch::tentType::small){
-        return "small";
+        return "Small";
     }else if(l==Pitch::tentType::medium){
-        return "medium";
+        return "Medium";
     }else if(l==Pitch::tentType::large){
-        return "large";
+        return "Large";
     }else{
-        return "none";
+        return "None";
     }
 }
 
+Pitch::tentType Pitch::convertTentToEnum (const string& str ){
+    if(str=="Small" ){
+        return Pitch::tentType::small;
+    }else if (str=="Medium"){
+        return Pitch::tentType::medium;
+    }else if(str=="Large"){
+        return Pitch::tentType::large;
+    }else{
+        return Pitch::tentType::none;
+    }
+
+}
 
 std::ostream& operator<<(std::ostream& os, const Pitch& p) {
 

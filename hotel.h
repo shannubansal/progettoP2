@@ -22,6 +22,7 @@ public:
     virtual string getInfo() const override;
 
     static string convertServToString (const serviceType& );
+    static serviceType convertServToEnum(const string&);
 
     int getStars() const;
     serviceType getType() const;

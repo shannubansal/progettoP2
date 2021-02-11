@@ -21,6 +21,7 @@ public:
 
     //virtual void print() const override();
     static string convertTentToString (const tentType& );
+    static tentType convertTentToEnum (const string& );
 
     bool getTentAvailable() const;
     tentType getTent() const;

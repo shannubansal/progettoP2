@@ -21,6 +21,7 @@ public:
 
     //void print() const override();
     static string convertBungToString (const bungalowType& );
+    static bungalowType convertBungtoEnum(const string&);
 
     unsigned int getMaxVisitors() const;
     bungalowType getBungalowType() const;

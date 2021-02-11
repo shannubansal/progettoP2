@@ -47,14 +47,26 @@ double Bungalow::getPriceAndFees(unsigned int people, unsigned int visitors) con
 
 string Bungalow::convertBungToString (const bungalowType& l){
     if(l==Bungalow::bungalowType::standard){
-        return "standard";
+        return "Standard";
     }else if(l==Bungalow::bungalowType::suite){
-        return "suite";
+        return "Suite";
     }else if(l==Bungalow::bungalowType::deluxe){
-        return "deluxe";
+        return "Deluxe";
     }else{
-        return "standard";
+        return "Standard";
     }
+}
+
+
+Bungalow::bungalowType Bungalow::convertBungtoEnum (const string& str ){
+    if(str=="Suite" ){
+        return Bungalow::bungalowType::suite;
+    }else if(str=="Deluxe"){
+        return Bungalow::bungalowType::deluxe;
+    }else{
+        return Bungalow::bungalowType::standard;
+    }
+
 }
 
 std::ostream& operator<<(std::ostream& os, const Bungalow& b) {
@@ -77,7 +89,8 @@ string Bungalow::getInfo() const{
     return s.append(Camping::getInfo())
             .append("\nBungalowType: ")
             .append(convertBungToString(getBungalowType()))
-            .append("\nService: " + getCleaningServ()? "Yes" : "No");
+            .append("\nService: " )
+            .append(getCleaningServ()? "Yes" : "No");
 }
 
 

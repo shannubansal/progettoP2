@@ -41,6 +41,7 @@ addVWindow::addVWindow(QWidget* parent): QWidget(parent){
     vacationForm->addRow(tr("&Date:"), dateE);
 
     basePriceE= new QDoubleSpinBox();
+    basePriceE->setMaximum(15000);
     vacationForm->addRow(tr("&Starting Price:"), basePriceE);
 
     weeksE = new QLineEdit();
@@ -105,10 +106,12 @@ addVWindow::addVWindow(QWidget* parent): QWidget(parent){
     campingForm->addRow(tr("&Max. Capacity:"), maxCapE);
 
     dailyFeeE= new QDoubleSpinBox();
-    campingForm->addRow(tr("&Daily feee:"), dailyFeeE);
+    dailyFeeE->setMaximum(999);
+    campingForm->addRow(tr("&Daily Fee:"), dailyFeeE);
 
     visitorsFeeE= new QDoubleSpinBox();
-    campingForm->addRow(tr("&Visitors daily fee:"), visitorsFeeE);
+    visitorsFeeE->setMaximum(999);
+    campingForm->addRow(tr("&Visitors Daily Fee:"), visitorsFeeE);
 
     campingInfoGroup= new QGroupBox("Camping", this);
     campingInfoGroup->setLayout(campingForm);
@@ -156,7 +159,7 @@ addVWindow::addVWindow(QWidget* parent): QWidget(parent){
     bungalowForm->addRow(tr("&Bungalow Type"),bungalowTypeE);
 
     cleaningServE= new QCheckBox();
-    bungalowForm->addRow(tr("&Cleaning Service available:"), cleaningServE);
+    bungalowForm->addRow(tr("&Cleaning Service:"), cleaningServE);
 
 
     bungalowInfoGroup= new QGroupBox("Bungalow",this);

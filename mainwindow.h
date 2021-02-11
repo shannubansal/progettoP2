@@ -9,7 +9,7 @@
 #include<QLineEdit>
 #include<QPushButton>
 #include<QListWidget>
-// per messaggi che impediscono i completamento di azioni che saranno proibite #include<QMessageBox>
+#include<QMessageBox>
 #include<QCloseEvent>
 #include<QPalette>//se vogliamo colorare i QPushButtons
 
@@ -23,7 +23,6 @@ class mainWindow : public QWidget
 private:
     QVBoxLayout *wrapLayout, *filtersLayout, *listLayout;
     QHBoxLayout *windowActionsLayout, *centralLayout, *listActionsLayout;
-    //mainWindowMenu* menuBar;
     QGroupBox *filters, *windowActions, *listActions, *listGroup, *centralGroup;
 
     QPushButton *loadB, *saveB, *quitB, *advancedSearchB;//actions

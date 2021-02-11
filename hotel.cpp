@@ -77,17 +77,30 @@ void Hotel::setBeds(int b){
 
 string Hotel::convertServToString(const Hotel::serviceType & l){
     if(l==Hotel::serviceType::overnight){
-        return "overnight";
+        return "Overnight";
     }else if(l==Hotel::serviceType::halfboard){
-        return "halfboard";
+        return "Halfboard";
     }else if(l==Hotel::serviceType::allinclusive){
-        return "allinclusive";
+        return "Allinclusive";
     }else{
-        return "overnight";//comportamento standard cmq nella vista da  implementare scelta
-        //esclusivamente tra i tre enum
+        return "Overnight";//comportamento standard cmq nella vista da  implementare scelta
+
     }
-    //throw std::exception();
+
 }
+
+Hotel::serviceType Hotel::convertServToEnum(const string & str){
+   if(str=="Overnight" ){
+       return Hotel::serviceType::overnight;
+   }else if (str=="Halfboard"){
+       return Hotel::serviceType::halfboard;
+   }else if(str=="Allinclusive"){
+       return Hotel::serviceType::allinclusive;
+   }else{
+       return Hotel::serviceType::overnight;
+   }
+}
+
 std::ostream& operator<<(std::ostream& os, const Hotel& h) {
 
     return operator<< (os, static_cast<const Vacation&>(h))

@@ -16,6 +16,10 @@ public:
     explicit controller(QObject *parent = nullptr);
     ~controller();
     void updateVacationListW(bool userFiltered);
+    void error1();
+    void error2();
+    void errorDate();
+    void errorTent();
 
 public slots:
 
@@ -27,6 +31,7 @@ public slots:
     void slotRemoveFilter();
 
     void openInsertVacation() const;
+    void slotInsertVacation();
     /*
 
 
