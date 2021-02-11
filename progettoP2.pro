@@ -28,7 +28,8 @@ SOURCES += main.cpp \
     combovacation.cpp \
     vacationlist.cpp \
     vacationlistitem.cpp \
-    addvwindow.cpp
+    addvwindow.cpp \
+    modvwindow.cpp
 
 HEADERS += \
     container.h \
@@ -45,4 +46,5 @@ HEADERS += \
     combovacation.h \
     vacationlist.h \
     vacationlistitem.h \
-    addvwindow.h
+    addvwindow.h \
+    modvwindow.h

@@ -22,10 +22,11 @@ public:
     //virtual void print() const override();
     static string convertTentToString (const tentType& );
     static tentType convertTentToEnum (const string& );
+    static int convertTentToI(const tentType& l);
 
     bool getTentAvailable() const;
     tentType getTent() const;
-
+    bool  operator==(const Pitch&) const;
 
     void setTentAvailable(bool tA);
     void setTent(tentType t);

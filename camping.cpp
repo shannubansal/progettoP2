@@ -4,12 +4,6 @@ Camping::Camping(string n, string p, string c, int y, int m, int d, double bP, u
                  double dF, double vF ): Vacation(n, p, c, y, m, d, bP, w), maxCapacity(mC),
                 dailyFee(dF), visitorsFee(vF){}
 
-/*
-unsigned int getMaxCapacity() const;
-double getDailyFee() const;
-double getVisitorsFee() const;
-*/
-
 
 string Camping::getInfo() const{
     string s=Vacation::getInfo();
@@ -43,6 +37,11 @@ void Camping::setDailyFee(double dF){
 
 void Camping::setVisitorsFee(double vF){
     visitorsFee=vF;
+}
+
+
+bool  Camping::operator==(const Camping& h) const {
+    return Vacation::operator==(h) && getMaxCapacity() == h.getMaxCapacity() &&  getDailyFee() == h.getDailyFee() && getVisitorsFee() == h.getVisitorsFee();
 }
 
 std::ostream& operator<<(std::ostream& os, const Camping& c) {

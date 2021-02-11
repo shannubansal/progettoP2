@@ -51,9 +51,13 @@ signals:
     void signalLoadB();
     void signalSaveB();
     void signalQuitB();
+
+
     void signalOpenInsert();
     void signalOpenModify();
     void signalOpenDisplay();
+
+    void signalRemoveVacation();
 
 
 

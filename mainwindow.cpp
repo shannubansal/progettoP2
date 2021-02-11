@@ -112,6 +112,7 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
 
 
     connect(advancedSearchB, SIGNAL(clicked()),this, SIGNAL(signalAdvancedSearchB()));
+    connect(deleteB, SIGNAL(clicked()),this, SIGNAL(signalRemoveVacation()));
 
 }
 

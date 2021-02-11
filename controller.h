@@ -7,6 +7,8 @@
 #include<model.h>
 #include<mainwindow.h>
 #include<addvwindow.h>
+#include<modvwindow.h>
+
 using namespace::std;
 
 class controller: public QObject{
@@ -30,18 +32,21 @@ public slots:
     void slotPitchFilter();
     void slotRemoveFilter();
 
-    void openInsertVacation() const;
+    void slotOpenInsertVacation() const;
+    void slotOpenModify();
     void slotInsertVacation();
+    void slotModifyVacation();
+    void slotRemoveVacation();
     /*
 
 
-    void slotAdvancedSearch();
+    void slotAdvancedSearch();//nope
     void slotLoadB();
     void slotSaveB();
 
 
-    void signalOpenModify();
-    void signalOpenDisplay();
+
+    void slotOpenDisplay();
      * */
     void slotCloseEverything();
 
@@ -49,6 +54,7 @@ private:
      model* m;
      mainWindow* view;
      addVWindow* addV;
+     modVWindow* modV;
 };
 
 #endif // CONTROLLER_H

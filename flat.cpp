@@ -29,9 +29,12 @@ string Flat::getTipo()const{
     return "Flat";
 }
 
+bool  Flat::operator==(const Flat& h) const {
+    return Vacation::operator==(h) && getTipo() == h.getTipo() &&  hasAC() == h.hasAC() && getRooms() == h.getRooms();
+}
 
 string Flat::getInfo() const{
-    string s=getTipo()+":";
+    string s="";
     return s.append(Vacation::getInfo())
             .append("\nRooms: "+ std::to_string(getRooms()))
             .append("\nAC: " ).append(hasAC()? "Yes" : "No");

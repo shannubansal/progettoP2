@@ -32,8 +32,9 @@ public:
     virtual string getTipo() const=0;
     virtual string getInfo() const;//da implementare in tutta la gerarchia
 
-    //bool operator==(const Vacation&) const;//utile? da implementare?
-    //valutare inserimento di ritornante caparra/deposit
+    virtual bool operator==(const Vacation&) const;//da implementare
+    //virtual bool operator!=(const Vacation&) const;
+
 
 
 

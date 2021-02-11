@@ -19,8 +19,10 @@ public:
     virtual string getInfo() const override;
 
 
+
     bool hasAC() const;
     unsigned int getRooms() const;
+    bool  operator==(const Flat&) const;
 
     void setRooms(int ro);
     void setAC(bool ac);

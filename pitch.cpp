@@ -61,6 +61,19 @@ string Pitch::convertTentToString (const tentType& l){
     }
 }
 
+
+int Pitch::convertTentToI(const tentType& l){
+    if(l==Pitch::tentType::small){
+        return 1;
+    }else if(l==Pitch::tentType::medium){
+        return 2;
+    }else if(l==Pitch::tentType::large){
+        return 3;
+    }else{
+        return 0;
+    }
+}
+
 Pitch::tentType Pitch::convertTentToEnum (const string& str ){
     if(str=="Small" ){
         return Pitch::tentType::small;
@@ -72,6 +85,10 @@ Pitch::tentType Pitch::convertTentToEnum (const string& str ){
         return Pitch::tentType::none;
     }
 
+}
+
+bool  Pitch::operator==(const Pitch& h) const {
+    return Camping::operator==(h) && getTipo() == h.getTipo() &&  getTentAvailable() == h.getTentAvailable() && getTent() == h.getTent();
 }
 
 std::ostream& operator<<(std::ostream& os, const Pitch& p) {

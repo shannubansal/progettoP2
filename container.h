@@ -50,11 +50,11 @@ public:
     void popfront();
     void popback();
     void emptyContainer();
-    bool searchNodo(const T&);
+    bool searchNode(const T&);
 
     void remove(const T&);
     bool empty() const;
-    void sostituisciNodo(const T& oldNodo, const T& newNodo);
+    void sostituisciNodo(const T& oldV, const T& newV);
 
     unsigned int getSize() const;
 
@@ -297,95 +297,101 @@ void Container<T>::decreaseSize() {
 
 
 template<class T>
-bool Container<T>::searchNodo(const T& i){//con deeptr, da testare...
+bool Container<T>::searchNode(const T& i){//con deeptr, da testare...
     bool found=false;
 
-    if(first->info == i)
+    if(first->info == i){
         found=true;
-    if(last->info==i)
+    }else if(last->info== i){
         found=true;
+    }else{
 
-    Nodo* tmp=first;
+        Nodo* tmp=first;
 
-    while(tmp->next && !found){
-        if(tmp->info == i)
-            found=true;
-        else
-            tmp=tmp->next;
+        while((tmp->next!=nullptr) && !found){
+            if(tmp->info == i)
+                found=true;
+            else
+                tmp=tmp->next;
+        }
     }
     return found;
 }
 
-/*
+
 template<class T>
-void Container<T>::sostituisciNodo(const T& oldNodo, const T& newNodo){
+void Container<T>::sostituisciNodo(const T& oldV, const T& newV){
+    bool done = false;
+    if(this->searchNode(oldV)){
+        if(first->info == oldV){
+            first->info = newV;
+            done = true;
+        }
+        if(last->info==oldV){
+            last->info = newV;
+            done = true;
+        }
 
-    if(this->trovaNodo(oldNodo)){
-        if(first->info == oldNodo)
-            first->info = newNodo;
-        if(last->info==oldNodo)
-            last->info = newNodo;
+        Nodo* cur=first;
 
-        Nodo* scorri=first;
 
-        bool done = false;
-        while(scorri->next && !done){
-            if(scorri->info == oldNodo){
-                scorri->info = newNodo;
+        while(cur->next && !done){
+            if(cur->info == oldV){
+                cur->info = newV;
                 done = true;
             }
             else
-                scorri=scorri->next;
+                cur=cur->next;
         }
 
-        delete oldNodo;
+
     }
 
 }
 
 
 template<class T>
-void database<T>::remove(const T &i)
+void Container<T>::remove(const T &i)
 {
-    if(trovaNodo(i) == true){
+    if(searchNode(i) == true){
     //caso 1
         if(first->info == i){
             Nodo*elim=first;
             first=first->next;
             elim->next=nullptr;
             delete elim;
-            conta_nodi--;
+            decreaseSize();
         }
 
         else{
-            Nodo*scorri=first->next;
-            Nodo*prec=first;
+            Nodo*cur=first->next;
+            Nodo*pre=first;
 
-            while(scorri->info != i){
-                scorri=scorri->next;
-                prec=prec->next;
+            while(!(cur->info == i)){
+                cur=cur->next;
+                pre=pre->next;
             }
             //caso 2
-            if(scorri->info==last->info){
-                prec->next=nullptr;
-                last=prec;
-                delete scorri;
-                conta_nodi--;
+            if(cur->info==last->info){
+                pre->next=nullptr;
+                last=pre;
+                delete cur;
+                decreaseSize();
             }
             //caso 3
             else{
-                Nodo*elim=scorri;
-                prec->next=scorri->next;
+                Nodo*elim=cur;
+                pre->next=cur->next;
                 elim->next=nullptr;
                 delete elim;
-                conta_nodi--;
+                decreaseSize();
             }
         }
     }
     return;
 }
 
-*/
+
 
 //implementazione funzioni Iterator
 

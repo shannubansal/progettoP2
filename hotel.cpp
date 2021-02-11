@@ -83,10 +83,26 @@ string Hotel::convertServToString(const Hotel::serviceType & l){
     }else if(l==Hotel::serviceType::allinclusive){
         return "Allinclusive";
     }else{
-        return "Overnight";//comportamento standard cmq nella vista da  implementare scelta
-
+        return "Overnight";
     }
 
+}
+
+int Hotel::convertServToI(const Hotel::serviceType&l){
+    if(l==Hotel::serviceType::overnight){
+        return 0;
+    }else if(l==Hotel::serviceType::halfboard){
+        return 1;
+    }else if(l==Hotel::serviceType::allinclusive){
+        return 2;
+    }else{
+        return 0;
+    }
+
+}
+
+bool  Hotel::operator==(const Hotel& h) const {
+    return Vacation::operator==(h) && getTipo() == h.getTipo() &&  getStars() == h.getStars() && getType() == h.getType() && getBeds() == h.getBeds();
 }
 
 Hotel::serviceType Hotel::convertServToEnum(const string & str){
@@ -100,6 +116,8 @@ Hotel::serviceType Hotel::convertServToEnum(const string & str){
        return Hotel::serviceType::overnight;
    }
 }
+
+
 
 std::ostream& operator<<(std::ostream& os, const Hotel& h) {
 

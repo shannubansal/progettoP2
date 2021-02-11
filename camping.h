@@ -19,6 +19,7 @@ public:
     virtual double getPriceAndFees(unsigned int=1, unsigned int=0) const=0;
     virtual string getTipo()const=0;
     virtual string getInfo() const override;
+    virtual bool operator==(const Camping&) const;
 
 
     unsigned int getMaxCapacity() const;

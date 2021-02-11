@@ -2,17 +2,16 @@
 
 model::model():vList(new Container<DeepPtr<Vacation>>), filteredVList(new Container<DeepPtr<Vacation>>) {
     //serie di test
-    Vacation *p;
-    p=new Pitch();
+    Pitch *p= new Pitch();
     Hotel* h= new Hotel();
     h->setStars(3);
 
-    addToContainer(p);
+
     addToContainer(h);
 
-
+    //vList->remove(p);
     cout<<vList->getSize()<<endl;
-    cout<<*p<<endl;
+
     cout<<*h<<endl;
 }
 
@@ -32,8 +31,19 @@ void model::addToContainer(Vacation* v){//niente template qui
 
 
 
+void model::removeFromContainer(Vacation *v){
+    if(!vList->isEmpty()){
+        vList->remove(v);
+     }
+    if(!filteredVList->isEmpty()){
+        filteredVList->remove(v);
+    }
+}
 
 
+void model::switchVacation(Vacation* v, Vacation* oldV){
+     vList->sostituisciNodo(oldV, v);
+}
 
 //filters
 

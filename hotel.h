@@ -8,7 +8,7 @@ class Hotel: public Vacation
 {
 
 public:
-    enum serviceType { overnight, halfboard, allinclusive};//forse valutare posizionamento diverso (qua serve per non
+    enum serviceType { overnight=0, halfboard=1, allinclusive=2};//forse valutare posizionamento diverso (qua serve per non
     //inquinare il namespace)
 
     Hotel(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1, unsigned int=0, Hotel::serviceType=overnight, unsigned int=1);
@@ -23,11 +23,14 @@ public:
 
     static string convertServToString (const serviceType& );
     static serviceType convertServToEnum(const string&);
+    static int convertServToI(const serviceType&);
+
 
     int getStars() const;
     serviceType getType() const;
     int getBeds() const;
 
+    bool  operator==(const Hotel&) const;
     void setStars(int s);
     void setType(serviceType ty);
     void setBeds(int b);

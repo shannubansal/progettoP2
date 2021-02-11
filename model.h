@@ -18,8 +18,8 @@ public:
     model();
     ~model();
     void addToContainer(Vacation*);//da vedere
-    //void removeFromContainer(Vacation*);
-    //void switchVacation(Vacation* v, Vacation* modV);
+    void removeFromContainer(Vacation*);
+    void switchVacation(Vacation* v, Vacation* oldV);
 
     void filterHotels();
     void filterFlats();

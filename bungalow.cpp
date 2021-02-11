@@ -58,6 +58,19 @@ string Bungalow::convertBungToString (const bungalowType& l){
 }
 
 
+int Bungalow::convertBungToI (const bungalowType& l){
+    if(l==Bungalow::bungalowType::standard){
+        return 0;
+    }else if(l==Bungalow::bungalowType::suite){
+        return 1;
+    }else if(l==Bungalow::bungalowType::deluxe){
+        return 2;
+    }else{
+        return 0;
+    }
+}
+
+
 Bungalow::bungalowType Bungalow::convertBungtoEnum (const string& str ){
     if(str=="Suite" ){
         return Bungalow::bungalowType::suite;
@@ -93,7 +106,9 @@ string Bungalow::getInfo() const{
             .append(getCleaningServ()? "Yes" : "No");
 }
 
-
+bool  Bungalow::operator==(const Bungalow& h) const {
+    return Camping::operator==(h) && getTipo() == h.getTipo() &&  getMaxVisitors() == h.getMaxVisitors() && getBungalowType() == h.getBungalowType() && getCleaningServ() == h.getCleaningServ();
+}
 
 unsigned int Bungalow::getMaxVisitors() const{
     return maxVisitors;

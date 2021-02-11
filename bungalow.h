@@ -8,7 +8,7 @@ class Bungalow: public Camping{
 
 
 public:
-    enum bungalowType {standard, suite, deluxe};
+    enum bungalowType {standard=0, suite=1, deluxe=2};
     Bungalow(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1,
              unsigned int=1, double=0.0, double=0.0, unsigned int=4, bungalowType=bungalowType::standard, bool=false);
     virtual ~Bungalow() =default;
@@ -22,10 +22,12 @@ public:
     //void print() const override();
     static string convertBungToString (const bungalowType& );
     static bungalowType convertBungtoEnum(const string&);
+    static int convertBungToI (const bungalowType& l);
 
     unsigned int getMaxVisitors() const;
     bungalowType getBungalowType() const;
     bool getCleaningServ() const;
+    bool  operator==(const Bungalow&) const;
 
 
     void setMaxVisitors(unsigned int mV);

@@ -1,6 +1,6 @@
 #include "controller.h"
 
-controller::controller(QObject*parent): QObject(parent), m(new model()),  view(new mainWindow()), addV(new addVWindow()) {
+controller::controller(QObject*parent): QObject(parent), m(new model()),  view(new mainWindow()), addV(new addVWindow()), modV(new modVWindow()) {
 
     connect(view,SIGNAL(signalQuitB()),this,SLOT(slotCloseEverything()));
      //filters
@@ -10,8 +10,13 @@ controller::controller(QObject*parent): QObject(parent), m(new model()),  view(n
     connect(view,SIGNAL(signalBungalowFilterB()),this,SLOT(slotBungalowFilter()));
     connect(view,SIGNAL(signalPitchFilterB()),this,SLOT(slotPitchFilter()));
     connect(view, SIGNAL(signalRemoveFilterB()), this, SLOT(slotRemoveFilter()));
-    connect(view, SIGNAL(signalOpenInsert()), this, SLOT(openInsertVacation()));
+
+    connect(view, SIGNAL(signalOpenModify()), this, SLOT(slotOpenModify()));
+    connect(view, SIGNAL(signalOpenInsert()), this, SLOT(slotOpenInsertVacation()));
     connect(addV, SIGNAL(signalInsert()), this, SLOT(slotInsertVacation()));
+    connect(modV, SIGNAL(signalModV()), this, SLOT(slotModifyVacation()));
+    connect(view, SIGNAL(signalRemoveVacation()), this, SLOT(slotRemoveVacation()));
+
 
 
 
@@ -55,14 +60,166 @@ void controller::slotRemoveFilter(){
     updateVacationListW(false);
 }
 
-void controller::openInsertVacation() const{
+void controller::slotOpenInsertVacation() const{
     addV->resetFields();
     addV->show();
+}
+
+void controller::slotOpenModify(){
+
+    QList<QListWidgetItem*> list = this->view->getVacationListW()->selectedItems();
+        if(list.count() > 0){
+            VacationListItem* selectedItem = static_cast<VacationListItem*>(list.first());
+            modV->setVacation(selectedItem->getItem());
+            modV->resetFields();
+            modV->fillInFieldsMod(selectedItem);
+            modV->getVacationCombo()->setEnabled(false);
+            modV->show();
+        }
+}
+
+void controller::slotModifyVacation(){
+    int i= modV->getVacationCombo()->currentIndex();
+    Vacation* tmp=nullptr;
+
+    QMessageBox msgBox1;
+    msgBox1.setWindowTitle("Confirm");
+    msgBox1.setText("Vacation successfully modified");
+
+    QMessageBox msgBox2;
+    msgBox2.setWindowTitle("Error");
+
+    switch(i){
+    case 0:
+    {
+      emit error2();
+      return;
+    }
+    case 1:{//hotel
+        Hotel*h=new Hotel();
+        h->setName(modV->getNameE()->text().toStdString());
+        h->setPlace(modV->getPlaceE()->text().toStdString());
+        h->setCountry(modV->getCountryE()->text().toStdString());
+        h->setDateVacation(modV->getDateE()->date().year(), modV->getDateE()->date().month(), modV->getDateE()->date().day());
+        h->setBasePrice(modV->getBasePriceE()->value());
+        h->setWeeks(modV->getWeeksE()->text().toUInt());
+
+        h->setStars(modV->getStarsE()->text().toUInt());
+        h->setType(Hotel::convertServToEnum(modV->getHotelTypeE()->currentText().toStdString()));
+        h->setBeds(modV->getBedsE()->text().toUInt());
+
+
+        if((modV->getDateE()->date()) < QDate::currentDate()){
+                emit errorDate();
+                return;
+        }
+
+        tmp=h;
+        break;
+    }
+    case 2://flat
+    {
+        Flat* f=new Flat();
+        f->setName(modV->getNameE()->text().toStdString());
+        f->setPlace(modV->getPlaceE()->text().toStdString());
+        f->setCountry(modV->getCountryE()->text().toStdString());
+        f->setDateVacation(modV->getDateE()->date().year(), modV->getDateE()->date().month(), modV->getDateE()->date().day());
+        f->setBasePrice(modV->getBasePriceE()->value());
+        f->setWeeks(modV->getWeeksE()->text().toUInt());
+
+        f->setAC(modV->getACE()->isChecked());
+        f->setRooms(modV->getRoomsE()->text().toUInt());
+
+        if((modV->getDateE()->date()) < QDate::currentDate()){
+                emit errorDate();
+                return;
+        }
+        tmp=f;
+        break;
+    }
+    case 3://bungalow
+    {
+        Bungalow* b=new Bungalow();
+        b->setName(modV->getNameE()->text().toStdString());
+        b->setPlace(modV->getPlaceE()->text().toStdString());
+        b->setCountry(modV->getCountryE()->text().toStdString());
+        b->setDateVacation(modV->getDateE()->date().year(), modV->getDateE()->date().month(), modV->getDateE()->date().day());
+        b->setBasePrice(modV->getBasePriceE()->value());
+        b->setWeeks(modV->getWeeksE()->text().toUInt());
+
+        b->setMaxCapacity(modV->getMaxCapE()->text().toUInt());
+        b->setDailyFee(modV->getDailyFeeE()->value());
+        b->setVisitorsFee(modV->getVisitorsFeeE()->value());
+
+        b->setMaxVisitors(modV->getMaxVisE()->text().toUInt());
+        b->setBungalowType(Bungalow::convertBungtoEnum(modV->getBungalowTypeE()->currentText().toStdString()));
+        b->setCleaningServ(modV->getCleaningServE()->isChecked());
+
+
+
+        if((modV->getDateE()->date()) < QDate::currentDate()){
+                emit errorDate();
+                return;
+        }
+        tmp=b;
+        break;
+
+    }
+    case 4://pich
+    {
+
+        Pitch* p= new Pitch();
+
+        p->setName(modV->getNameE()->text().toStdString());
+        p->setPlace(modV->getPlaceE()->text().toStdString());
+        p->setCountry(modV->getCountryE()->text().toStdString());
+        p->setDateVacation(modV->getDateE()->date().year(), modV->getDateE()->date().month(), modV->getDateE()->date().day());
+        p->setBasePrice(modV->getBasePriceE()->value());
+        p->setWeeks(modV->getWeeksE()->text().toUInt());
+
+        p->setMaxCapacity(modV->getMaxCapE()->text().toUInt());
+        p->setDailyFee(modV->getDailyFeeE()->value());
+        p->setVisitorsFee(modV->getVisitorsFeeE()->value());
+
+        p->setTentAvailable(modV->getTentAvailableE()->isChecked());
+        p->setTent(Pitch::convertTentToEnum(modV->getTentTypeE()->currentText().toStdString()));//NOOOOOOOOOOOOOOOOOO
+
+        if( (modV->getDateE()->date()) < QDate::currentDate()){
+                emit errorDate();
+                return;
+        }
+
+        if((modV->getTentAvailableE()->isChecked()) && (Pitch::convertTentToEnum(modV->getTentTypeE()->currentText().toStdString())== Pitch::none)){
+                emit errorTent();
+                return;
+        }
+
+
+
+        tmp=p;
+        break;
+      }
+
+    }
+
+    if(tmp){
+        this->m->switchVacation(tmp, this->modV->getVacationFromW());
+        this->updateVacationListW(false);
+        modV->close();
+        msgBox1.exec();
+    }else{
+        msgBox2.setText("Errore");
+        msgBox2.exec();
+    }
+
 }
 
 void controller::slotCloseEverything(){
     if(this->addV!=nullptr && this->addV->isVisible()){
         this->addV->close();
+    }
+    if(this->modV!=nullptr && this->modV->isVisible()){
+        this->modV->close();
     }
     //if er chiudere tutte le parti di vista
 
@@ -73,6 +230,20 @@ void controller::slotCloseEverything(){
     this->view->close();
 }
 
+void controller::slotRemoveVacation(){
+
+    VacationList*l=view->getVacationListW();
+       VacationListItem*i= l->currentItem();
+       if(i){
+           Vacation*v= i->getItem();
+           l->removeVacation(i);
+           m->removeFromContainer(v);///////////da fare, anche in container
+           QMessageBox msgBox;
+           msgBox.setWindowTitle("Confirm");
+           msgBox.setText("Vacation successfully removed");
+           msgBox.exec();
+       }
+}
 
 void controller::updateVacationListW(bool useFiltered)
 {

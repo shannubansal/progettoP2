@@ -7,8 +7,7 @@ Vacation::Vacation(string n, string p, string c, int y, int m, int d, double bP,
 
 
 string Vacation::getInfo() const{
-    //stringstream ss;
-   // ss<< fixed << setprecision(2) <<getBasePrice();
+
     string s=getTipo();
     return s.append("\nName: " +getName()).append("\nPlace: " +getPlace())
             .append("\nCountry : " +getCountry()).append( "\nDate: " + (this->getDate()).toString().toStdString())
@@ -25,13 +24,12 @@ Vacation::print() const{
 */
 
 
-/*bool Vacation::operator==(const Vacation & c) const
-{
+bool Vacation::operator==(const Vacation & c) const{
     return name == c.getName() && place == c.getPlace()&&
 country == c.getCountry() && date == QDate(c.getYearD(),c.getMonthD(),c.getDayD())
 && basePrice == c.getBasePrice() && weeks == c.getWeeks();
 }
-*/
+
 string Vacation::getName() const{
     return name;
 }
