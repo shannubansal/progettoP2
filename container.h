@@ -15,15 +15,14 @@ private:
     public:
         T info;
         Nodo* next;
-
         Nodo(const T&, Nodo* =nullptr);
-//        Nodo(const Nodo&);
-
+//      Nodo(const Nodo&);
         ~Nodo();
-//        void deleteNodi();
+
     };
 
-
+    Nodo* nClone(Nodo*);
+    static void deleteNodi(Nodo*);
     static typename Container<T>::Nodo* copy(const Nodo* &, const Nodo* &, Container<T>::Nodo * &);
     void increaseSize();
     void decreaseSize();
@@ -38,7 +37,7 @@ public:
 //    Container(int, const T&);
     Container(const Container&);
     ~Container();
-    Container& operator=(const Container&);
+    Container<T>& operator=(const Container&);
 
     bool isEmpty() const;
 //    void insert();
@@ -49,6 +48,7 @@ public:
     void pushfront(const T&);
     void popfront();
     void popback();
+
     void emptyContainer();
     bool searchNode(const T&);
 
@@ -116,7 +116,28 @@ Container<T>::Nodo::Nodo(const T& t, Nodo* n) : info(t), next(n) {}
 template<class T>
 Container<T>::Nodo::~Nodo() {
     if (next) delete next;
+    //delete this;
+
     //serve forse un "delete this;"
+}
+
+
+template<class T>
+typename Container<T>::Nodo* Container<T>::nClone(Container<T>::Nodo* n)
+{
+    if(!n)
+        return nullptr;
+
+    // Caso base 1: lista vuota
+
+    if(!n->next)
+        return last = new Nodo(n->info);
+
+    // Caso base 2: fine della lista, assegno Back e riporto l'ultimo nodo
+
+    return new Nodo(n->info, nClone(n->next));
+
+    // Induzione: Creo un nuovo nodo copiando le informazioni dalla lista iniziale
 }
 
 template<class T>
@@ -127,12 +148,12 @@ typename Container<T>::Nodo* Container<T>::copy(const Container<T>::Nodo * &iniz
 }
 
 
-//template<class T>
-//void Container<T>::Nodo::deleteNodi()//cancella ricorsivamente tutti i nodi della lista
-//{
-//    if (next) next->deleteNodi();
-//    delete this;
-//}
+template<class T>
+void Container<T>::deleteNodi(Container<T>::Nodo* n)//cancella ricorsivamente tutti i nodi della lista
+{
+    if (n) deleteNodi(n->next);
+    delete n;
+}
 
 
 
@@ -144,13 +165,15 @@ template<class T>
 Container<T>::Container() : last(nullptr), first(nullptr), size(0) {}
 
 template<class T>
-Container<T>::Container(const Container& i): last(nullptr), first(copy(i.first,i.last, last)), size(i.size) {}
+Container<T>::Container(const Container& i):  first(nClone(i.first)), last(nullptr), size(i.size) {}
 
 template<class T>
 Container<T>& Container<T>::operator=(const Container<T>& c) {
     if (this != &c) {
-        delete this;
-        first = Container<T>::copy(c.first, c.last, last);
+        if(first){
+            delete first;
+        }
+        first = nClone(c.first);
         size=c.size;
     }
 
@@ -349,7 +372,7 @@ void Container<T>::sostituisciNodo(const T& oldV, const T& newV){
 
 }
 
-
+/*
 template<class T>
 void Container<T>::remove(const T &i)
 {
@@ -390,6 +413,57 @@ void Container<T>::remove(const T &i)
     }
     return;
 }
+
+
+
+
+ServerContainer.pushFront(DeepPtr<Server>(s));
+*/
+
+template<class T>
+void Container<T>::remove(const T &i)
+{
+    if(!(this->isEmpty()) && searchNode(i) == true){
+        if(getSize()==1 && first->info==i){
+            popfront();
+            return;
+        }else if(getSize()>1 && first->info ==i ){
+            /*
+            Nodo*elim=first;
+            first=first->next;
+            elim->next=nullptr;
+            delete elim;
+            decreaseSize();
+            */
+            popfront();
+        }else{
+            Nodo*cur=first->next;
+            Nodo*pre=first;
+
+            while(!(cur->info == i)){
+                cur=cur->next;
+                pre=pre->next;
+            }
+            //caso 2
+            if(cur->info==last->info){//popback
+                pre->next=nullptr;
+                last=pre;
+                delete cur;
+                decreaseSize();
+            }else{
+                Nodo*elim=cur;
+                pre->next=cur->next;
+                elim->next=nullptr;
+                delete elim;
+                decreaseSize();
+            }
+        }
+    }
+    return;
+}
+
+
+
 
 
 

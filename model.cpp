@@ -2,8 +2,8 @@
 
 model::model():vList(new Container<DeepPtr<Vacation>>), filteredVList(new Container<DeepPtr<Vacation>>) {
     //serie di test
-    Pitch *p= new Pitch();
-    Hotel* h= new Hotel();
+    //Pitch *p= new Pitch();
+   /* Hotel* h= new Hotel();
     h->setStars(3);
 
 
@@ -13,6 +13,7 @@ model::model():vList(new Container<DeepPtr<Vacation>>), filteredVList(new Contai
     cout<<vList->getSize()<<endl;
 
     cout<<*h<<endl;
+    */
 }
 
 
@@ -26,23 +27,23 @@ model::~model(){
 
 
 void model::addToContainer(Vacation* v){//niente template qui
-    vList->pushback(v);
+    vList->pushback(DeepPtr<Vacation>(v));
 }
 
 
 
 void model::removeFromContainer(Vacation *v){
     if(!vList->isEmpty()){
-        vList->remove(v);
+        vList->remove(DeepPtr<Vacation>(v));
      }
     if(!filteredVList->isEmpty()){
-        filteredVList->remove(v);
+        filteredVList->remove(DeepPtr<Vacation>(v));
     }
 }
 
 
 void model::switchVacation(Vacation* v, Vacation* oldV){
-     vList->sostituisciNodo(oldV, v);
+     vList->sostituisciNodo(DeepPtr<Vacation>(oldV), DeepPtr<Vacation>(v));
 }
 
 //filters
@@ -54,7 +55,7 @@ void model::filterHotels(){
         Vacation* v= (*it).get();
         Hotel* h=dynamic_cast<Hotel*>(v);
         if(h!=nullptr){
-            filteredVList->pushback(v);
+            filteredVList->pushback(DeepPtr<Vacation>(v));
         }
 
     }
@@ -66,7 +67,7 @@ void model::filterFlats(){
         Vacation* v= (*it).get();
         Flat* f= dynamic_cast<Flat*>(v);
         if(f){
-            filteredVList->pushback(v);
+            filteredVList->pushback(DeepPtr<Vacation>(v));
         }
     }
 }
@@ -77,7 +78,7 @@ void model::filterCamping(){
         Vacation* v= (*it).get();
         Camping* c= dynamic_cast<Camping*>(v);
         if(c){
-            filteredVList->pushback(v);
+            filteredVList->pushback(DeepPtr<Vacation>(v));
         }
     }
 }
@@ -88,7 +89,7 @@ void model::filterBungalows(){
         Vacation* v= (*it).get();
         Bungalow* b= dynamic_cast<Bungalow*>(v);
         if(b){
-            filteredVList->pushback(v);
+            filteredVList->pushback(DeepPtr<Vacation>(v));
         }
     }
 }
@@ -99,7 +100,7 @@ void model::filterPitches(){
         Vacation* v= (*it).get();
         Pitch* p= dynamic_cast<Pitch*>(v);
         if(p){
-            filteredVList->pushback(v);
+            filteredVList->pushback(DeepPtr<Vacation>(v));
         }
     }
 }

@@ -26,7 +26,7 @@ public:
 
     bool getTentAvailable() const;
     tentType getTent() const;
-    bool  operator==(const Pitch&) const;
+    virtual bool  operator==(const Vacation&) const override;
 
     void setTentAvailable(bool tA);
     void setTent(tentType t);

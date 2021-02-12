@@ -22,7 +22,7 @@ public:
 
     bool hasAC() const;
     unsigned int getRooms() const;
-    bool  operator==(const Flat&) const;
+    virtual bool  operator==(const Vacation&) const override;
 
     void setRooms(int ro);
     void setAC(bool ac);

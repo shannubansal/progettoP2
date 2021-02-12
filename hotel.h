@@ -30,7 +30,7 @@ public:
     serviceType getType() const;
     int getBeds() const;
 
-    bool  operator==(const Hotel&) const;
+    virtual bool  operator==(const Vacation&) const override;
     void setStars(int s);
     void setType(serviceType ty);
     void setBeds(int b);

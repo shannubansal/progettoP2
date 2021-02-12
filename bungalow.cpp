@@ -106,8 +106,14 @@ string Bungalow::getInfo() const{
             .append(getCleaningServ()? "Yes" : "No");
 }
 
-bool  Bungalow::operator==(const Bungalow& h) const {
-    return Camping::operator==(h) && getTipo() == h.getTipo() &&  getMaxVisitors() == h.getMaxVisitors() && getBungalowType() == h.getBungalowType() && getCleaningServ() == h.getCleaningServ();
+bool  Bungalow::operator==(const Vacation& h) const {
+    if(!(dynamic_cast<const Bungalow*>(&h))){
+            return false;
+    }
+    return Camping::operator==(h)
+            && getMaxVisitors() == dynamic_cast<const Bungalow*>(&h)->getMaxVisitors()
+            && getBungalowType() == dynamic_cast<const Bungalow*>(&h)->getBungalowType()
+            && getCleaningServ() == dynamic_cast<const Bungalow*>(&h)->getCleaningServ();
 }
 
 unsigned int Bungalow::getMaxVisitors() const{

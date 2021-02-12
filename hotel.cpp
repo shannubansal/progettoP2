@@ -101,8 +101,14 @@ int Hotel::convertServToI(const Hotel::serviceType&l){
 
 }
 
-bool  Hotel::operator==(const Hotel& h) const {
-    return Vacation::operator==(h) && getTipo() == h.getTipo() &&  getStars() == h.getStars() && getType() == h.getType() && getBeds() == h.getBeds();
+bool  Hotel::operator==(const Vacation& h) const {
+    if(!(dynamic_cast<const Hotel *>(&h))){
+            return false;
+    }
+    return Vacation::operator==(h)
+            && getStars() == dynamic_cast<const Hotel *>(&h)->getStars()
+            && getType() == dynamic_cast<const Hotel *>(&h)->getType()
+            && getBeds() == dynamic_cast<const Hotel *>(&h)->getBeds();
 }
 
 Hotel::serviceType Hotel::convertServToEnum(const string & str){

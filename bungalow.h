@@ -27,7 +27,7 @@ public:
     unsigned int getMaxVisitors() const;
     bungalowType getBungalowType() const;
     bool getCleaningServ() const;
-    bool  operator==(const Bungalow&) const;
+    virtual bool  operator==(const Vacation&) const override;
 
 
     void setMaxVisitors(unsigned int mV);

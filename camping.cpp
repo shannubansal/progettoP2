@@ -40,8 +40,14 @@ void Camping::setVisitorsFee(double vF){
 }
 
 
-bool  Camping::operator==(const Camping& h) const {
-    return Vacation::operator==(h) && getMaxCapacity() == h.getMaxCapacity() &&  getDailyFee() == h.getDailyFee() && getVisitorsFee() == h.getVisitorsFee();
+bool  Camping::operator==(const Vacation& h) const {
+    if(!(dynamic_cast<const Camping*>(&h))){
+            return false;
+    }
+    return Vacation::operator==(h)
+            && getMaxCapacity() == dynamic_cast<const Camping*>(&h)->getMaxCapacity()
+            && getDailyFee() == dynamic_cast<const Camping*>(&h)->getDailyFee()
+            && getVisitorsFee() == dynamic_cast<const Camping*>(&h)->getVisitorsFee();
 }
 
 std::ostream& operator<<(std::ostream& os, const Camping& c) {

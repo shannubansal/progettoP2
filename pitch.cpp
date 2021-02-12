@@ -87,8 +87,13 @@ Pitch::tentType Pitch::convertTentToEnum (const string& str ){
 
 }
 
-bool  Pitch::operator==(const Pitch& h) const {
-    return Camping::operator==(h) && getTipo() == h.getTipo() &&  getTentAvailable() == h.getTentAvailable() && getTent() == h.getTent();
+bool  Pitch::operator==(const Vacation& h) const {
+    if(!(dynamic_cast<const Pitch*>(&h))){
+            return false;
+    }
+    return Camping::operator==(h)
+            &&  getTentAvailable() == dynamic_cast<const Pitch*>(&h)->getTentAvailable()
+            && getTent() == dynamic_cast<const Pitch*>(&h)->getTent();
 }
 
 std::ostream& operator<<(std::ostream& os, const Pitch& p) {

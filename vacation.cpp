@@ -30,6 +30,7 @@ country == c.getCountry() && date == QDate(c.getYearD(),c.getMonthD(),c.getDayD(
 && basePrice == c.getBasePrice() && weeks == c.getWeeks();
 }
 
+
 string Vacation::getName() const{
     return name;
 }

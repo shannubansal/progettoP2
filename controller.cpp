@@ -237,7 +237,8 @@ void controller::slotRemoveVacation(){
        if(i){
            Vacation*v= i->getItem();
            l->removeVacation(i);
-           m->removeFromContainer(v);///////////da fare, anche in container
+           m->removeFromContainer(v);
+           updateVacationListW(false);
            QMessageBox msgBox;
            msgBox.setWindowTitle("Confirm");
            msgBox.setText("Vacation successfully removed");

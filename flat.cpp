@@ -29,8 +29,14 @@ string Flat::getTipo()const{
     return "Flat";
 }
 
-bool  Flat::operator==(const Flat& h) const {
-    return Vacation::operator==(h) && getTipo() == h.getTipo() &&  hasAC() == h.hasAC() && getRooms() == h.getRooms();
+bool  Flat::operator==(const Vacation& h) const {
+
+    if(!(dynamic_cast<const Flat *>(&h))){
+            return false;
+    }
+    return Vacation::operator==(h)
+            &&  hasAC() == dynamic_cast<const Flat *>(&h)->hasAC()
+            && getRooms() == dynamic_cast<const Flat *>(&h)->getRooms();
 }
 
 string Flat::getInfo() const{

@@ -12,6 +12,7 @@ public:
     DeepPtr(T* =nullptr);
     DeepPtr(const DeepPtr&);
     DeepPtr& operator=(const DeepPtr&);//modifica
+    bool operator !=(const DeepPtr&) const;
     ~DeepPtr();
 
     T& operator *() const;
@@ -19,7 +20,8 @@ public:
     operator bool() const; //controlla se get() != nullptr (permette all'utilizzatore di controllare lo stato del puntatore
                             // incapsulato. (Serve negli if: Se ogg di tipo DeepPtr => permette di fare if (ogg)
     bool operator ==(const DeepPtr&) const;
-    operator T*() const;
+    //bool operator !=(const DeepPtr&) const;
+    //operator T*() const;
 
     //modifiers
     T* release(); //ritorna l'oggetto puntato e mette a NULL ptr
@@ -33,14 +35,14 @@ public:
 };
 
 template<class T>
-DeepPtr<T>::DeepPtr(T* p) : ptr(p->clone()){cout<<"ptr "<<ptr<<"endptr"<<endl;}
+DeepPtr<T>::DeepPtr(T* p) : ptr(p->clone()){cout<<"ptr "<<ptr<<"endptr"<<endl;}// ptr(p->clone())
 
 template <class T>
 DeepPtr<T>::DeepPtr(const DeepPtr& p){
-      if(!p.ptr)
+      if(p.ptr==nullptr)
           ptr=nullptr;
       else
-          ptr=p.ptr->clone();
+          ptr=(p.ptr)->clone();
 }
 
 template<class T>
@@ -53,7 +55,8 @@ template <class T>
 DeepPtr<T>& DeepPtr<T>::operator=(const DeepPtr& p){
     if(this != &p){
         if(ptr) delete ptr;
-        ptr = p.ptr->clone();
+        ptr = p.ptr == nullptr ? nullptr : (p.ptr)->clone();
+
     }
 
     return *this;
@@ -106,11 +109,12 @@ T* DeepPtr<T>::get() const {
     return ptr;
 }
 
+/*
 template<class T>
 DeepPtr<T>::operator T*() const {
     return ptr;
 }
-
+*/
 #endif // DEEPPTR_H
 
 
