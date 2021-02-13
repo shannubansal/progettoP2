@@ -53,6 +53,10 @@ void XMLWriter::write(const Hotel &h) {
 
 void XMLWriter::write(const Pitch &p) {
     writeGeneralInfo(p);
+    writeCampingInfo(p);
+
+    writeTextElement("TentAvailable", p.getTentAvailable() ? "Yes" : "No");
+    writeTextElement("Type", QString::fromStdString(Pitch::convertTentToString(p.getTent())));
 
     writeEndElement();
 
