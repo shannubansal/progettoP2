@@ -27,6 +27,9 @@ public:
     void setRooms(int ro);
     void setAC(bool ac);
 
+    void saveOnFile(Writer&);
+
+
 };
 std::ostream& operator<<(std::ostream&, const Flat&);
 #endif // FLAT_H

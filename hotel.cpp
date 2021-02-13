@@ -133,3 +133,8 @@ std::ostream& operator<<(std::ostream& os, const Hotel& h) {
                    <<"\nBeds: "<<h.getBeds();
 }
 
+void Hotel::saveOnFile(Writer& w) {
+    cout<<"Hotel saveOnFile";
+    w.write(*this);
+
+}

@@ -34,6 +34,8 @@ public:
     void setBungalowType(bungalowType bT);
     void setCleaningServ(bool cS);
 
+    void saveOnFile(Writer&);
+
 private:
     unsigned int maxVisitors;
     bungalowType bType;

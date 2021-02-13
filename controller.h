@@ -41,12 +41,13 @@ public slots:
     void slotInsertVacation();
     void slotModifyVacation();
     void slotRemoveVacation();
+    void slotSaveB();
+
     /*
 
 
     void slotAdvancedSearch();//nope
     void slotLoadB();
-    void slotSaveB();
 
 
 

@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += main.cpp \
+    xmlwriter.cpp \
     vacation.cpp \
     flat.cpp \
     hotel.cpp \
@@ -30,9 +31,14 @@ SOURCES += main.cpp \
     vacationlistitem.cpp \
     addvwindow.cpp \
     modvwindow.cpp \
-    disvwindow.cpp
+    disvwindow.cpp \
+    writer.cpp \
+    filemanager.cpp
 
 HEADERS += \
+    writer.h \
+    xmlwriter.h \
+    reader.h \
     container.h \
     deepPtr.h \
     vacation.h \
@@ -49,4 +55,5 @@ HEADERS += \
     vacationlistitem.h \
     addvwindow.h \
     modvwindow.h \
-    disvwindow.h
+    disvwindow.h \
+    filemanager.h

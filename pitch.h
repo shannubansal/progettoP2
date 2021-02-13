@@ -30,10 +30,15 @@ public:
 
     void setTentAvailable(bool tA);
     void setTent(tentType t);
+
+    void saveOnFile(Writer&);
+
 private:
     bool tentAvailable;
     tentType tent;
 
 };
+
+
 std::ostream& operator<<(std::ostream&, const Pitch&);
 #endif // PITCH_H

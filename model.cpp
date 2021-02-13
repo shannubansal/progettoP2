@@ -2,18 +2,30 @@
 
 model::model():vList(new Container<DeepPtr<Vacation>>), filteredVList(new Container<DeepPtr<Vacation>>) {
     //serie di test
-    //Pitch *p= new Pitch();
-   /* Hotel* h= new Hotel();
-    h->setStars(3);
+    Bungalow *p= new Bungalow();
+       Hotel* h= new Hotel();
+       Pitch *pi = new Pitch();
+       Flat *f = new Flat();
+       h->setStars(3);
 
 
-    addToContainer(h);
+       addToContainer(h);
+       addToContainer(p);
+       addToContainer(f);
+       addToContainer(pi);
+       delete h; delete pi; delete p; delete f;
+       //vList->remove(p);
+       cout<<vList->getSize()<<endl;
+   //    saveAsXML();
+   //    cout<<*h<<endl;
 
-    //vList->remove(p);
-    cout<<vList->getSize()<<endl;
-
-    cout<<*h<<endl;
-    */
+   //    XMLWriter xml;
+   //    Bungalow b;
+   //    for (auto it = vList->begin(); it!=vList->end(); ++it) {
+   //        (*it)->writer(xml);
+   //    }
+   ////    b.writer(xml);
+   //    cout<<"model"<<endl;
 }
 
 
@@ -116,4 +128,10 @@ Container<DeepPtr<Vacation>>* model::mGetListVacations(){
 
 Container<DeepPtr<Vacation>>* model::mGetListVacationsFiltered(){
     return this->filteredVList;
+}
+
+void model::saveAsXML() {
+
+    XMLManager xml(vList);
+    xml.saveAsXML();
 }

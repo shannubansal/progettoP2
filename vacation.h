@@ -6,6 +6,10 @@
 #include<sstream>
 #include<iomanip>
 using std::string;
+using std::cout;
+
+#include "writer.h"
+class Writer;
 
 class Vacation
 {
@@ -55,6 +59,8 @@ public:
     bool setDateVacation(int y, int m, int d);
     void setBasePrice(double bP);
     void setWeeks(int w);
+
+    virtual void saveOnFile(Writer&) =0;
 };
 std::ostream& operator<<(std::ostream& , const Vacation& );
 #endif // VACATION_H

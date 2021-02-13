@@ -34,6 +34,9 @@ public:
     void setStars(int s);
     void setType(serviceType ty);
     void setBeds(int b);
+
+    void saveOnFile(Writer&);
+
 private:
         unsigned int stars;
         serviceType type;

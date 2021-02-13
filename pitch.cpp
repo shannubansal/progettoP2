@@ -135,3 +135,10 @@ void Pitch::setTentAvailable(bool tA){
 void Pitch::setTent(Pitch::tentType t){
     tent=t;
 }
+
+void Pitch::saveOnFile(Writer& w) {
+    cout<<"Pitch saveOnFile";
+    w.write(*this);
+
+}
+

@@ -71,3 +71,9 @@ std::ostream& operator<<(std::ostream& os, const Flat& f) {
                    << "\nRooms: " << f.getRooms()
                    <<"\nAC: "<<(f.hasAC()? "Yes" : "No");
 }
+
+void Flat::saveOnFile(Writer& w) {
+    cout<<"Flat saveOnFile";
+    w.write(*this);
+
+}

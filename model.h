@@ -8,7 +8,7 @@
 #include<pitch.h>
 #include<hotel.h>
 #include<flat.h>
-
+#include "filemanager.h"
 class model{
 
 private:
@@ -27,6 +27,7 @@ public:
     void filterBungalows();
     void filterPitches();
     void removeFilter();
+    void saveAsXML();
     Container<DeepPtr<Vacation>>* mGetListVacations();
     Container<DeepPtr<Vacation>>* mGetListVacationsFiltered();
 };

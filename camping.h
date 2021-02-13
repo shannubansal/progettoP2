@@ -30,9 +30,7 @@ public:
     void setDailyFee(double dF);
     void setVisitorsFee(double vF);
 
-
-
-
+    virtual void saveOnFile(Writer&) =0;
 };
 std::ostream& operator<<(std::ostream&, const Camping&);
 
