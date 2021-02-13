@@ -149,7 +149,7 @@ addVWindow::addVWindow(QWidget* parent): QWidget(parent){
 
     maxVisE = new QLineEdit();
     maxVisE->setPlaceholderText("f.e. 5");
-    maxVisE->setValidator(new QRegExpValidator(QRegExp("[1-2][0-9]")));
+    maxVisE->setValidator(new QRegExpValidator(QRegExp("[0-9][0-9]")));
     bungalowForm->addRow(tr("&Max. Visitors Capacity:"), maxVisE);
 
     bungalowTypeE= new QComboBox(this);
@@ -186,14 +186,6 @@ addVWindow::addVWindow(QWidget* parent): QWidget(parent){
 
 //disabilita
 typeEnablingCombo(0);
- //enableTentTypeE();
-
-
-
-
-
-
-
 
 
 //connect

@@ -29,7 +29,8 @@ SOURCES += main.cpp \
     vacationlist.cpp \
     vacationlistitem.cpp \
     addvwindow.cpp \
-    modvwindow.cpp
+    modvwindow.cpp \
+    disvwindow.cpp
 
 HEADERS += \
     container.h \
@@ -47,4 +48,5 @@ HEADERS += \
     vacationlist.h \
     vacationlistitem.h \
     addvwindow.h \
-    modvwindow.h
+    modvwindow.h \
+    disvwindow.h

@@ -13,6 +13,7 @@ controller::controller(QObject*parent): QObject(parent), m(new model()),  view(n
 
     connect(view, SIGNAL(signalOpenModify()), this, SLOT(slotOpenModify()));
     connect(view, SIGNAL(signalOpenInsert()), this, SLOT(slotOpenInsertVacation()));
+    connect(view, SIGNAL(signalOpenDisplay()), this, SLOT(slotOpenDisplay()));
     connect(addV, SIGNAL(signalInsert()), this, SLOT(slotInsertVacation()));
     connect(modV, SIGNAL(signalModV()), this, SLOT(slotModifyVacation()));
     connect(view, SIGNAL(signalRemoveVacation()), this, SLOT(slotRemoveVacation()));
@@ -26,6 +27,16 @@ controller::controller(QObject*parent): QObject(parent), m(new model()),  view(n
 
 
 controller::~controller(){
+    if(!(disVWins.empty())){
+           vector<disVWindow*>::iterator it;
+           for(it=disVWins.begin();it!=disVWins.end();it++){
+               if(*it){
+                   delete *it;
+                   *it=0;
+               }
+            }
+       }
+
     delete m;
 }
 
@@ -77,6 +88,19 @@ void controller::slotOpenModify(){
             modV->show();
         }
 }
+
+void controller::slotOpenDisplay(){
+    QList<QListWidgetItem*> list = this->view->getVacationListW()->selectedItems();
+        if(list.count() > 0){
+            VacationListItem* selectedItem = static_cast<VacationListItem*>(list.first());
+            disVWindow* detNew = new disVWindow();
+            detNew->setDisVacation(selectedItem->getItem());
+            detNew->fillLabels(selectedItem);
+            detNew->show();
+            disVWins.push_back(detNew);
+        }
+}
+
 
 void controller::slotModifyVacation(){
     int i= modV->getVacationCombo()->currentIndex();
@@ -208,7 +232,7 @@ void controller::slotModifyVacation(){
         modV->close();
         msgBox1.exec();
     }else{
-        msgBox2.setText("Errore");
+        msgBox2.setText("Error");
         msgBox2.exec();
     }
 
@@ -221,11 +245,16 @@ void controller::slotCloseEverything(){
     if(this->modV!=nullptr && this->modV->isVisible()){
         this->modV->close();
     }
-    //if er chiudere tutte le parti di vista
+    if(!(disVWins.empty())){
+           vector<disVWindow*>::iterator it;
+           for(it=disVWins.begin();it!=disVWins.end();it++){
 
-    //chiudere ModV
-    //chiudere disV
-    //chiudere advSearchV
+               if((*it) != NULL && (*it)->isVisible()){
+                   (*it)->close();
+                   *it = 0;
+               }
+            }
+       }
 
     this->view->close();
 }
@@ -436,3 +465,5 @@ void controller::slotInsertVacation(){
         msgBox2.exec();
     }
     }
+
+

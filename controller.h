@@ -8,6 +8,9 @@
 #include<mainwindow.h>
 #include<addvwindow.h>
 #include<modvwindow.h>
+#include<disvwindow.h>
+#include <vector>
+#include <QVector>
 
 using namespace::std;
 
@@ -34,6 +37,7 @@ public slots:
 
     void slotOpenInsertVacation() const;
     void slotOpenModify();
+    void slotOpenDisplay();
     void slotInsertVacation();
     void slotModifyVacation();
     void slotRemoveVacation();
@@ -55,6 +59,7 @@ private:
      mainWindow* view;
      addVWindow* addV;
      modVWindow* modV;
+     vector<disVWindow*> disVWins;
 };
 
 #endif // CONTROLLER_H
