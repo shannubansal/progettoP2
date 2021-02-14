@@ -1,5 +1,6 @@
 #ifndef READER_H
 #define READER_H
+#include "deepPtr.h"
 #include <QXmlStreamReader>
 class Vacation;
 class Camping;
@@ -13,7 +14,7 @@ class Reader
 {
 public:
     Reader();
-    virtual Vacation* read() =0;
+    virtual DeepPtr<Vacation>* read() =0;
 };
 
 #endif // READER_H

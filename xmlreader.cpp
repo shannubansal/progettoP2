@@ -27,8 +27,8 @@ void XMLReader::readCampingInfo(Camping * c){
         c->setVisitorsFee(readElementText().toDouble());
 }
 
-Vacation* XMLReader::read() {
-    Vacation *v;
+ DeepPtr<Vacation>* XMLReader::read() {
+    DeepPtr<Vacation>* v = new DeepPtr<Vacation>;
 
 //    if (readNextStartElement()){
             if (name() == ("Flat")){
@@ -39,7 +39,8 @@ Vacation* XMLReader::read() {
                     if (readNextStartElement() && name() == ("AC"))
                         f->setAC(readElementText() == "Yes" ? true : false);
 
-                    v = f;
+                    v->reset(f);
+                    delete f;
             }
             else
                 if (name() == ("Hotel")) {
@@ -56,9 +57,8 @@ Vacation* XMLReader::read() {
                     if (readNextStartElement() && name() == ("Beds"))
                         h->setBeds(readElementText().toInt());
 
-                    cout<<h->getInfo();
-
-                    v = h;
+                    v->reset(h);
+                    delete h;
                 }
                 else
                     if (name() == ("Pitch")) {
@@ -75,7 +75,8 @@ Vacation* XMLReader::read() {
                             else p->setTent(Pitch::tentType::none);
                         }
 
-                        v =  p;
+                        v->reset(p);
+                        delete p;
                     }
                     else
                         if (name() == ("Bungalow")) {
@@ -95,7 +96,8 @@ Vacation* XMLReader::read() {
                             if (readNextStartElement() && name() == ("CleaningService"))
                                 b->setCleaningServ(readElementText() == "Yes" ? true : false);
 
-                            v =  b;
+                            v->reset(b);
+                            delete b;
                         }
 //    }
     skipCurrentElement();

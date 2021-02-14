@@ -35,14 +35,16 @@ public:
 };
 
 template<class T>
-DeepPtr<T>::DeepPtr(T* p) : ptr(p->clone()){cout<<"ptr "<<ptr<<"endptr"<<endl;}// ptr(p->clone())
+DeepPtr<T>::DeepPtr(T* p ) : ptr(p ? p->clone() : nullptr) {
+    cout<<"ptr "<<ptr<<"endptr"<<endl;
+}
 
 template <class T>
 DeepPtr<T>::DeepPtr(const DeepPtr& p){
       if(p.ptr==nullptr)
           ptr=nullptr;
       else
-          ptr=(p.ptr)->clone();
+          ptr=((p.ptr)->clone());
 }
 
 template<class T>
@@ -92,7 +94,7 @@ T* DeepPtr<T>::release() {
 template<class T>
 void DeepPtr<T>::reset(T* p) {
     if (ptr) delete ptr;
-    ptr = p;
+    ptr = p->clone();
 }
 
 template<class T>

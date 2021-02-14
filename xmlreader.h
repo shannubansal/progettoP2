@@ -2,6 +2,7 @@
 #define XMLREADER_H
 
 #include "reader.h"
+#include "deepPtr.h"
 #include "vacation.h"
 #include "bungalow.h"
 #include "hotel.h"
@@ -16,7 +17,7 @@ class XMLReader : public Reader, public QXmlStreamReader
     void readCampingInfo(Camping *);
 public:
     XMLReader();
-    virtual Vacation* read();
+    virtual DeepPtr<Vacation>* read();
 };
 
 #endif // XMLREADER_H

@@ -54,8 +54,8 @@ Container<DeepPtr<Vacation>> * FileManager::loadXML() {
     xml.setDevice(file);
     if (xml.readNextStartElement() && xml.name() == "Vacations")
         while (xml.readNextStartElement()) {
-            DeepPtr<Vacation> d(xml.read());
-            cont->pushback(d);
+            DeepPtr<Vacation> * d(xml.read());
+            cont->pushback(*d);
             cout<<endl<<42<<endl;
         }
 
