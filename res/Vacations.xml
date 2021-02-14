@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Vacations>
+    <Hotel>
+        <Name>Holasf</Name>
+        <Place>Vazzola</Place>
+        <Country>Italia</Country>
+        <Date>sab gen 1 2022</Date>
+        <BasePrice>7</BasePrice>
+        <Weeks>1</Weeks>
+        <Stars>3</Stars>
+        <Type>Halfboard</Type>
+        <Beds>12</Beds>
+    </Hotel>
+    <Bungalow>
+        <Name>Bunga bunga</Name>
+        <Place>Roma</Place>
+        <Country>Non in Italia</Country>
+        <Date>sab gen 1 2022</Date>
+        <BasePrice>4</BasePrice>
+        <Weeks>1</Weeks>
+        <MaxCapacity>12</MaxCapacity>
+        <DailyFee>5</DailyFee>
+        <VisitorsFee>10</VisitorsFee>
+        <MaxVisitors>4</MaxVisitors>
+        <MaxVisitors>Suite</MaxVisitors>
+        <CleaningService>Yes</CleaningService>
+    </Bungalow>
+    <Flat>
+        <Name>Al mare</Name>
+        <Place>In spiaggia</Place>
+        <Country>Stica</Country>
+        <Date>sab gen 1 2022</Date>
+        <BasePrice>5</BasePrice>
+        <Weeks>1</Weeks>
+        <Rooms>10</Rooms>
+        <AC>No</AC>
+    </Flat>
+    <Pitch>
+        <Name>Bosco</Name>
+        <Place>Foresta</Place>
+        <Country>Sardegna</Country>
+        <Date>lun gen 1 2029</Date>
+        <BasePrice>9</BasePrice>
+        <Weeks>1</Weeks>
+        <MaxCapacity>1</MaxCapacity>
+        <DailyFee>6</DailyFee>
+        <VisitorsFee>5</VisitorsFee>
+        <TentAvailable>No</TentAvailable>
+        <Type>None</Type>
+    </Pitch>
+</Vacations>

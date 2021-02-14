@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/Resources">
+        <file>res/Vacations.xml</file>
+    </qresource>
+</RCC>
