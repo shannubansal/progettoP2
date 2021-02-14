@@ -1,9 +1,8 @@
 #include "filemanager.h"
 #include <QMessageBox>
-XMLManager::XMLManager(Container<DeepPtr<Vacation>> * c) : file (new QFile()), cont(c){}
+FileManager::FileManager() : file (new QFile()){}
 
-void XMLManager::saveAsXML() {
-    QXmlStreamWriter writer;
+void FileManager::saveAsXML(Container<DeepPtr<Vacation>> * cont) {
     XMLWriter xml;
 
     file->setFileName(qApp->applicationDirPath() + "/Vacations.xml");
@@ -13,9 +12,11 @@ void XMLManager::saveAsXML() {
             //CREARE FILE XML STANDARD VUOTO
             QFile empty(qApp->applicationDirPath() + "/Vacations.xml");
         }
-        if(!file->open(QIODevice::WriteOnly | QIODevice::Text))
+        if(!file->open(QIODevice::WriteOnly | QIODevice::Text)){
             cout<<"Error while writing Vacations.xml\n";
-
+            QMessageBox msgbox(QMessageBox::Warning, "Error while writing Vacations.xml\n", "Can NOT write Vacations.xml\n", QMessageBox::Ok);
+            msgbox.exec();
+        }
     xml.setDevice(file);
     xml.setAutoFormatting(true);
     xml.writeStartDocument();
@@ -30,5 +31,34 @@ void XMLManager::saveAsXML() {
     xml.writeEndElement();
     xml.writeEndDocument();
     file->close();
-//    file->commit();
 }
+
+Container<DeepPtr<Vacation>> * FileManager::loadXML() {
+    cout<<"fileManagerXML";
+    Container<DeepPtr<Vacation>>* cont = new Container<DeepPtr<Vacation>>();
+    XMLReader xml;
+
+    file->setFileName(qApp->applicationDirPath() + "/Vacations.xml");
+
+    if(!file->open(QIODevice::ReadOnly | QIODevice::Text)){
+        QMessageBox msgbox(QMessageBox::Warning, "Error while reading Vacations.xml\n", "Vacations.xml does not exist\n", QMessageBox::Ok);
+        msgbox.exec();
+
+        return new Container<DeepPtr<Vacation>>();
+    }
+
+    xml.setDevice(file);
+    if (xml.readNextStartElement() && xml.name() == "Vacations")
+        while (xml.readNextStartElement()) {
+            DeepPtr<Vacation> d(xml.read());
+            cont->pushback(d);
+            cout<<endl<<42<<endl;
+        }
+
+    xml.clear(); // sarebbe da fare nenl distruttore
+    file->close();
+
+    return cont;
+}
+
+

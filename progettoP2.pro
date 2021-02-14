@@ -33,7 +33,9 @@ SOURCES += main.cpp \
     modvwindow.cpp \
     disvwindow.cpp \
     writer.cpp \
-    filemanager.cpp
+    filemanager.cpp \
+    reader.cpp \
+    xmlreader.cpp
 
 HEADERS += \
     writer.h \
@@ -56,4 +58,5 @@ HEADERS += \
     addvwindow.h \
     modvwindow.h \
     disvwindow.h \
-    filemanager.h
+    filemanager.h \
+    xmlreader.h

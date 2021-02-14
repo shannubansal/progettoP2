@@ -12,7 +12,6 @@ class Pitch;
 
 class Writer
 {
-protected:
 public:
     Writer();
     virtual void write(const Bungalow&) =0;

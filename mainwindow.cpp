@@ -115,6 +115,7 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
     connect(deleteB, SIGNAL(clicked()),this, SIGNAL(signalRemoveVacation()));
 
     connect(saveB, SIGNAL(clicked()),this, SIGNAL(signalSaveB()));
+    connect(loadB, SIGNAL(clicked()),this, SIGNAL(signalLoadB()));
 
 }
 

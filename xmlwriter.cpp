@@ -27,7 +27,7 @@ void XMLWriter::write(const Bungalow &b) {
     writeCampingInfo(b);
 
     writeTextElement("MaxVisitors", QString::number((b.getMaxVisitors())));
-    writeTextElement("MaxVisitors", QString::fromStdString((Bungalow::convertBungToString(b.getBungalowType()))));
+    writeTextElement("Type", QString::fromStdString((Bungalow::convertBungToString(b.getBungalowType()))));
     writeTextElement("CleaningService", b.getCleaningServ() ? "Yes" : "No");
 
 
@@ -62,11 +62,3 @@ void XMLWriter::write(const Pitch &p) {
 
 
 }
-
-/*void XMLWriter::write(const Vacation &v) {
-
-
-    cout<<"XMLVacation"<<endl;
-    write(writer, v);
-}*/
-

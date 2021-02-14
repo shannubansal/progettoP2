@@ -28,6 +28,7 @@ public:
     void filterPitches();
     void removeFilter();
     void saveAsXML();
+    void loadXML();
     Container<DeepPtr<Vacation>>* mGetListVacations();
     Container<DeepPtr<Vacation>>* mGetListVacationsFiltered();
 };

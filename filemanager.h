@@ -1,20 +1,24 @@
-#ifndef XMLMANAGER_H
-#define XMLMANAGER_H
+#ifndef FILEMANAGER_H
+#define FILEMANAGER_H
 #include <QXmlStreamWriter>
+#include <QXmlStreamReader>
+
 #include <container.h>
 #include "vacation.h"
 #include <QFile>
 #include <QApplication>
 #include "xmlwriter.h"
+#include "xmlreader.h"
 
 
-class XMLManager
+
+class FileManager
 {
     QFile *file;
-    Container<DeepPtr<Vacation>>* cont;
 public:
-    XMLManager(Container<DeepPtr<Vacation>>*);
-    void saveAsXML();
+    FileManager();
+    void saveAsXML(Container<DeepPtr<Vacation>>*);
+    Container<DeepPtr<Vacation>>* loadXML();
 };
 
-#endif // XMLMANAGER_H
+#endif // FILEMANAGER_H

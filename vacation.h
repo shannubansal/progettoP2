@@ -57,6 +57,7 @@ public:
     void setPlace(string p);
     void setCountry(string c);
     bool setDateVacation(int y, int m, int d);
+    bool setDateVacation(QDate d);
     void setBasePrice(double bP);
     void setWeeks(int w);
 

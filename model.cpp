@@ -2,30 +2,30 @@
 
 model::model():vList(new Container<DeepPtr<Vacation>>), filteredVList(new Container<DeepPtr<Vacation>>) {
     //serie di test
-    Bungalow *p= new Bungalow();
-       Hotel* h= new Hotel();
-       Pitch *pi = new Pitch();
-       Flat *f = new Flat();
-       h->setStars(3);
+//    Bungalow *p= new Bungalow();
+//       Hotel* h= new Hotel();
+//       Pitch *pi = new Pitch();
+//       Flat *f = new Flat();
+//       h->setStars(3);
 
 
-       addToContainer(h);
-       addToContainer(p);
-       addToContainer(f);
-       addToContainer(pi);
-       delete h; delete pi; delete p; delete f;
-       //vList->remove(p);
-       cout<<vList->getSize()<<endl;
-   //    saveAsXML();
-   //    cout<<*h<<endl;
+//       addToContainer(h);
+//       addToContainer(p);
+//       addToContainer(f);
+//       addToContainer(pi);
+//       delete h; delete pi; delete p; delete f;
+//       //vList->remove(p);
+//       cout<<vList->getSize()<<endl;
+//   //    saveAsXML();
+//   //    cout<<*h<<endl;
 
-   //    XMLWriter xml;
-   //    Bungalow b;
-   //    for (auto it = vList->begin(); it!=vList->end(); ++it) {
-   //        (*it)->writer(xml);
-   //    }
-   ////    b.writer(xml);
-   //    cout<<"model"<<endl;
+//   //    XMLWriter xml;
+//   //    Bungalow b;
+//   //    for (auto it = vList->begin(); it!=vList->end(); ++it) {
+//   //        (*it)->writer(xml);
+//   //    }
+//   ////    b.writer(xml);
+//   //    cout<<"model"<<endl;
 }
 
 
@@ -131,7 +131,13 @@ Container<DeepPtr<Vacation>>* model::mGetListVacationsFiltered(){
 }
 
 void model::saveAsXML() {
+    FileManager xml;
+    xml.saveAsXML(vList);
+}
 
-    XMLManager xml(vList);
-    xml.saveAsXML();
+void model::loadXML() {
+    cout<<"modelLoadXML"<<endl;
+    FileManager xml;
+//    vList->emptyContainer();
+    vList = xml.loadXML();
 }

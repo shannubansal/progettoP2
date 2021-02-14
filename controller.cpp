@@ -19,6 +19,7 @@ controller::controller(QObject*parent): QObject(parent), m(new model()),  view(n
     connect(view, SIGNAL(signalRemoveVacation()), this, SLOT(slotRemoveVacation()));
 
     connect(view, SIGNAL(signalSaveB()), this, SLOT(slotSaveB()));
+    connect(view, SIGNAL(signalLoadB()), this, SLOT(slotLoadB()));
 
 
 
@@ -468,8 +469,13 @@ void controller::slotInsertVacation(){
     }
 
 void controller::slotSaveB(){
-    cout<<"controller slotSaveB"<<endl;
     m->saveAsXML();
+}
+
+void controller::slotLoadB(){
+    cout<<"slot LoadB";
+    m->loadXML();
+    updateVacationListW(false);
 }
 
 

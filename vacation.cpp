@@ -83,6 +83,11 @@ bool Vacation::setDateVacation(int y, int m, int d){
     return date.setDate(y,m,d);
 }
 
+bool Vacation::setDateVacation(QDate d){
+    date = d;
+    return true;
+}
+
 
 void Vacation::setBasePrice(double bP){
     basePrice=bP;
