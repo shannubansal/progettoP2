@@ -19,6 +19,8 @@ public:
     FileManager();
     void saveAsXML(Container<DeepPtr<Vacation>>*);
     Container<DeepPtr<Vacation>>* loadXML();
+
+
 };
 
 #endif // FILEMANAGER_H

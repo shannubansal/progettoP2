@@ -46,7 +46,7 @@ addVWindow::addVWindow(QWidget* parent): QWidget(parent){
 
     weeksE = new QLineEdit();
     weeksE->setPlaceholderText("f.e. 1");
-    weeksE->setValidator(new QRegExpValidator(QRegExp("[0-9][0-9]")));
+    weeksE->setValidator(new QRegExpValidator(QRegExp("[1-9][1-9]")));
     vacationForm->addRow(tr("&Weeks:"), weeksE);
 
     vacationInfoGroup= new QGroupBox("General", this);
@@ -59,7 +59,7 @@ addVWindow::addVWindow(QWidget* parent): QWidget(parent){
 
     starsE = new QLineEdit();
     starsE->setPlaceholderText("f.e. 4");
-    starsE->setValidator(new QRegExpValidator(QRegExp("[0-5][A-Z]")));
+    starsE->setValidator(new QRegExpValidator(QRegExp("[1-5][A-Z]")));
     hotelForm->addRow(tr("&Stars:"), starsE);
 
     hotelTypeE= new QComboBox(this);
@@ -70,7 +70,7 @@ addVWindow::addVWindow(QWidget* parent): QWidget(parent){
 
     bedsE = new QLineEdit();
     bedsE->setPlaceholderText("f.e. 4");
-    bedsE->setValidator(new QRegExpValidator(QRegExp("[0-9][0-9]")));
+    bedsE->setValidator(new QRegExpValidator(QRegExp("[1-9]")));
     hotelForm->addRow(tr("&Beds:"), bedsE);
 
 
@@ -129,7 +129,7 @@ addVWindow::addVWindow(QWidget* parent): QWidget(parent){
 //form pitch
     QFormLayout *pitchForm=new QFormLayout();
 
-    tentAvailableE= new QCheckBox();//checkbox che controlla il tipo di pitch
+    tentAvailableE= new QCheckBox();
     pitchForm->addRow(tr("&Tent Available"), tentAvailableE);
 
     tentTypeE= new QComboBox(this);
@@ -195,13 +195,7 @@ typeEnablingCombo(0);
     connect(vacationType, SIGNAL(activated(int)), this, SLOT(typeEnablingCombo(int)));
 
     connect(tentAvailableE, SIGNAL(clicked()), this, SLOT(enableTentTypeE()));
-
-
-
-
-
 }
-
 
 
 //get functions

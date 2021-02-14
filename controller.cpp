@@ -103,7 +103,6 @@ void controller::slotOpenDisplay(){
         }
 }
 
-
 void controller::slotModifyVacation(){
     int i= modV->getVacationCombo()->currentIndex();
     Vacation* tmp=nullptr;
@@ -140,6 +139,16 @@ void controller::slotModifyVacation(){
                 return;
         }
 
+        if(modV->getNameE()->text()=="" ||
+                  modV->getCountryE()->text()=="" ||
+                  modV->getPlaceE()->text()=="" ||
+                  modV->getWeeksE()->text()=="" ||
+                  modV->getStarsE()->text()=="" ||
+                  modV->getBedsE()->text()=="" ){
+                      emit error1();
+                      return;
+                }
+
         tmp=h;
         break;
     }
@@ -160,6 +169,15 @@ void controller::slotModifyVacation(){
                 emit errorDate();
                 return;
         }
+        if(modV->getNameE()->text()=="" ||
+                  modV->getCountryE()->text()=="" ||
+                  modV->getPlaceE()->text()=="" ||
+                  modV->getWeeksE()->text()=="" ||
+                  modV->getRoomsE()->text()=="" ){
+                      emit error1();
+                      return;
+                }
+
         tmp=f;
         break;
     }
@@ -187,6 +205,16 @@ void controller::slotModifyVacation(){
                 emit errorDate();
                 return;
         }
+        if(modV->getNameE()->text()=="" ||
+                  modV->getCountryE()->text()=="" ||
+                  modV->getPlaceE()->text()=="" ||
+                  modV->getWeeksE()->text()=="" ||
+                  modV->getMaxCapE()->text()=="" ||
+                  modV->getMaxVisE()->text()=="" ){
+                      emit error1();
+                      return;
+                }
+
         tmp=b;
         break;
 
@@ -208,7 +236,7 @@ void controller::slotModifyVacation(){
         p->setVisitorsFee(modV->getVisitorsFeeE()->value());
 
         p->setTentAvailable(modV->getTentAvailableE()->isChecked());
-        p->setTent(Pitch::convertTentToEnum(modV->getTentTypeE()->currentText().toStdString()));//NOOOOOOOOOOOOOOOOOO
+        p->setTent(Pitch::convertTentToEnum(modV->getTentTypeE()->currentText().toStdString()));
 
         if( (modV->getDateE()->date()) < QDate::currentDate()){
                 emit errorDate();
@@ -220,7 +248,14 @@ void controller::slotModifyVacation(){
                 return;
         }
 
-
+        if(modV->getNameE()->text()=="" ||
+                  modV->getCountryE()->text()=="" ||
+                  modV->getPlaceE()->text()=="" ||
+                  modV->getWeeksE()->text()=="" ||
+                modV->getMaxCapE()->text()==""){
+                      emit error1();
+                      return;
+                }
 
         tmp=p;
         break;
@@ -239,6 +274,7 @@ void controller::slotModifyVacation(){
     }
 
 }
+
 
 void controller::slotCloseEverything(){
     if(this->addV!=nullptr && this->addV->isVisible()){
@@ -260,6 +296,9 @@ void controller::slotCloseEverything(){
 
     this->view->close();
 }
+
+
+
 
 void controller::slotRemoveVacation(){
 
@@ -369,6 +408,16 @@ void controller::slotInsertVacation(){
                 return;
         }
 
+        if(addV->getNameE()->text()=="" ||
+                  addV->getCountryE()->text()=="" ||
+                  addV->getPlaceE()->text()=="" ||
+                  addV->getWeeksE()->text()=="" ||
+                  addV->getStarsE()->text()=="" ||
+                  addV->getBedsE()->text()=="" ){
+                      emit error1();
+                      return;
+                }
+
         tmp=h;
         break;
     }
@@ -389,6 +438,14 @@ void controller::slotInsertVacation(){
                 emit errorDate();
                 return;
         }
+        if(addV->getNameE()->text()=="" ||
+                  addV->getCountryE()->text()=="" ||
+                  addV->getPlaceE()->text()=="" ||
+                  addV->getWeeksE()->text()=="" ||
+                  addV->getRoomsE()->text()=="" ){
+                      emit error1();
+                      return;
+                }
         tmp=f;
         break;
     }
@@ -416,6 +473,15 @@ void controller::slotInsertVacation(){
                 emit errorDate();
                 return;
         }
+        if(addV->getNameE()->text()=="" ||
+                  addV->getCountryE()->text()=="" ||
+                  addV->getPlaceE()->text()=="" ||
+                  addV->getWeeksE()->text()=="" ||
+                  addV->getMaxCapE()->text()=="" ||
+                  addV->getMaxVisE()->text()=="" ){
+                      emit error1();
+                      return;
+                }
         tmp=b;
         break;
 
@@ -449,7 +515,14 @@ void controller::slotInsertVacation(){
                 return;
         }
 
-
+        if(addV->getNameE()->text()=="" ||
+                  addV->getCountryE()->text()=="" ||
+                  addV->getPlaceE()->text()=="" ||
+                  addV->getWeeksE()->text()=="" ||
+                addV->getMaxCapE()->text()==""){
+                      emit error1();
+                      return;
+                }
 
         tmp=p;
         break;

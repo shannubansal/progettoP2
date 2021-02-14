@@ -152,10 +152,8 @@ disVWindow::disVWindow(QWidget *parent) : QWidget(parent),
     centralDxLayout->addWidget(pricesGroup);
 
     buttonsDLayout= new QHBoxLayout();
-   // calc= new QPushButton("Calculate",this);
     cancel= new QPushButton("Cancel",this);
 
-   // buttonsDLayout->addWidget(calc);
     buttonsDLayout->addWidget(cancel);
     buttonsGroup= new QGroupBox(this);
     buttonsGroup->setLayout(buttonsDLayout);

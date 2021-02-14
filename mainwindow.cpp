@@ -35,7 +35,6 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
     bungalowFilterB=new QPushButton("Bungalows", this);
     pitchFilterB=new QPushButton("Pitches", this);
     removeFilterB=new QPushButton("Remove Filter", this);
-    advancedSearchB=new QPushButton("Advanced search", this);
 
     filtersLayout->addWidget(hotelFilterB);
     filtersLayout->addWidget(flatFilterB);
@@ -43,7 +42,6 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
     filtersLayout->addWidget(bungalowFilterB);
     filtersLayout->addWidget(pitchFilterB);
     filtersLayout->addWidget(removeFilterB);
-    filtersLayout->addWidget(advancedSearchB);
 
     filters->setLayout(filtersLayout);
 
@@ -74,9 +72,10 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
     listActionsLayout=new QHBoxLayout();
 
     addB=new QPushButton("Add", this);
-    displayB=new QPushButton("Display", this);//display selected?
-    modifyB=new QPushButton("Modify", this);//modify selected?
-    deleteB=new QPushButton("Delete", this);//delete selected?
+    displayB=new QPushButton("Display", this);
+    modifyB=new QPushButton("Modify", this);
+
+    deleteB=new QPushButton("Delete", this);
 
     listActionsLayout->addWidget(addB);
     listActionsLayout->addWidget(displayB);
@@ -109,8 +108,6 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
     connect(pitchFilterB, SIGNAL(clicked()),this, SIGNAL(signalPitchFilterB()));
     connect(removeFilterB, SIGNAL(clicked()),this, SIGNAL(signalRemoveFilterB()));
 
-
-    connect(advancedSearchB, SIGNAL(clicked()),this, SIGNAL(signalAdvancedSearchB()));
     connect(deleteB, SIGNAL(clicked()),this, SIGNAL(signalRemoveVacation()));
 
     connect(saveB, SIGNAL(clicked()),this, SIGNAL(signalSaveB()));
@@ -120,11 +117,6 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
 
 VacationList* mainWindow::getVacationListW(){
     return this->vListView;
-}
-
-
-void mainWindow::showInfoItem(const QStringList){
-
 }
 
 
