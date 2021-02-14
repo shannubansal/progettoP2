@@ -91,16 +91,16 @@ typename Container<T>::Nodo* Container<T>::nClone(Container<T>::Nodo* n)
     if(!n)
         return nullptr;
 
-    // Caso base 1: lista vuota
+
 
     if(!n->next)
         return last = new Nodo(n->info);
 
-    // Caso base 2: fine della lista, assegno Back e riporto l'ultimo nodo
+
 
     return new Nodo(n->info, nClone(n->next));
 
-    // Induzione: Creo un nuovo nodo copiando le informazioni dalla lista iniziale
+
 }
 
 template<class T>
@@ -112,7 +112,7 @@ typename Container<T>::Nodo* Container<T>::copy(const Container<T>::Nodo * &iniz
 
 
 template<class T>
-void Container<T>::deleteNodi(Container<T>::Nodo* n)//cancella ricorsivamente tutti i nodi della lista
+void Container<T>::deleteNodi(Container<T>::Nodo* n)
 {
     if (n) deleteNodi(n->next);
     delete n;
@@ -258,7 +258,7 @@ void Container<T>::decreaseSize() {
 
 
 template<class T>
-bool Container<T>::searchNode(const T& i){//con deeptr, da testare...
+bool Container<T>::searchNode(const T& i){
     bool found=false;
 
     if(first->info == i){
@@ -318,13 +318,7 @@ void Container<T>::remove(const T &i)
             popfront();
             return;
         }else if(getSize()>1 && first->info ==i ){
-            /*
-            Nodo*elim=first;
-            first=first->next;
-            elim->next=nullptr;
-            delete elim;
-            decreaseSize();
-            */
+
             popfront();
         }else{
             Nodo*cur=first->next;
@@ -334,8 +328,8 @@ void Container<T>::remove(const T &i)
                 cur=cur->next;
                 pre=pre->next;
             }
-            //caso 2
-            if(cur->info==last->info){//popback
+
+            if(cur->info==last->info){
                 pre->next=nullptr;
                 last=pre;
                 delete cur;
