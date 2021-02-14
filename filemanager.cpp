@@ -5,12 +5,12 @@ FileManager::FileManager() : file (new QFile()){}
 void FileManager::saveAsXML(Container<DeepPtr<Vacation>> * cont) {
     XMLWriter xml;
 
-    file->setFileName(/*qApp->applicationDirPath() +*/ ":/Resources/res/Vacations.xml");
+    file->setFileName(qApp->applicationDirPath() + "/res/Vacations.xml");
         if(file->exists()) cout << "Source for writing Vacations does exist";
         else {
             cout << "Source for writing Vacations does not exist, attempting to create";
             //CREARE FILE XML STANDARD VUOTO
-            QFile empty(/*qApp->applicationDirPath() +*/ ":Resources/res/Vacations.xml");
+            QFile empty(qApp->applicationDirPath() + ":/Resources/res/Vacations.xml");
         }
         if(!file->open(QIODevice::WriteOnly)){
             cout<<"Error while writing Vacations.xml\n";
@@ -31,7 +31,8 @@ void FileManager::saveAsXML(Container<DeepPtr<Vacation>> * cont) {
             xml.writeEndElement();
             xml.writeEndElement();
             xml.writeEndDocument();
-
+            QMessageBox msgbox(QMessageBox::Information, "Success", "Sucessfully saved!", QMessageBox::Ok);
+            msgbox.exec();
             file->close();
         }
 }
@@ -42,7 +43,7 @@ Container<DeepPtr<Vacation>> * FileManager::loadXML() {
     XMLReader xml;
 
 
-    file->setFileName(/*qApp->applicationDirPath() +*/ ":Resources/res/Vacations.xml");
+    file->setFileName(qApp->applicationDirPath() + "/res/Vacations.xml");
 
     if(!file->open(QIODevice::ReadOnly | QIODevice::Text)){
         QMessageBox msgbox(QMessageBox::Warning, "Error while reading Vacations.xml\n", "Vacations.xml does not exist\n", QMessageBox::Ok);
