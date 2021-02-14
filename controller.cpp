@@ -539,7 +539,8 @@ void controller::slotInsertVacation(){
         msgBox2.setText("Error");
         msgBox2.exec();
     }
-    }
+    delete tmp;
+}
 
 void controller::slotSaveB(){
     m->saveAsXML();

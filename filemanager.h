@@ -9,6 +9,7 @@
 #include <QApplication>
 #include "xmlwriter.h"
 #include "xmlreader.h"
+#include <QFileDialog>
 
 
 

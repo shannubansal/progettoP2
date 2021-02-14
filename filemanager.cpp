@@ -38,12 +38,19 @@ void FileManager::saveAsXML(Container<DeepPtr<Vacation>> * cont) {
 }
 
 Container<DeepPtr<Vacation>> * FileManager::loadXML() {
+   QString f = QFileDialog::getOpenFileName(
+                    nullptr,
+                    "Choose file",
+                    "./res",
+                    "File XML(*.xml)"
+                    );
+
 
     Container<DeepPtr<Vacation>>* cont = new Container<DeepPtr<Vacation>>();
     XMLReader xml;
 
 
-    file->setFileName(qApp->applicationDirPath() + "/res/Vacations.xml");
+    file->setFileName(/*qApp->applicationDirPath() + "/res/Vacations.xml"*/   f);
 
     if(!file->open(QIODevice::ReadOnly | QIODevice::Text)){
         QMessageBox msgbox(QMessageBox::Warning, "Error while reading Vacations.xml\n", "Vacations.xml does not exist\n", QMessageBox::Ok);
