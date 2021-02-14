@@ -8,8 +8,7 @@ class Hotel: public Vacation
 {
 
 public:
-    enum serviceType { overnight=0, halfboard=1, allinclusive=2};//forse valutare posizionamento diverso (qua serve per non
-    //inquinare il namespace)
+    enum serviceType { overnight=0, halfboard=1, allinclusive=2};
 
     Hotel(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1, unsigned int=0, Hotel::serviceType=overnight, unsigned int=1);
 
@@ -17,7 +16,7 @@ public:
     virtual Hotel* clone() const override;
     double calcFinalPrice() const override;
     double calcCommission() const override;
-    //virtual void print() const override();
+
     virtual string getTipo()const override;
     virtual string getInfo() const override;
 

@@ -15,11 +15,7 @@ double Flat::calcFinalPrice() const{
     return price;
 }
 
-/*
-Flat::print() const{
- //funzione stampa I/O presumibimente
-}
-*/
+
 
 double Flat:: calcCommission() const{
     return calcFinalPrice()*0.12;
@@ -73,7 +69,7 @@ std::ostream& operator<<(std::ostream& os, const Flat& f) {
 }
 
 void Flat::saveOnFile(Writer& w) {
-    cout<<"Flat saveOnFile";
+
     w.write(*this);
 
 }

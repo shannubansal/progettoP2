@@ -17,12 +17,6 @@ string Vacation::getInfo() const{
 
 }
 
-/*
-Vacation::print() const{
- //funzione stampa I/O presumibimente
-}
-*/
-
 
 bool Vacation::operator==(const Vacation & c) const{
     return name == c.getName() && place == c.getPlace()&&

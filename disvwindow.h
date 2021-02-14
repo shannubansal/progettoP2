@@ -19,7 +19,7 @@ public:
     void setDisVacation(Vacation *);
 
 signals:
-    //void signalCalc() const;
+
 private:
     Vacation* v;
     QHBoxLayout *wrapDLayout, *buttonsDLayout;
@@ -31,9 +31,6 @@ private:
     *ACE, *cleaningServE, *tentAvailableE, *finalPriceE, *commissionE, *priceAndFeesE;
     QLabel * visitorsE, *peopleE;
     QPushButton *cancel /**calc*/;
-
-public slots:
-    //void slotCalc();
 };
 
 #endif // DISVWINDOW_H

@@ -20,8 +20,7 @@ public:
     operator bool() const; //controlla se get() != nullptr (permette all'utilizzatore di controllare lo stato del puntatore
                             // incapsulato. (Serve negli if: Se ogg di tipo DeepPtr => permette di fare if (ogg)
     bool operator ==(const DeepPtr&) const;
-    //bool operator !=(const DeepPtr&) const;
-    //operator T*() const;
+
 
     //modifiers
     T* release(); //ritorna l'oggetto puntato e mette a NULL ptr
@@ -35,9 +34,7 @@ public:
 };
 
 template<class T>
-DeepPtr<T>::DeepPtr(T* p ) : ptr(p ? p->clone() : nullptr) {
-    cout<<"ptr "<<ptr<<"endptr"<<endl;
-}
+DeepPtr<T>::DeepPtr(T* p ) : ptr(p ? p->clone() : nullptr) {}
 
 template <class T>
 DeepPtr<T>::DeepPtr(const DeepPtr& p){
@@ -111,12 +108,6 @@ T* DeepPtr<T>::get() const {
     return ptr;
 }
 
-/*
-template<class T>
-DeepPtr<T>::operator T*() const {
-    return ptr;
-}
-*/
 #endif // DEEPPTR_H
 
 

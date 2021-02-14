@@ -44,15 +44,6 @@ public slots:
     void slotSaveB();
     void slotLoadB();
 
-    /*
-
-
-    void slotAdvancedSearch();//nope
-
-
-
-    void slotOpenDisplay();
-     * */
     void slotCloseEverything();
 
 private:

@@ -11,7 +11,7 @@
 #include<QListWidget>
 #include<QMessageBox>
 #include<QCloseEvent>
-#include<QPalette>//se vogliamo colorare i QPushButtons
+
 
 #include<vacationlist.h>
 #include<model.h>

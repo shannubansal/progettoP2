@@ -39,8 +39,6 @@ signals:
     void signalInsert();
 public:
     addVWindow(QWidget* parent= nullptr);
-    //virtual ~addVWindow(); da cancellare
-
 
     QLineEdit *getNameE() const;
     QLineEdit *getPlaceE() const;

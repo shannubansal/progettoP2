@@ -113,8 +113,8 @@ string Pitch::getTipo() const{
 
 string Pitch::getInfo() const{
     string s=Camping::getInfo();
-    return s.append("\nTent: "+convertTentToString(getTent()));//non metto qua tutti i campi sennò diventa logorroico
-    //i campi ancdranno nella view dettagli
+    return s.append("\nTent: "+convertTentToString(getTent()));
+
 }
 
 
@@ -137,7 +137,7 @@ void Pitch::setTent(Pitch::tentType t){
 }
 
 void Pitch::saveOnFile(Writer& w) {
-    cout<<"Pitch saveOnFile";
+
     w.write(*this);
 
 }

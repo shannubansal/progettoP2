@@ -19,11 +19,7 @@ double Hotel::calcFinalPrice() const{
     return price;
 }
 
-/*
-Flat::print() const{
- //funzione stampa I/O presumibimente
-}
-*/
+
 
 double Hotel::calcCommission() const{
     return calcFinalPrice()*0.08;
@@ -134,7 +130,7 @@ std::ostream& operator<<(std::ostream& os, const Hotel& h) {
 }
 
 void Hotel::saveOnFile(Writer& w) {
-    cout<<"Hotel saveOnFile";
+
     w.write(*this);
 
 }

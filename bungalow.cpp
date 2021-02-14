@@ -143,6 +143,5 @@ void Bungalow::setCleaningServ(bool cS){
 }
 
 void Bungalow::saveOnFile(Writer& w) {
-    cout<<"Bungalow saveOnFile";
     w.write(*this);
 }

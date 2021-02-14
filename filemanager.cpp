@@ -6,14 +6,14 @@ void FileManager::saveAsXML(Container<DeepPtr<Vacation>> * cont) {
     XMLWriter xml;
 
     file->setFileName(qApp->applicationDirPath() + "/res/Vacations.xml");
-        if(file->exists()) cout << "Source for writing Vacations does exist";
+        if(file->exists()) qDebug() << "Source for writing Vacations does exist";
         else {
-            cout << "Source for writing Vacations does not exist, attempting to create";
+            qDebug() << "Source for writing Vacations does not exist, attempting to create";
             //CREARE FILE XML STANDARD VUOTO
             QFile empty(qApp->applicationDirPath() + ":/Resources/res/Vacations.xml");
         }
         if(!file->open(QIODevice::WriteOnly)){
-            cout<<"Error while writing Vacations.xml\n";
+            qDebug() <<"Error while writing Vacations.xml\n";
             QMessageBox msgbox(QMessageBox::Warning, "Error while writing Vacations.xml\n", "Can NOT write Vacations.xml\n " + file->errorString(), QMessageBox::Ok);
             msgbox.exec();
         }
@@ -38,7 +38,7 @@ void FileManager::saveAsXML(Container<DeepPtr<Vacation>> * cont) {
 }
 
 Container<DeepPtr<Vacation>> * FileManager::loadXML() {
-    cout<<"fileManagerXML";
+
     Container<DeepPtr<Vacation>>* cont = new Container<DeepPtr<Vacation>>();
     XMLReader xml;
 
@@ -57,10 +57,10 @@ Container<DeepPtr<Vacation>> * FileManager::loadXML() {
         while (xml.readNextStartElement()) {
             DeepPtr<Vacation> * d(xml.read());
             cont->pushback(*d);
-            cout<<endl<<42<<endl;
+
         }
 
-    xml.clear(); // sarebbe da fare nenl distruttore
+    xml.clear();
     file->close();
 
     return cont;

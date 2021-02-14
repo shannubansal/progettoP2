@@ -16,7 +16,6 @@ private:
         T info;
         Nodo* next;
         Nodo(const T&, Nodo* =nullptr);
-//      Nodo(const Nodo&);
         ~Nodo();
 
     };
@@ -34,15 +33,11 @@ private:
 public:
 
     Container();
-//    Container(int, const T&);
     Container(const Container&);
     ~Container();
     Container<T>& operator=(const Container&);
 
     bool isEmpty() const;
-//    void insert();
-//    void remove();
-//    void empty();
 
     void pushback(const T&);
     void pushfront(const T&);
@@ -72,34 +67,8 @@ public:
       Iterator operator ++(int);
     };
 
-//  class ConstIterator {
-//      friend class Container<T>;
-//      const Nodo* cptr;
-//    public:
-//      ConstIterator();
-//      ConstIterator(Nodo*);
-//      ConstIterator& operator=(const ConstIterator&);
-//      bool operator ==(ConstIterator&) const;
-//      bool operator !=(ConstIterator&) const;
-
-//      const T& operator *() const;
-//      const T* operator ->() const;
-
-//      ConstIterator& operator ++();
-//      ConstIterator operator ++(int);
-//    };
-
-
-
-
-//    ConstIterator cbegin() const;
-//    ConstIterator cend() const;
-//    const T& operator [](const ConstIterator&) const;
-
-
     Iterator begin() const;
     Iterator end() const;
-//    T& operator [](const Iterator&) const;
 
 
 };
@@ -110,15 +79,9 @@ public:
 template<class T>
 Container<T>::Nodo::Nodo(const T& t, Nodo* n) : info(t), next(n) {}
 
-//template<class T>
-//Container<T>::Nodo::Nodo(const Nodo& n) : info(n.info), next(0){}
-
 template<class T>
 Container<T>::Nodo::~Nodo() {
     if (next) delete next;
-    //delete this;
-
-    //serve forse un "delete this;"
 }
 
 
@@ -182,29 +145,24 @@ Container<T>& Container<T>::operator=(const Container<T>& c) {
 
 template<class T>
 Container<T>::~Container (){
-    if (first) delete first;//la size viene modificata?
-//    this->emptyContainer();
+    if (first) delete first;
 }
 
 
 template<class T>
 void Container<T>::emptyContainer(){
-    while(!isEmpty()) {//controllo size?
+    while(!isEmpty())
         popfront();
-        cout<<"1 ";
-
-    }
 }
 
 template<class T>
 bool Container<T>::isEmpty() const{
-    return (first==nullptr);//fare con size?
+    return (first==nullptr);
 }
 
 
 template<class T>
 typename Container<T>::Iterator Container<T>::begin() const{
-    cout<<" Begin ";
     Container<T>::Iterator aux;
     aux.ptr = first;
     return aux;
@@ -214,30 +172,10 @@ typename Container<T>::Iterator Container<T>::begin() const{
 
 template<class T>
 typename Container<T>::Iterator Container<T>::end() const{
-
-    cout<<" end ";
     Container<T>::Iterator aux;
     aux.ptr = nullptr;
     return aux;
-
-
 }
-
-//template<class T>
-//typename Container<T>::ConstIterator Container<T>::cbegin() const{
-//    cout<<" cBegin ";
-//    typename Container<T>::ConstIterator aux;
-//    aux.ptr = first;
-//    return aux;
-//}
-
-//template<class T>
-//typename Container<T>::ConstIterator Container<T>::cend() const{
-//    cout<<" cend ";
-//    Container<T>::ConstIterator aux;
-//    aux.ptr = nullptr;
-//    return aux;
-//}
 
 template<class T>
 void Container<T>::pushback(const T&t){
@@ -372,54 +310,6 @@ void Container<T>::sostituisciNodo(const T& oldV, const T& newV){
 
 }
 
-/*
-template<class T>
-void Container<T>::remove(const T &i)
-{
-    if(searchNode(i) == true){
-    //caso 1
-        if(first->info == i){
-            Nodo*elim=first;
-            first=first->next;
-            elim->next=nullptr;
-            delete elim;
-            decreaseSize();
-        }
-
-        else{
-            Nodo*cur=first->next;
-            Nodo*pre=first;
-
-            while(!(cur->info == i)){
-                cur=cur->next;
-                pre=pre->next;
-            }
-            //caso 2
-            if(cur->info==last->info){
-                pre->next=nullptr;
-                last=pre;
-                delete cur;
-                decreaseSize();
-            }
-            //caso 3
-            else{
-                Nodo*elim=cur;
-                pre->next=cur->next;
-                elim->next=nullptr;
-                delete elim;
-                decreaseSize();
-            }
-        }
-    }
-    return;
-}
-
-
-
-
-ServerContainer.pushFront(DeepPtr<Server>(s));
-*/
-
 template<class T>
 void Container<T>::remove(const T &i)
 {
@@ -501,66 +391,6 @@ template<class T>
 bool Container<T>::Iterator::operator!=(const Iterator& x) const {
   return ptr!=x.ptr;
 }
-
-//template<class T>
-//T& Container<T>::Iterator::operator [](const Iterator& it) const {
-//    return *it;
-//}
-
-//implementazione funzioni ConstIterator
-//template<class T>
-//Container<T>::ConstIterator::ConstIterator(Nodo * p) : cptr(p) {}
-
-//template<class T>
-//Container<T>::ConstIterator::ConstIterator() : cptr(nullptr) {}
-
-//template<class T>
-//typename Container<T>::ConstIterator & Container<T>::ConstIterator::operator=(const ConstIterator & cit)
-//{
-//    cptr=cit.cptr;
-//    return *this;
-//}
-
-//template<class T>
-//typename Container<T>::ConstIterator& Container<T>::ConstIterator::operator++()
-//{
-//    if(cptr) cptr=cptr->next;
-//    return *this;
-
-//}
-//template<class T>
-//typename Container<T>::ConstIterator& Container<T>::ConstIterator::operator++(int)
-//{
-//    Iterator tmp=*this;
-//    if(cptr) cptr=cptr->next;
-//    return tmp;
-
-//}
-
-//template<class T>
-//const T & Container<T>::ConstIterator::operator*() const
-//{
-//    return cptr->info;
-//}
-
-//template<class T>
-//const T * Container<T>::ConstIterator::operator->() const
-//{
-//    return &(cptr->info);
-//}
-
-//template<class T>
-//bool Container<T>::ConstIterator::operator==(const ConstIterator& cit)
-//{
-//    return cptr == cit.cptr;
-//}
-
-//template<class T>
-//bool Container<T>::ConstIterator::operator!=(const ConstIterator& cit)
-//{
-//    return cptr != cit.cptr;
-//}
-
 
 #endif // CONTAINER_H
 

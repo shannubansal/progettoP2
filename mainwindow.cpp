@@ -46,7 +46,6 @@ mainWindow::mainWindow(QWidget *parent) : QWidget(parent), vListView(new Vacatio
     filtersLayout->addWidget(advancedSearchB);
 
     filters->setLayout(filtersLayout);
-    //filtersLayout->setSpacing(14); da trovare modo per sistemare lo spacing o stretch
 
 //central layout/group con filters group e layout------------------
     centralLayout=new QHBoxLayout();

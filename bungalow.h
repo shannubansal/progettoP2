@@ -19,7 +19,6 @@ public:
     virtual string getTipo() const override;
     virtual string getInfo() const override;
 
-    //void print() const override();
     static string convertBungToString (const bungalowType& );
     static bungalowType convertBungtoEnum(const string&);
     static int convertBungToI (const bungalowType& l);

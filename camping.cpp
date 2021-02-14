@@ -7,10 +7,7 @@ Camping::Camping(string n, string p, string c, int y, int m, int d, double bP, u
 
 string Camping::getInfo() const{
     string s=Vacation::getInfo();
-    return s.// forse troppa roba in item append("\nMaxCapacity: "+ std::to_string(getMaxCapacity()))
-            //da inserire nel visualizza dettagli
-
-            append("\nDailyFee: "+ std::to_string(getDailyFee()))
+    return s.append("\nDailyFee: "+ std::to_string(getDailyFee()))
             .append("€");
 }
 

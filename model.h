@@ -17,7 +17,7 @@ private:
 public:
     model();
     ~model();
-    void addToContainer(Vacation*);//da vedere
+    void addToContainer(Vacation*);
     void removeFromContainer(Vacation*);
     void switchVacation(Vacation* v, Vacation* oldV);
 

@@ -2,7 +2,7 @@
 #define FILEMANAGER_H
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
-
+#include <QDebug>
 #include <container.h>
 #include "vacation.h"
 #include <QFile>

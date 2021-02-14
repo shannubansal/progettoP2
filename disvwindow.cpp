@@ -90,10 +90,10 @@ disVWindow::disVWindow(QWidget *parent) : QWidget(parent),
 
     QLabel *visitorsELabel=new QLabel("Visitors: ");
     campingInfoLayout->addRow(visitorsELabel, visitorsE);
-    //visitorsE->setValidator(new QRegExpValidator(QRegExp("[0-9][0-9]")));
+
     QLabel *peopleELabel=new QLabel("People: ");
     campingInfoLayout->addRow(peopleELabel, peopleE);
-    //peopleE->setValidator(new QRegExpValidator(QRegExp("[1-9][0-9]")));
+
 
     QLabel *priceAndFeesELabel=new QLabel("Camping Total: ");
     campingInfoLayout ->addRow(priceAndFeesELabel, priceAndFeesE);
@@ -162,9 +162,6 @@ disVWindow::disVWindow(QWidget *parent) : QWidget(parent),
     centralDxLayout->addWidget(buttonsGroup);
 
     connect(cancel,SIGNAL(clicked()),this,SLOT(close()));
-   // connect(calc,SIGNAL(clicked()),this,SLOT(slotCalc()));
-
-
 
 }
 
@@ -174,37 +171,7 @@ Vacation* disVWindow::getDisVacationFromW(){
 void disVWindow::setDisVacation(Vacation* i){
     this->v=i;
 }
-/*
-QLineEdit* disVWindow::getPeopleE() const{//setta validator
-    return peopleE;
-}
 
-QLineEdit* disVWindow::getVisitorsE() const{
-    return visitorsE;
-}
-
-void disVWindow::slotCalc(){
-    QMessageBox msgBox1;
-    msgBox1.setWindowTitle("Error");
-    msgBox1.setText("Exceeding the maximum capacities will gain an additional charge");
-    unsigned int V=getVisitorsE()->text().toUInt();
-    unsigned int P=getPeopleE()->text().toUInt();
-
-    Pitch* p= dynamic_cast<Pitch*>(v);
-    Bungalow* b= dynamic_cast<Bungalow*>(v);
-
-    if(p && P>p->getMaxCapacity()){
-        msgBox1.exec();
-        priceAndFeesE->setText(QString::fromStdString(std::to_string(p->getPriceAndFees(P, V))).append(" €"));
-    }
-    if(b && V>b->getMaxVisitors()){
-        msgBox1.exec();
-        priceAndFeesE->setText(QString::fromStdString(std::to_string(b->getPriceAndFees(P,V))).append(" €"));
-    }
-
-
-}
-*/
 
 void disVWindow::fillLabels(VacationListItem* va){
     Vacation* v=va->getItem();
@@ -243,7 +210,7 @@ void disVWindow::fillLabels(VacationListItem* va){
        campingInfoG->setEnabled(false);
        bungalowInfoG->setEnabled(false);
        pitchInfoG->setEnabled(false);
-       //calc->setEnabled(false);
+
        starsE->clear();
        starsE->setText(QString::fromStdString(std::to_string(h->getStars())));
        hotelTypeE->clear();
@@ -263,7 +230,7 @@ void disVWindow::fillLabels(VacationListItem* va){
         campingInfoG->setEnabled(false);
         bungalowInfoG->setEnabled(false);
         pitchInfoG->setEnabled(false);
-        //calc->setEnabled(false);
+
         ACE->clear();
         ACE->setText( QString::fromStdString(f->hasAC()? "Yes" : "No"));
         roomsE->clear();
@@ -281,7 +248,7 @@ void disVWindow::fillLabels(VacationListItem* va){
         campingInfoG->setEnabled(true);
         bungalowInfoG->setEnabled(true);
         pitchInfoG->setEnabled(false);
-        //calc->setEnabled(true);
+
         maxCapE->clear();
         maxCapE->setText(QString::fromStdString(std::to_string(b->getMaxCapacity())));
         dailyFeeE->clear();
@@ -309,7 +276,7 @@ void disVWindow::fillLabels(VacationListItem* va){
         campingInfoG->setEnabled(true);
         bungalowInfoG->setEnabled(false);
         pitchInfoG->setEnabled(true);
-        //calc->setEnabled(true);
+
         maxCapE->clear();
         maxCapE->setText(QString::fromStdString(std::to_string(p->getMaxCapacity())));
         dailyFeeE->clear();

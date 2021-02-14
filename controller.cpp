@@ -473,7 +473,6 @@ void controller::slotSaveB(){
 }
 
 void controller::slotLoadB(){
-    cout<<"slot LoadB";
     m->loadXML();
     updateVacationListW(false);
 }

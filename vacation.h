@@ -6,7 +6,6 @@
 #include<sstream>
 #include<iomanip>
 using std::string;
-using std::cout;
 
 #include "writer.h"
 class Writer;
@@ -24,25 +23,18 @@ private:
 public:
     Vacation(string="", string="", string="", int=2020, int=1, int=1, double=0.0, unsigned int=1 );
     virtual ~Vacation()=default;
-    // bool operator==(const Vacation&) const;
-
-
 
     //metodi virtuali
     virtual Vacation* clone() const=0;
     virtual double calcFinalPrice() const=0;
-    //virtual void print() const;
+
     virtual double calcCommission() const=0;
     virtual string getTipo() const=0;
-    virtual string getInfo() const;//da implementare in tutta la gerarchia
+    virtual string getInfo() const;
 
-    virtual bool operator==(const Vacation&) const;//da implementare
-    //virtual bool operator!=(const Vacation&) const;
+    virtual bool operator==(const Vacation&) const;
 
-
-
-
-    string getName() const;
+     string getName() const;
     string getPlace() const;
     string getCountry() const;
     QDate getDate() const;

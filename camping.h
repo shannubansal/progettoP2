@@ -6,7 +6,7 @@ using std::string;
 
 class Camping: public Vacation{
 private:
-    unsigned int maxCapacity;//o da mettere solo su bungalow
+    unsigned int maxCapacity;
     double dailyFee;
     double visitorsFee;
 public:
@@ -14,7 +14,6 @@ public:
     virtual ~Camping()=default;
     virtual Camping* clone() const=0;
     virtual double calcFinalPrice() const=0;
-    //virtual void print() const;
     virtual double calcCommission() const=0;
     virtual double getPriceAndFees(unsigned int=1, unsigned int=0) const=0;
     virtual string getTipo()const=0;

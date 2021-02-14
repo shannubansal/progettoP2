@@ -30,8 +30,7 @@ void XMLReader::readCampingInfo(Camping * c){
  DeepPtr<Vacation>* XMLReader::read() {
     DeepPtr<Vacation>* v = new DeepPtr<Vacation>;
 
-//    if (readNextStartElement()){
-            if (name() == ("Flat")){
+           if (name() == ("Flat")){
                     Flat * f = new Flat();
                     readGeneralInfo(f);
                     if (readNextStartElement() && name() == ("Rooms"))
@@ -99,7 +98,7 @@ void XMLReader::readCampingInfo(Camping * c){
                             v->reset(b);
                             delete b;
                         }
-//    }
+
     skipCurrentElement();
 
     return v;

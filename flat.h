@@ -14,7 +14,7 @@ public:
     virtual Flat* clone() const override;
     double calcFinalPrice() const override;
     double calcCommission() const override;
-    //void print() const override();
+
     virtual string getTipo()const override;
     virtual string getInfo() const override;
 
